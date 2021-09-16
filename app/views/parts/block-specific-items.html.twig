@@ -1,0 +1,12 @@
+{% set items=last_v_items %}
+<div class="block-specific-items">
+  <span class="block-specific-items__title">
+    {% if block_title %}{{ block_title }}{% else %}Сейчас выбирают{% endif %}
+  </span>
+  <ul class="items-col-list" data-class-unit="list_type2">
+    <!--items col list-->
+    {% include './parts/items-col-list.html.twig' %}
+  </ul>
+</div>
+
+

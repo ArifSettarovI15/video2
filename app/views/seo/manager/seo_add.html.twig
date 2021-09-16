@@ -1,0 +1,95 @@
+{% extends "manager/global.html.twig" %}
+{% block content %}
+  <div class="form">
+    <div class="fields">
+
+
+      <div class="line">
+        <div class="label required">
+          URL:
+        </div>
+        <div class="value">
+          <input name="seo_url" class="element required" type="text"  maxlength="250"  value="{{ info.seo_url }}">
+        </div>
+      </div>
+
+      <div class="line">
+        <div class="label">
+          Page title:
+        </div>
+        <div class="value">
+          <input name="seo_page_title" class="element" type="text"  maxlength="250"  value="{{ info.seo_page_title }}">
+        </div>
+      </div>
+
+      <div class="line">
+        <div class="label">
+          Meta title:
+        </div>
+        <div class="value">
+          <input name="seo_title" class="element" type="text"  maxlength="350"  value="{{ info.seo_title }}">
+        </div>
+      </div>
+
+      <div class="line">
+        <div class="label">
+          Meta keywords:
+        </div>
+        <div class="value">
+          <input name="seo_keywords" class="element" type="text"  maxlength="250"  value="{{ info.seo_keywords }}">
+        </div>
+      </div>
+
+      <div class="line">
+        <div class="label">
+          Meta desc:
+        </div>
+        <div class="value">
+          <input name="seo_desc" class="element" type="text"  maxlength="350"  value="{{ info.seo_desc }}">
+        </div>
+      </div>
+      <div class="line">
+        <div class="label">
+          Убрать приставку справа:
+        </div>
+        <div class="value">
+          <input name="seo_skip_last" class="element" type="checkbox"  value="1" {% if info.seo_skip_last %}checked="checked"{% endif %}>
+        </div>
+      </div>
+
+      <div class="line">
+        <div class="label">
+          Текст:
+        </div>
+        <div class="value">
+          <textarea class="rich element" name="text">{{ info.seo_text }}</textarea>
+        </div>
+      </div>
+
+      <div class="line">
+        <div class="label">
+          Фото:
+        </div>
+        <div class="value">
+            {% set image_data=image_data1 %}
+            {% include 'files/upload_image.html.twig' %}
+        </div>
+      </div>
+
+      {% if edit==1 %}
+        <input type="hidden" class="element" name="action" value="process_edit">
+        <input type="hidden" class="element" name="seo_id" value="{{ info.seo_id }}">
+      {% else %}
+        <input type="hidden" class="element" name="action" value="process_add">
+      {% endif %}
+    </div>
+
+    <div class="submit btn btn-primary">
+      {% if edit==1 %}
+        Сохранить
+      {% else %}
+        Добавить
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

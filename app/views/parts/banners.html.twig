@@ -1,0 +1,26 @@
+{% for promo_item in global.fields.promo.banners_sidebar %}
+  <figure class="banner">
+    {% if promo_item['sidebar_link'] %}<a href="{{ global.base_url }}/{{ promo_item['sidebar_link'] }}">{% endif %}
+        <div class="banner__img-wrapper">
+          <img src="{{ promo_item.sidebar_photo['sizes_url']['medium']}}" alt="" class="banner__img">
+        </div>
+        {% if promo_item.sidebar_title or  promo_item.sidebar_title2 %}
+        <figcation class="banner__title">
+          <hgroup class="banner__title-texts-group">
+            <h6 class="banner__title-text1">
+              {{ promo_item.sidebar_title }}
+            </h6>
+            <h6 class="banner__title-text2">
+              {{ promo_item.sidebar_title2 }}
+            </h6>
+          </hgroup>
+          {% if promo_item.sidebar_icon %}
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="banner__title-icon">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#{{ promo_item.sidebar_icon }}"></use>
+          </svg>
+          {% endif %}
+        </figcation>
+        {% endif %}
+      {% if promo_item['sidebar_link'] %}</a>{% endif %}
+  </figure>
+{% endfor %}

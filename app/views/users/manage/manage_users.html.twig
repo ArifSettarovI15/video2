@@ -1,0 +1,48 @@
+{% extends "manager/global.html.twig" %}
+{% block bread %}
+    <li class="active">Пользователи</li>
+{% endblock %}
+{% block title %}Пользователи{% endblock %}
+{% block head_title %}Пользователи -  {{ parent() }}{% endblock %}
+{% block content %}
+
+    <div class="table_data">
+        <div class="table_data_navigation">
+            {% include 'parts/paging.html.twig' %}
+        </div>
+  <table class="table_bordered table_striped">
+      <thead>
+        <tr>
+            <th style="width: 100px">ID</th>
+            <th style="width: 100px">Акт</th>
+            <th>Имя</th>
+            <th>Телефон</th>
+            <th>Email</th>
+            <th>Город</th>
+            <th style="width: 100px"></th>
+        </tr>
+        <tr>
+            <th><input data-name="user_id" data-type="filter_value" min="0" type="text"></th>
+            <th>
+                <select data-name="status" data-type="filter_value">
+                    <option value="-1">Все</option>
+                    <option value="0">Выкл</option>
+                    <option value="1">Вкл</option>
+                </select>
+            </th>
+            <th><input data-name="name" data-type="filter_value" type="text"></th>
+            <th><input data-name="phone" data-type="filter_value" type="text"></th>
+            <th><input  data-name="email" data-type="filter_value" type="text"></th>
+            <th><input data-name="city" data-type="filter_value" type="text"></th>
+            <th>
+                <input id="user_date_from" data-name="date_start" data-type="filter_value" type="text">
+                <input id="user_date_to" data-name="date_end" data-type="filter_value" type="text"></th>
+            </th>
+        </tr>
+      </thead>
+      <tbody class="table_content">
+      {% include 'users/manage/users_table.html.twig' %}
+      </tbody>
+  </table>
+    </div>
+{% endblock %}

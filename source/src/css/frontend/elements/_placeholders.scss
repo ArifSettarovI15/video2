@@ -1,0 +1,190 @@
+// Placeholders
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+
+%overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  @include size(100%);
+}
+
+// containers
+%med-container {
+  max-width: 770px;
+  margin: 0 auto;
+}
+
+// Text
+
+// Titles
+
+// Images
+
+%background__default {
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+%background__cover {
+  @extend %background__default;
+  background-size: cover;
+}
+
+%background__contain {
+  @extend %background__default;
+  background-size: contain;
+}
+
+// Flex
+
+%flex-middle {
+  display: flex;
+  align-items: center;
+}
+
+%flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+%flex-center-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Buttons
+// Sizes
+%btn--lg {
+  height: $buttons__height--lg;
+  padding: 21px 30px;
+}
+
+%btn--md {
+  height: $buttons__height--md;
+}
+
+%btn--sm {
+  height: $buttons__height--sm;
+  padding: 0 13px;
+}
+
+// Colors
+
+%btn__red--outline {
+  border-color: $color__danger;
+  color: $color__danger;
+
+  &:hover {
+    background-color: $color__danger;
+  }
+
+  &:active {
+    color: $color__danger;
+    background-color: transparent;
+
+    .button__icon {
+      svg * {
+        fill: $color__danger;
+      }
+    }
+  }
+}
+
+//Video-button
+%video-button {
+  text-align: center;
+  background-color: $color__light;
+  @include size(100px);
+  border-radius: 200px;
+  padding: 21px;
+}
+
+// Positions
+%absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+%absolute-full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+// Links
+%link__default {
+  border-bottom: 2px solid transparent;
+  @include transitions(border-color, color);
+}
+
+%link__dotted {
+  color: $color__primary;
+  @include transitions(border-color, color);
+  border-bottom: 2px dotted $color__primary;
+
+  &:hover {
+    border-color: transparent;
+  }
+
+  &:visited {
+    border-color: $color__primary;
+  }
+}
+
+%cbs_disabled {
+  &:before {
+
+  }
+
+  & ~ .checkbox__label {
+  }
+}
+
+%rbs_disabled {
+  background-color: $color__primary;
+
+  &.checked {
+    box-shadow: inset 0 0 0 5px $color__primary;
+  }
+
+  &:before {
+    opacity: 0;
+  }
+
+  & ~ .radio__label {
+    color: $color__primary;
+  }
+}
+
+// Decor
+
+%linear-background {
+  &:before {
+    content: '';
+    @extend %absolute-full;
+    width: 100%;
+    background: linear-gradient(180deg, #F0FAFD 0%, rgba(240, 250, 253, 0) 100%);
+  }
+}
+
+%dotted-background {
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-image: url('/assets/images/static/bg-dotted.png');
+    background-repeat: no-repeat;
+  }
+}

@@ -1,0 +1,24 @@
+<ul class="our-advantages__list">
+  {% for adv_item in adv.adv_list %}
+    <li class="our-advantage__item{{ loop.index }}">
+      <figure class="our-advantage__container">
+        <div class="img-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="img">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#{{ adv_item.adv_icon }}"></use>
+          </svg>
+        </div>
+
+        <figcaption class="item-content">
+          <h2 class="item-title">
+            {{ adv_item.adv_title }}
+          </h2>
+          <div class="item-description edited-text-container">
+            <p>
+              {{ adv_item.adv_desc }}
+            </p>
+          </div>
+        </figcaption>
+      </figure>
+    </li>
+  {% endfor %}
+</ul>

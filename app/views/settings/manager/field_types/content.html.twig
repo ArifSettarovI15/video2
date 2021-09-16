@@ -1,0 +1,11 @@
+<div class="line">
+  <div class="label {% if input_info.cs_required %}required{% endif %}">
+    {{ input_info.cs_title }}:
+  </div>
+  <div class="value">
+    <input name="{{ input_info.cs_key }}" class="element {% if input_info.cs_required %}required{% endif %}" type="text"  maxlength="250"  value="{{ values[input_info.cs_key] }}">
+    {% if input_info.cs_caption %}
+      <div class="caption">{{ input_info.cs_caption }}</div>
+    {% endif %}
+  </div>
+</div>

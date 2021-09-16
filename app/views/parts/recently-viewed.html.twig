@@ -1,0 +1,9 @@
+{% if global.my_views %}
+  <section class="view-content__row3"  data-class-space="flex max206  p-l3 p-r3">
+    {% set slider_title='Вы недавно смотрели' %}
+    {% set items=global.my_views|slice(0,5) %}
+    {% set simple_list=1 %}
+    {% set slider_name='recently_views' %}
+    {% include 'shop/parts/products_list.html.twig' %}
+  </section>
+{% endif %}

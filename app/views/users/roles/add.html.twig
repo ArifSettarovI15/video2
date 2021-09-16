@@ -1,0 +1,42 @@
+{% extends "manager/global.html.twig" %}
+{% if edit==1 %}
+  {% set pp_title='Редактировать' %}
+{% else %}
+  {% set pp_title='Добавить' %}
+{% endif %}
+{% block bread %}
+    <li><a href="{{ global.base_url }}/manager/roles/">Роли</a> </li>
+    <li class="active">{{ pp_title }}</li>
+{% endblock %}
+{% block title %}{{ pp_title }} роль{% endblock %}
+{% block head_title %}{{ pp_title }} - Роли -  Пользователи - {{ parent() }}{% endblock %}
+{% block content %}
+
+    <div class="form_div">
+    <form method="POST">
+      {% if error!=''  %}
+        <div class="notice error">{{ error }}</div>
+      {% endif %}
+      {% if mes!=''  %}
+        <div class="mes notice">{{ mes }}</div>
+      {% endif %}
+
+      <section>
+
+        <div>
+          <label for="">Название<sup>*</sup>:</label>
+          <br>
+          <input name="title" type="text" value="{{ info.title }}">
+        </div>
+      </section>
+
+      {% if edit==1 %}
+        <input type="hidden" name="action" value="process_edit">
+        <input type="hidden" name="id" value="{{ info.id }}">
+      {% else %}
+        <input type="hidden" name="action" value="process_add">
+      {% endif %}
+      <input type="submit" class="button" value=" {% if edit==1 %}Обновить{% else %}Добавить{% endif %}">
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "manager/global_raw.html.twig" %}
+{% block global_content %}
+    <div id="filemanager"  {% if variables.multi %}data-multi="1"{% endif %} data-input="{{ variables.image_data.input_name }}">
+        <div class="tabs_content" data-selector="filemanager_tabs">
+            <div  data-tab="1">
+                <div>
+                    {% set image_data=variables.image_data  %}
+                    {% include 'files/upload_image.html.twig' %}
+                </div>
+            </div>
+            <div class="active" data-tab="2">
+                <div class="table_data">
+                    <div class="table_data_navigation">
+                        {% include 'parts/paging.html.twig' %}
+                    </div>
+                    <div class="thumbs_list table_content">
+                        {% include 'files/list_table.html.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,130 @@
+button, input, optgroup, select, textarea {
+    font-family: 'Arial', sans-serif;
+}
+
+.form-element{
+    $root:&;
+    min-height: 46px;
+    border: 1px solid #a8b6c0;
+    border-radius: 3px;
+    padding-left: 14px;
+    padding-right: 30px;
+    display: inline-flex;
+    justify-content: center;
+    cursor: pointer;
+    width: 100%;
+    flex-direction: column;
+
+    &:after{
+        position: absolute;
+        top:0;
+        right:14px;
+        display: flex;
+        height: 44px;
+        align-items: center;
+        font-family: "FontAwesome";
+        color:#a8b6c0;
+        font-size: 18px;
+    }
+
+    &__label{
+        color:#a8b6c0;
+        font-size: 12px;
+        line-height: 14px;
+        &_required:after {
+            padding-left: 1px;
+            content: "*";
+        }
+        #{$root}_empty &{
+            font-size: 16px;
+        }
+        #{$root}_type_input#{$root}_state_focused &{
+            font-size: 12px;
+        }
+
+    }
+
+
+
+    &__value {
+        font-size: 14px;
+        font-family: "Cuprum-Bold", sans-serif;
+        #{$root}_empty &{
+            display: none;
+        }
+        #{$root}_type_input &, #{$root}_type_textarea &{
+            width: 100%;
+            border: 0;
+        }
+        #{$root}_state_focused &{
+            display: inherit;
+        }
+    }
+
+    &_status_ok {
+        border-color: #6bbb47;
+    }
+    &_status_error {
+        border-color: #f04951;
+    }
+
+    &_state_focused,&.jq-dropdown-open {
+        border-color: #a4def6;
+        box-shadow:0 0 10px rgba(164,222,246,0.7);
+    }
+
+    &_type_input{
+        padding-right: 14px;
+        cursor: text;
+        &#{$root}_focused{
+            &#{$root}_status_ok{
+                box-shadow:none;
+            }
+            &#{$root}_status_error{
+                box-shadow:0 0 10px rgba(240,73,81,0.7);
+            }
+        }
+    }
+
+    &_type_textarea {
+        min-height: 100px;
+    }
+
+    &_type_search {
+        padding-right: 32px;
+        &:after {
+            content: "\f002";
+        }
+        &#{$root}_state_focused{
+            color:#529ccd;
+        }
+    }
+
+    &_type_dropdown{
+        &:after {
+            content: "\f107";
+        }
+    }
+
+}
+
+.form{
+    &__fields{
+
+    }
+    &__line{
+        display: flex;
+        margin-bottom: 15px;
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+    &__under{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top:1px solid #eaf1f5;
+    }
+}

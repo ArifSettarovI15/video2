@@ -1,0 +1,99 @@
+{% extends "manager/global.html.twig" %}
+{% block content %}
+  <div class="form">
+    <div class="fields">
+      <div class="line">
+        <div class="label required">
+          Название:
+        </div>
+        <div class="value">
+          <input name="title" class="element required translit_from" type="text"  maxlength="250"  value="{{ info.cs_title }}">
+        </div>
+      </div>
+
+      <div class="line">
+        <div class="label required">
+          Ключ:
+        </div>
+        <div class="value">
+          <input name="key" class="element required translit_to" type="text"  maxlength="250"  value="{{ info.cs_key }}">
+        </div>
+      </div>
+
+      <div class="line">
+        <div class="label">
+          Парент:
+        </div>
+        <div class="value">
+          <select name="parent_id" class="element">
+            <option value="">Корневой уровень</option>
+            {{ fields|raw }}
+          </select>
+        </div>
+      </div>
+
+      <div class="line">
+        <div class="label">
+          Подсказка:
+        </div>
+        <div class="value">
+          <textarea name="caption" class="element" type="text"  maxlength="255">{{ info.cs_caption }}</textarea>
+        </div>
+      </div>
+
+      <div class="line">
+        <div class="label required">
+          Тип поля:
+        </div>
+        <div class="value">
+          <select name="type" class="element required">
+            <option value="">Выберите</option>
+            {% for key,type in types %}
+              <option {% if key==info.cs_type %}selected="selected" {% endif %}value="{{ key }}">{{ type.title }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="line">
+        <div class="label">
+          Обязательное:
+        </div>
+        <div class="value">
+          <input name="required" class="element" type="checkbox" {% if info.cs_required or edit!=1%}checked="checked"{% endif %}>
+        </div>
+      </div>
+
+      <div class="line">
+        <div class="label">
+          Видно в списке:
+        </div>
+        <div class="value">
+          <input name="visible" class="element" type="checkbox" {% if info.cs_visible or edit!=1%}checked="checked"{% endif %}>
+        </div>
+      </div>
+
+      {% if edit==1 %}
+        <input type="hidden" class="element" name="action" value="process_edit">
+        <input type="hidden" class="element" name="id" value="{{ info.cs_id }}">
+      {% else %}
+        <input type="hidden" class="element" name="action" value="process_add">
+      {% endif %}
+    </div>
+    <div class="line">
+      <div class="label">
+        Активирован:
+      </div>
+      <div class="value">
+        <input name="status" class="element" type="checkbox" {% if info.cs_status or edit!=1%}checked="checked"{% endif %}>
+      </div>
+    </div>
+    <div class="submit btn btn-primary">
+      {% if edit==1 %}
+        Сохранить
+      {% else %}
+        Добавить
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,201 @@
+{% extends "manager/global.html.twig" %}
+{% block content %}
+  <div class="form">
+    <div class="fields">
+
+      <div class="line">
+        <div class="label required">
+          Название:
+        </div>
+        <div class="value">
+          <input name="content_title" class="element required translit_from" type="text"  maxlength="250"  value="{{ info.content_title }}">
+        </div>
+      </div>
+
+      <div class="line">
+        <div class="label required">
+          URL:
+        </div>
+        <div class="value">
+          <input name="content_url" class="element required translit_to" type="text"  maxlength="250"  value="{{ info.last_url_part }}">
+        </div>
+      </div>
+
+      <div class="line">
+        <div class="label">
+          Фото:
+        </div>
+        <div class="value">
+          {% set image_data=image_data1 %}
+          {% include 'files/upload_image.html.twig' %}
+        </div>
+      </div>
+{#      <div class="line">#}
+{#        <div class="label">#}
+{#          Тумба:#}
+{#        </div>#}
+{#        <div class="value">#}
+{#            {% set image_data=image_data_thumb %}#}
+{#            {% include 'files/upload_image.html.twig' %}#}
+{#        </div>#}
+{#      </div>#}
+{#        {% if content_type=='news' %}#}
+
+{#          <div class="line">#}
+{#            <div class="label">#}
+{#              Категория:#}
+{#            </div>#}
+{#            <div class="value">#}
+{#              <select class="element" name="content_cat">#}
+{#                <option value="0">Выберите категорию</option>#}
+{#                  {% for cat in cats %}#}
+{#                    <option value="{{ cat.id }}" {% if cat.id==info.content_cat %}selected="selected"{% endif %}>{{ cat.title }}</option>#}
+{#                  {% endfor %}#}
+{#              </select>#}
+{#            </div>#}
+{#          </div>#}
+{#        {% endif %}#}
+{#        {% if content_type=='articles' %}#}
+
+{#        <div class="line">#}
+{#          <div class="label">#}
+{#            Краткий текст:#}
+{#          </div>#}
+{#          <div class="value">#}
+{#            <textarea data-emojiable="true"  maxlength="2000" rows="1" class="js-auto-size element" name="content_short">{{ info.content_short }}</textarea>#}
+{#          </div>#}
+{#        </div>#}
+{#        {% endif %}#}
+      <div class="line">
+        <div class="label">
+          Текст:
+        </div>
+        <div class="value">
+          <textarea class="rich element" name="text">{{ info.content_text }}</textarea>
+        </div>
+      </div>
+      <div class="line">
+        <div class="label">
+         Откуда:
+        </div>
+        <div class="value">
+          <select name="city_mention" class="element" id="">
+            <option></option>
+              {% for city in global.cities %}
+                  {% if city.city_status==1 or city.city_status=="1" %}
+                    <option value="{{ city.city_id }}" {% if info.content_city_id==city.city_id %}selected{% endif %}>{{ city.city_title }}</option>
+                  {% endif %}
+              {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="line">
+        <div class="label">
+          Куда:
+        </div>
+        <div class="value">
+          <select name="city_mention2" class="element" id="">
+            <option></option>
+            {% for city in global.cities %}
+              {% if city.city_status==1 or city.city_status=="1" %}
+                <option value="{{ city.city_id }}" {% if info.content_city_id2==city.city_id %}selected{% endif %}>{{ city.city_title }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="line">
+        <div class="label">
+          Meta title:
+        </div>
+        <div class="value">
+          <input name="meta_title" class="element" type="text"  maxlength="250"  value="{{ info.head_title }}">
+        </div>
+      </div>
+
+{#      <div class="line">#}
+{#        <div class="label">#}
+{#          Изображение в шапке страницы:#}
+{#        </div>#}
+{#        <div class="value">#}
+{#          {% set image_data=image_data2 %}#}
+{#          {% include 'files/upload_image.html.twig' %}#}
+{#        </div>#}
+{#      </div>#}
+
+      <div class="line">
+        <div class="label">
+          Meta keywords:
+        </div>
+        <div class="value">
+          <input name="meta_keywords" class="element" type="text"  maxlength="250"  value="{{ info.head_keywords }}">
+        </div>
+      </div>
+
+      <div class="line">
+        <div class="label">
+          Meta desc:
+        </div>
+        <div class="value">
+          <input name="meta_desc" class="element" type="text"  maxlength="250"  value="{{ info.head_desc }}">
+        </div>
+      </div>
+
+      {% if edit==1 %}
+        <input type="hidden" class="element" name="action" value="process_edit">
+        <input type="hidden" class="element" name="content_id" value="{{ info.content_id }}">
+      {% else %}
+        <input type="hidden" class="element" name="action" value="process_add">
+      {% endif %}
+    </div>
+
+    {% if content_type=='news' or content_type=='articles' %}
+    <div class="line">
+      <div class="label">
+        Время публикации:
+      </div>
+      <div class="value">
+        <input name="content_time" class="element datetimepicker" type="text" value="{% if info.content_time %}{{ info.content_time|date("d.m.Y H:i") }}{% endif %}">
+      </div>
+    </div>
+    {% endif %}
+      {% if content_type=='akcii' %}
+        <div class="line">
+          <div class="label">
+            Время окончания:
+          </div>
+          <div class="value">
+            <input name="content_time_end" class="element datetimepicker" type="text" value="{% if info.content_time_end %}{{ info.content_time_end|date("d.m.Y H:i") }}{% endif %}">
+          </div>
+        </div>
+      {% endif %}
+    <div class="line">
+      <div class="label">
+        Шаблон страницы:
+      </div>
+      <div class="value">
+        <select class="element" name="template_name">
+          <option value="">Стандартный</option>
+            {% for template in templates %}
+              <option {% if info.content_template==template %}selected="selected"{% endif %} value="{{ template }}">{{ template }}</option>
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="line">
+      <div class="label">
+        Активирован:
+      </div>
+      <div class="value">
+        <input name="content_status" class="element no-icheck" type="checkbox" {% if info.content_status or edit!=1%}checked="checked"{% endif %}>
+      </div>
+    </div>
+    <div class="submit btn btn-primary">
+      {% if edit==1 %}
+        Сохранить
+      {% else %}
+        Добавить
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

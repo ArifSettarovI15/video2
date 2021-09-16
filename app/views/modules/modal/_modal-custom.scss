@@ -1,0 +1,229 @@
+@import '../../../../source/src/css/frontend/helpers/variables';
+@import '../../../../source/src/css/frontend/helpers/config';
+@import '../../../../source/src/css/frontend/helpers/mixins';
+
+.modal {
+  $root: &;
+  max-width: 460px;
+  box-shadow: 0 16px 24px rgba(8, 35, 48, 0.16);
+  background-color: $color__light;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+
+  &__wrapper {
+    //overflow: hidden;
+    padding: 32px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      @include size(64px, 32px);
+
+      @extend %background__cover;
+    }
+  }
+
+  &__head {
+    @extend %flex-center-between;
+    margin-bottom: 24px;
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 1.15;
+    color: $color__dark;
+    margin-right: 14px;
+  }
+
+  &__close {
+    margin-left: auto;
+    .btn__icon {
+      svg * {
+        fill: $color__gray--darkest;
+      }
+    }
+  }
+
+  &__form {
+    &-item {
+      margin-bottom: 14px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__search {
+
+  }
+
+  &__smile {
+    @include size(128px);
+    flex: 0 0 128px;
+    @extend %flex-center;
+    background-image: url('/assets/images/static/round-pattern-2.png');
+    @extend %background__cover;
+    margin: 0 auto 24px;
+
+    &-img {
+      @include size(84px);
+      background-image: url('/assets/images/static/smile.png');
+      @extend %background__cover;
+    }
+  }
+
+  &__content {
+    text-align: center;
+    margin-bottom: 24px;
+    #{$root}__title {
+      margin-right: 0;
+      margin-bottom: 24px;
+    }
+  }
+
+  &__text {
+    font-size: 14px;
+    line-height: 1.45;
+    color: $color__gray--darkest;
+
+    p {
+      margin-bottom: 24px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 1.4;
+      color: $color__primary;
+    }
+  }
+
+  &__bottom {
+    border-top: 1px solid $color__gray--3;
+    margin-top: 24px;
+    padding-top: 24px;
+  }
+
+  &__button {
+    margin-bottom: 14px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__fieldset {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid $color__gray--3;
+
+    &:last-child {
+      border-bottom: 0;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    &-item {
+      margin-bottom: 14px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // Blue modal
+  &_check {
+    background: $gradient__main2;
+
+    #{$root}__wrapper {
+      background-color: transparent !important;
+    }
+
+    #{$root}__title {
+      color: $color__light;
+    }
+
+    #{$root}__close {
+      border-color: $color__light;
+
+      &-icon {
+        svg * {
+          fill: $color__light;
+        }
+      }
+
+      &:hover {
+        background-color: $color__light;
+        box-shadow: 0 0 4px 8px rgba(24, 142, 214, 0.3);
+
+        &:before {
+          content: none;
+        }
+      }
+    }
+
+    #{$root}__bottom {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid $color__light;
+    }
+
+    #{$root}__descr {
+      font-size: 14px;
+      line-height: 1.45;
+      color: $color__light;
+    }
+  }
+
+  @include media('<=480px') {
+    max-width: 100%;
+    border-radius: 0;
+    min-height: 100vh;
+    &__wrapper {
+      padding: 16px;
+    }
+
+    &__head {
+      margin-bottom: 16px;
+    }
+
+    &__title {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 1.4;
+    }
+
+    &__fieldset {
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+    }
+
+    &_feed {
+
+
+      #{$root}__text {
+        margin-bottom: 16px;
+      }
+    }
+  }
+
+  @include media('<sm') {
+    @include size(100%, 100vh);
+    border-radius: 0;
+
+    &__wrapper {
+      background-color: $color__light;
+      overflow-y: visible;
+    }
+  }
+}

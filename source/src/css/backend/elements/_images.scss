@@ -1,0 +1,29 @@
+.image-over{
+    position: absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    right:0;
+    z-index: 1;
+    &:before{
+        background:rgba(0,0,0,0.1);
+        position: absolute;
+        left:0;
+        top:0;
+        bottom:0;
+        right:0;
+        z-index:1;
+        content:"";
+    }
+    &:after{
+        content:"";
+        background: url('/assets/images/fancybox_pattern.png');
+        position: absolute;
+        left:0;
+        top:0;
+        bottom:0;
+        right:0;
+        z-index: 2;
+        opacity: 0.1;
+    }
+}

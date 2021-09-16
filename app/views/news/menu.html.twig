@@ -1,0 +1,8 @@
+<div class="sidebar_menu">
+  <ul>
+    <li {% if current_cat_data.id %}{% else %}class="active"{% endif %}><a href="{{ global.base_url }}/news/">Все новости</a></li>
+    {% for item in news_cats %}
+      <li {% if current_cat_data.id==item.id %}class="active"{% endif %} ><a  href="{{ global.base_url }}/news/cats/{{ item.id }}/">{{ item.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>

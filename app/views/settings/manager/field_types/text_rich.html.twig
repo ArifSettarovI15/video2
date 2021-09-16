@@ -1,0 +1,11 @@
+<div class="line">
+    <div class="label {% if input_info.cs_required %}required{% endif %}">
+        {{ input_info.cs_title }}:
+    </div>
+    <div class="value">
+        <textarea name="{{ input_info.cs_key }}" class="element rich {% if input_info.cs_required %}required{% endif %}">{{ values[input_info.cs_key] }}</textarea>
+        {% if input_info.cs_caption %}
+            <div class="caption">{{ input_info.cs_caption }}</div>
+        {% endif %}
+    </div>
+</div>

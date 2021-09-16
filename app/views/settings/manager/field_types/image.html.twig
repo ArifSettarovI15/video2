@@ -1,0 +1,16 @@
+<div class="line">
+  <div class="label {% if input_info.cs_required %}required{% endif %}">
+    {{ input_info.cs_title }}:
+  </div>
+  <div class="value">
+      {% set image_data={
+        'input_name':input_info.cs_key,
+        'folder':input_info.cs_group_key,
+        'module':'settings',
+          'files':{
+                0:values[input_info.cs_key]
+            }
+      } %}
+      {% include 'files/upload_image.html.twig' %}
+  </div>
+</div>

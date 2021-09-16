@@ -1,0 +1,77 @@
+{% import 'frontend/elements/svg/svg_macros.twig' as Svg %}
+<footer>
+    <div class="container">
+        <div class="footer_row1">
+            <div class="footer_col">
+                <div class="footer_item footer_item__logo">
+                    {{ Svg.icon('logo', 1, 105,53) }}
+                </div>
+                <div class="footer_item footer_item__title">
+                    Видеотека интерьерного тюнинга
+                </div>
+                <div class="footer_item footer_item__payment">
+                    Иконки
+                </div>
+            </div>
+            <div class="footer_col">
+                <a href="#" class="footer_item footer_item__link">
+                    Видеокаталог
+                </a>
+                <a href="#" class="footer_item footer_item__link">
+                    Кто мы
+                </a>
+                <a href="#" class="footer_item footer_item__link">
+                    Блог
+                </a>
+                <a href="#" class="footer_item footer_item__link">
+                    Контакты
+                </a>
+                <a href="#" class="footer_item footer_item__link">
+                    Поддержка
+                </a>
+                <a href="#" class="footer_item footer_item__link">
+                    YouTube канал
+                </a>
+            </div>
+            <div class="footer_col">
+                <a href="#" class="footer_item footer_item__link">
+                    Платежи по подписке
+                </a>
+                <a href="#" class="footer_item footer_item__link">
+                    Политика использования Cookies
+                </a>
+                <a href="#" class="footer_item footer_item__link">
+                    Политика конфиденциальности
+
+                </a>
+
+            </div>
+        </div>
+
+        <div class="footer_row2">
+
+            <div class="footer_links__copyright">
+                © 2021 Видеотека интерьерного тюнинга <br> ИП Сухарев Никита Геннадьевич | ОГРНИП 321392600035921
+            </div>
+            <div class="footer_links__socials">
+                <a href="{{ global.base_url }}" class="footer_links__item">
+                    {{ Svg.icon('vk',1) }}
+                </a>
+                <a href="{{ global.base_url }}" class="footer_links__item">
+                    {{ Svg.icon('inst',1) }}
+                </a>
+
+                <a href="{{ global.base_url }}" class="footer_links__item">
+                    {{ Svg.icon('whatsapp',1) }}
+                </a>
+                <a href="{{ global.base_url }}" class="footer_links__item">
+                    {{ Svg.icon('telegram',1) }}
+                </a>
+                <a href="{{ global.base_url }}" class="footer_links__item">
+                    {{ Svg.icon('mail',1) }}
+                </a>
+            </div>
+        
+        </div>
+    </div>
+</footer>

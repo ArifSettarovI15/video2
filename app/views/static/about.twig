@@ -1,0 +1,11 @@
+{% extends "global.html.twig" %}
+{% block content %}
+
+    {% include 'frontend/components/page-content/simple.twig' with {
+        'text':fields.company_text,
+        'img':fields.image.file_url
+    } %}
+
+    {% include 'frontend/components/callback/callback.twig' %}
+    {% include 'frontend/components/advantages/advantages.twig' %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+	<p><b>Заказ #{{ order_id }}</p>
+    <p><b>Дата:</b> {{ date }}</p>
+    <p><b>Маршрут:</b> {{ from }} - {{ to }} ({{ router_length }})</p>
+    <p><b>Цена:</b> {{ price }}</p>
+    <p><b>Класс:</b> {{ class }}</p>
+    <p><b>Телефон:</b> {{ phone }}</p>
+    {% if name %}<p><b>Имя:</b> {{ name }}</p>{% endif %}
+    {% if passengers %}<p><b>Пассажиры:</b> {{ passengers }}</p>{% endif %}
+    {% if services %}<p><b>Услуги:</b> {{ services }}</p>{% endif %}
+    {% if date2 %}<p><b>Обратный трансфер:</b> {{ date2 }}</p>{% endif %}
+    {% if comment %}<p><b>Комментарий:</b> {{ comment|nl2br }}</p>{% endif %}
+{% endblock %}

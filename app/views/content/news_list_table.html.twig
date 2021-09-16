@@ -1,0 +1,20 @@
+{% if list %}
+<div class="table-content-part news-list__list">
+    {% for item in list %}
+        <div class="news-list__item">
+            {% include 'frontend/components/news_item/news_item_big.twig' with {
+                'item':item
+            }%}
+        </div>
+    {% endfor %}
+</div>
+{% else %}
+        <div class="cat-no-result">
+                <div class="cat-no-result__title">
+                        Новости не найдены
+                </div>
+                <div class="cat-no-result__text">
+                        По данным критериям новости не найдены. Попробуйте уменьшить количество фильтров.
+                </div>
+        </div>
+{% endif %}

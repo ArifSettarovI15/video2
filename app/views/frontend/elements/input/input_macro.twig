@@ -1,0 +1,37 @@
+{% macro field(name, options={}) %}
+    {% import "frontend/elements/svg/svg_macros.twig" as Svg %}
+    <label
+            class="field {% if options.parent_mod %}field_{{ options.parent_mod }}{% endif %}{% if options.dropdown %}field_select{% endif %} {% if options.user_settings %}field_ok{% endif %}">
+        {% if options.dropdown %}
+            <div class="field__input">{% if options.user_settings %}{{ options.user_settings }}{% endif %}</div>
+
+            <input type="hidden" data-name="{{ options.data_name }}" name="{{ name }}" class="input-vv element" value="{% if options.user_settings %}{{ options.user_settings }}{% endif %}">
+        {% else %}
+            <input
+                    type="{% if options.type %}{{ options.type }}{% else %}text{% endif %}"
+                    name="{{ name }}"
+                    class="field__input element {% if options.value %}focused{% endif %}{% if options.icon %}field__input_icon{% endif %} {% if options.required %}required{% endif %} {{ options.classes }}"
+                    placeholder="{% if options.pholder %}{{ options.pholder }}{% else %} {% endif %}"
+                    {% if options.value %}
+                      value="{{ options.value }}"
+                    {% endif %}
+                    {% if options.disabled %}disabled{% endif %}
+                    autocomplete="off"
+                    data-default-value="{{ options.value }}"
+                    data-name="{{ options.data_name }}"
+                    {% if options.size %}
+                    maxlength="{{ options.size }}"
+                    size="{{ options.size }}"
+                    {% endif %}
+            >
+        {% endif %}
+        <div class="field__bar"></div>
+        {% if options.icon %}<span class="field__icon">{{ Svg.icon(options.icon, 0) }}</span>{% endif %}
+        {% if options.label %}<span class="field__label">{{ options.label }}</span>{% endif %}
+        {% if options.clear %}<span class="field__clean js-input-clean">{{ Svg.icon('close', 1) }}</span>{% endif %}
+        {% if options.dropdown %}{% include 'frontend/components/input-select/' ~ options.dropdown ~'.twig' with {
+            list: options.list,
+            user_settings: options.user_settings
+        } %}{% endif %}
+    </label>
+{% endmacro %}

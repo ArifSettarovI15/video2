@@ -1,0 +1,17 @@
+{% macro picture(image, max_size='original', lazy=1, alt='', prefix='', class='', dop_html='') %}
+
+    {% set kk=prefix~'sizes_url' %}
+    {% set kk2=prefix~'sizes_data' %}
+    {% set webp=prefix~'file_webp' %}
+
+    {% include 'frontend/elements/picture/picture.twig' with {
+        'lazy':lazy,
+        'max_size':max_size,
+        'alt':alt,
+        'dop_html':dop_html,
+        'image':image
+    }%}
+{% endmacro %}
+{% macro static(name, lazy=1, alt='', class='', dop_html='') %}
+    {% include 'frontend/elements/picture/static.twig'%}
+{% endmacro %}

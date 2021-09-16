@@ -1,0 +1,31 @@
+@import "../../../../../../../source/src/css/frontend/helpers/helpers";
+@import "../variables";
+
+/*
+1. Fixed
+2. Content width
+3. Full width
+ */
+
+// 1. Fixed
+@mixin btn-width-small() {
+  display: inline-flex;
+  width: $btn-width-small;
+}
+
+@mixin btn-width-large() {
+  display: inline-flex;
+  width: $btn-width-large;
+}
+
+// 2. Content width
+@mixin btn-width-content() {
+  display: inline-flex;
+  width: inherit;
+  padding: 0 20px;
+}
+
+// 3. Full width
+@mixin btn-width-full() {
+  display: flex;
+}

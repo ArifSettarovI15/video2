@@ -1,0 +1,15 @@
+<div class="callback-form form"  data-url="{{ global.base_url }}/callback/" data-callback="ClearForm">
+  <input type="hidden" class="element" name="action" value="process_callback">
+  <div class="callback-form__row1" data-class-unit="input_type2">
+    <input name="name" type="text" data-class-unit="input-field_type2" class="element required" placeholder="Ваше имя">
+  </div>
+  <div class="callback-form__row2" data-class-unit="input_type2">
+    <input name="phone" type="text" data-class-unit="input-field_type2" class="element required" placeholder="+7(___) ___-__-__">
+  </div>
+  <button class="callback-form__row3 callback-button submit" data-class-unit="button_type1_theme1" data-class-space="max46">
+    <div class="callback-button__title">
+      <span class="callback-button__title-text1">Проблемы с {% if title %}{{ title }}{% else %}выбором{% endif %}?</span>
+      <span class="callback-button__title-text2">Мы перезвоним вам</span>
+    </div>
+  </button>
+</div>

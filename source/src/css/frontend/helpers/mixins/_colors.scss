@@ -1,0 +1,15 @@
+$color-type-primary: 1 !default;
+$color-type-secondary: 0.7 !default;
+$color-type-disabled: 0.5 !default;
+
+@mixin color-type-primary($color) {
+  color: rgba($color, $color-type-primary);
+}
+
+@mixin color-type-secondary($color) {
+  color: rgba($color, $color-type-secondary);
+}
+
+@mixin color-type-disabled($color) {
+  color: rgba($color, $color-type-disabled);
+}

@@ -1,0 +1,14 @@
+// Effects
+//////////////////////////////////////////////////////
+
+@import '../functions/unfoldtransitions';
+
+@mixin transitions($transitions...) {
+  $unfoldedtransitions: ();
+
+  @each $transition in $transitions {
+    $unfoldedtransitions: append($unfoldedtransitions, unfoldTransition($transition), comma);
+  }
+
+  transition: $unfoldedtransitions;
+}

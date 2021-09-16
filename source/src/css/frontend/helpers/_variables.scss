@@ -1,0 +1,99 @@
+// Paths
+$image__path--root: '/assets/images/';
+$image__path--static: '/assets/images/static/';
+$image__path--svg: '/assets/images/svg';
+
+// Sizes
+/////////////////////////////////////////////
+$gutter: 20px;
+
+// Elements
+/////////////////////////////////////////////
+
+// Buttons
+$buttons__border-radius: 6px;
+$buttons__height--lg: 56px;
+$buttons__height--md: 46px;
+$buttons__height--sm: 32px;
+
+// Inputs
+$inputs__border-radius: 4px;
+$inputs__height: 46px;
+
+// Views
+/////////////////////////////////////////////
+$header__height: 62px;
+
+// Effects
+/////////////////////////////////////////////
+$transition-duration: .2s;
+$transition-timing-function: ease-in-out;
+$transition-delay: 0s;
+
+$animation-duration: $transition-duration * 3;
+
+// Colors
+/////////////////////////////////////////////
+
+// Palette
+$color__light: linear-gradient(20deg,rgba(139, 233, 223,0.7), #4f485f);
+$color__light2: linear-gradient(320deg,rgba(139, 233, 223, 0.6), #615672);
+$color__light3: linear-gradient(90deg,rgba(139, 233, 223, 0.6), #615672);
+$color__light4: linear-gradient(-90deg,rgba(139, 233, 223, 0.6), #615672);
+$color__light5: linear-gradient(-90deg,rgba(139, 233, 223, 0.6), #7c61a0);
+$color__dark: #262425;
+$color__primary: rgb(72, 157, 146);
+$color__primary--light: rgb(68, 42, 83);
+$color__primary--lightest: #7852a4;
+$color__primary--1: #65dbcb;
+$color__success: #4CAF50;
+$color__danger: #F9690E;
+$color__warning: #F9690E;
+$color__warning--2: #d47f63;
+$color__star: #2f7f8c;
+$color__star-1: #FFEEA9;
+
+// Grays
+$color__gray--1: #F7F8FA;
+$color__gray--2: #C2C2CB;
+$color__gray--3: #ECECEF;
+$color__gray--4: #D7D7DD;
+$color__gray--5: #CFD8DC;
+$color__gray--6: #CACAD1;
+$oolor__gray--7: #78909C;
+$color__gray--darkest: #77798C;
+$color__gray--8: #676878;
+
+// Gradients
+$gradient__main: linear-gradient(180deg, #019875 0%, #549450 100%);
+$gradient__main2: linear-gradient(180deg, #019875 0%, #4CAF50 100%);
+$gradient__main3: linear-gradient(180deg, #019875 0%, #4CAF50 100%);
+$gradient__danger: linear-gradient(180deg, #FF8A80 0%, #FF5252 100%);
+
+// Breackpoints and containers
+/////////////////////////////////////////////
+
+// Minimum supported width
+$breackpoints__min: 320px;
+
+//Extra small screen / phone
+$breackpoints__xs: 480px;
+
+// Small screen / tablet
+$breackpoints__sm: 768px;
+
+// Medium small screen / mobile desktop
+$breackpoints__md: 1024px;
+
+// Large screen / large desktop
+$breackpoints__lg: 1366px;
+
+$breackpoints__xs--max: ($breackpoints__sm - 1);
+$breackpoints__sm--max: ($breackpoints__md - 1);
+$breackpoints__md--max: ($breackpoints__lg - 1);
+
+$container__width--lg: 1170px ;
+
+// Fonts
+$font-family__main: 'Manrope', Helvetica, sans-serif;
+$font-family__secondary: 'Exo2', Helvetica, sans-serif;

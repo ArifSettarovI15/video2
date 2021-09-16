@@ -1,0 +1,20 @@
+@import "../../../../../../../source/src/css/frontend/helpers/helpers";
+@import "../variables";
+
+// Disabled
+
+@mixin btn-status-disabled() {
+  cursor: default;
+  background: $btn-bg-grey-light;
+  color: rgba($btn-color-black, 0.5);
+
+  &:hover {
+    background: $btn-bg-grey-light;
+    color: rgba($btn-color-black, 0.5);
+  }
+}
+
+@mixin btn-status-disabled-opacity() {
+  cursor: default;
+  opacity: 0.5;
+}

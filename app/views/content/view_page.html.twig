@@ -1,0 +1,25 @@
+{% extends "global.html.twig" %}
+{% block content %}
+    {% set article = 1 %}
+    <div class="mtb mtb_2">
+        <div >
+            {% if info.content_type=='news' or info.content_type=='articles' %}
+                <meta itemprop="headline" content="{{ info.content_title }}">
+                <meta itemprop="dateModified" content="{{ info.datetime }}">
+                <meta itemprop="datePublished" content="{{ info.datetime }}">
+                <meta itemprop="author" content="{{ global.fields.about.about_name }}"/>
+
+            {% endif %}
+
+            {% include 'frontend/components/view-article/view-article.twig' %}
+        </div>
+    </div>
+    {% if where_go %}
+    <div class="mtb">
+{#        {% include 'frontend/components/screen-ways/screen-ways.twig' %}#}
+    </div>
+    {% endif %}
+    <div class="mtb">
+        {% include 'frontend/components/screen-callback/screen-callback.twig' %}
+    </div>
+{% endblock %}

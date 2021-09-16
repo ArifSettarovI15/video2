@@ -1,0 +1,44 @@
+{% extends "global.html.twig" %}
+{% block content %}
+  {% set article_list = 1 %}
+{#  <pre>{{ dump(list) }}</pre>#}
+  <div class="mtb mtb_2">
+    {% if variables.categories %}
+        {% set categories = variables.categories %}
+    {% endif %}
+
+    <div class="container">
+      {% if not no_items %}
+        <div class="table-data">
+
+          <div class="table-content" data-list="articles">
+
+            {% include 'frontend/components/table-list/table-list.twig' with {
+              block: 'article',
+              list: list
+            } %}
+          </div>
+          {% if paging_data.pages %}
+            <div class="table-list__paging">
+              {% include 'frontend/components/paging/paging.twig' %}
+            </div>
+          {% endif %}
+        </div>
+      {% else %}
+        <div class="empty">
+          <span>В данном разделе нет публикаций!</span>
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+  {% if where_go %}
+  <div>
+{#    <div class="decor_taxi"></div>#}
+    {% include 'frontend/components/screen-ways/screen-ways.twig' %}
+  </div>
+  {% endif %}
+  <div class="mtb">
+    {% include 'frontend/components/screen-callback/screen-callback.twig' %}
+  </div>
+{% endblock %}

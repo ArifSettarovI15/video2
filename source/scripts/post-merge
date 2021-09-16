@@ -1,0 +1,4 @@
+#!/bin/bash
+cd source
+bower install
+grunt pull_up

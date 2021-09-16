@@ -1,0 +1,51 @@
+@charset "utf-8";
+
+//Vendors
+@import '../../../bower_components/normalize-scss/fork-versions/default/normalize.scss';
+
+$mdi-font-path:'/assets/vendors/mdi/fonts';
+
+$slick-font-path:'/assets/vendors/slick-carousel/slick/fonts/';
+$slick-loader-path:'/assets/vendors/slick-carousel/slick/';
+@import '../../../bower_components/slick-carousel/slick/slick.scss';
+@import '../../../bower_components/slick-carousel/slick/slick-theme.scss';
+@import '../../../bower_components/animate.css/animate.scss';
+@import '../../../bower_components/tooltipster/dist/css/tooltipster.bundle.min.scss';
+
+@import '../../../bower_components/magnific-popup/src/css/main.scss';
+@import '../../../bower_components/perfect-scrollbar/src/css/main.scss';
+@import '../../../bower_components/select2/dist/css/select2.scss';
+@import '../../../bower_components/nouislider/distribute/nouislider.scss';
+@import '../../../bower_components/air-datepicker/dist/css/datepicker.scss';
+@import '../../../bower_components/lavalamp/css/jquery.lavalamp.scss';
+
+// Object-fit
+@import "../../../bower_components/object-fit-images/preprocessors/mixin.scss";
+
+//Modules
+@import "../../../../app/views/modules/modules";
+
+//Helpers
+@import 'helpers/variables';
+@import 'helpers/config';
+@import 'helpers/functions';
+@import 'helpers/mixins';
+
+//Base
+@import 'base/reset';
+@import 'base/layout';
+
+//Elements
+@import 'elements';
+@import "../../../../app/views/frontend/elements/elements_frontend";
+
+//Components
+@import "../../../../app/views/frontend/components/components_frontend";
+
+//Sections
+@import "../../../../app/views/frontend/sections/sections_frontend";
+
+
+//Pages
+@import "../../../../app/views/frontend/pages/pages_frontend";
+

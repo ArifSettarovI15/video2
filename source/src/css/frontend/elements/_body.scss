@@ -1,0 +1,38 @@
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  -webkit-text-size-adjust: none;
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  overflow: hidden;
+  color: $color__dark;
+  background-color: $color__light;
+
+  font-family: $font-family__main;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  backface-visibility: hidden;
+  position: relative;
+
+  &.menu-open {
+    overflow: hidden !important;
+    &:after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      @include size(100%);
+      background-color: rgba(0, 0, 0, .35);
+      z-index: 90;
+      overflow: hidden;
+    }
+  }
+}

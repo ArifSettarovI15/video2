@@ -1,0 +1,72 @@
+{% set assets_version=140 %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="X-UA-Compatible" content="IE=edge">
+  <meta name="language" content="ru" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>{{ global.header.title }}{% if global.server.REQUEST_URI!='/' and global.header.skip_last_title!=1%} | {{ global.fields.about.about_title }}{% endif %}</title>
+  <meta property="og:title" content="{{ global.header.title }}{% if global.server.REQUEST_URI!='/' %} | {{ global.fields.about.about_title }}{% endif %}" />
+    {% if global.header.desc %}<meta property="og:description" content="{{ global.header.desc }}" />{% endif %}
+    {% if global.header.desc %}<meta content="{{ global.header.desc }}" name="description">{% endif %}
+    {% if global.header.keywords %}<meta content="{{ global.header.keywords }}" name="keywords">{% endif %}
+    <meta property="og:image" content="{% if global.header.og.image %}{{ global.header.og.image }}{% else %}{{ global.base_url }}/assets/images/static/og_image.jpg{% endif %}" />
+    <meta property="og:url" content= "{{ global.base_url }}{{ global.server.REQUEST_URI }}" />
+    <meta property="og:type" content="{% if global.header.og.type %}{{ global.header.og.type }}{% else %}website{% endif %}"/>
+    {% block meta %}
+      <link rel="canonical" href="{{ global.page_link_main }}"/>
+      <meta name="robots" content="all"/>
+    {% endblock %}
+  <link rel="stylesheet" href="{{ global.base_url }}/assets/css/frontend.min.css?{{ assets_version }}">
+
+  <link rel="shortcut icon" href="{{ global.base_url }}/favicon.ico" type="image/x-icon" />
+{#  <link rel="apple-touch-icon" href="{{ global.base_url }}/assets/images/icons/apple-touch-icon.png" />#}
+{#  <link rel="apple-touch-icon" sizes="57x57" href="{{ global.base_url }}/assets/images/icons/apple-touch-icon-57x57.png" />#}
+{#  <link rel="apple-touch-icon" sizes="72x72" href="{{ global.base_url }}/assets/images/icons/apple-touch-icon-72x72.png" />#}
+{#  <link rel="apple-touch-icon" sizes="76x76" href="{{ global.base_url }}/assets/images/icons/apple-touch-icon-76x76.png" />#}
+{#  <link rel="apple-touch-icon" sizes="114x114" href="{{ global.base_url }}/assets/images/icons/apple-touch-icon-114x114.png" />#}
+{#  <link rel="apple-touch-icon" sizes="120x120" href="{{ global.base_url }}/assets/images/icons/apple-touch-icon-120x120.png" />#}
+{#  <link rel="apple-touch-icon" sizes="144x144" href="{{ global.base_url }}/assets/images/icons/apple-touch-icon-144x144.png" />#}
+{#  <link rel="apple-touch-icon" sizes="152x152" href="{{ global.base_url }}/assets/images/icons/apple-touch-icon-152x152.png" />#}
+{#  <link rel="apple-touch-icon" sizes="180x180" href="{{ global.base_url }}/assets/images/icons/apple-touch-icon-180x180.png" />#}
+  <script src="https://kit.fontawesome.com/6d6e036f3b.js" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    {% verbatim %}
+  !function(e,n,t){function o(e,n){return typeof e===n}function s(){var e,n,t,s,a,i,r;for(var l in c)if(c.hasOwnProperty(l)){if(e=[],n=c[l],n.name&&(e.push(n.name.toLowerCase()),n.options&&n.options.aliases&&n.options.aliases.length))for(t=0;t<n.options.aliases.length;t++)e.push(n.options.aliases[t].toLowerCase());for(s=o(n.fn,"function")?n.fn():n.fn,a=0;a<e.length;a++)i=e[a],r=i.split("."),1===r.length?Modernizr[r[0]]=s:(!Modernizr[r[0]]||Modernizr[r[0]]instanceof Boolean||(Modernizr[r[0]]=new Boolean(Modernizr[r[0]])),Modernizr[r[0]][r[1]]=s),f.push((s?"":"no-")+r.join("-"))}}function a(e){var n=u.className,t=Modernizr._config.classPrefix||"";if(p&&(n=n.baseVal),Modernizr._config.enableJSClass){var o=new RegExp("(^|\\s)"+t+"no-js(\\s|$)");n=n.replace(o,"$1"+t+"js$2")}Modernizr._config.enableClasses&&(n+=" "+t+e.join(" "+t),p?u.className.baseVal=n:u.className=n)}function i(){return"function"!=typeof n.createElement?n.createElement(arguments[0]):p?n.createElementNS.call(n,"http://www.w3.org/2000/svg",arguments[0]):n.createElement.apply(n,arguments)}function r(){var e=n.body;return e||(e=i(p?"svg":"body"),e.fake=!0),e}function l(e,t,o,s){var a,l,f,c,d="modernizr",p=i("div"),h=r();if(parseInt(o,10))for(;o--;)f=i("div"),f.id=s?s[o]:d+(o+1),p.appendChild(f);return a=i("style"),a.type="text/css",a.id="s"+d,(h.fake?h:p).appendChild(a),h.appendChild(p),a.styleSheet?a.styleSheet.cssText=e:a.appendChild(n.createTextNode(e)),p.id=d,h.fake&&(h.style.background="",h.style.overflow="hidden",c=u.style.overflow,u.style.overflow="hidden",u.appendChild(h)),l=t(p,e),h.fake?(h.parentNode.removeChild(h),u.style.overflow=c,u.offsetHeight):p.parentNode.removeChild(p),!!l}var f=[],c=[],d={_version:"3.6.0",_config:{classPrefix:"",enableClasses:!0,enableJSClass:!0,usePrefixes:!0},_q:[],on:function(e,n){var t=this;setTimeout(function(){n(t[e])},0)},addTest:function(e,n,t){c.push({name:e,fn:n,options:t})},addAsyncTest:function(e){c.push({name:null,fn:e})}},Modernizr=function(){};Modernizr.prototype=d,Modernizr=new Modernizr;var u=n.documentElement,p="svg"===u.nodeName.toLowerCase(),h=d._config.usePrefixes?" -webkit- -moz- -o- -ms- ".split(" "):["",""];d._prefixes=h;var m=d.testStyles=l;Modernizr.addTest("touchevents",function(){var t;if("ontouchstart"in e||e.DocumentTouch&&n instanceof DocumentTouch)t=!0;else{var o=["@media (",h.join("touch-enabled),("),"heartz",")","{#modernizr{top:9px;position:absolute}}"].join("");m(o,function(e){t=9===e.offsetTop})}return t}),s(),a(f),delete d.addTest,delete d.addAsyncTest;for(var v=0;v<Modernizr._q.length;v++)Modernizr._q[v]();e.Modernizr=Modernizr}(window,document);
+    {% endverbatim %}
+  </script>
+  <!--[if lt IE 9]>
+  <script src="{{ global.base_url }}/assets/components/html5shiv/dist/html5shiv.js"></script>
+
+
+  <script src="{{ global.base_url }}/assets/components/respond/dest/respond.min.js"></script>
+  <![endif]-->
+</head>
+{% set back_url=global.base_url %}
+{% for item in global.page.breadcrumbs %}
+  {% if item.link %}
+    {% set back_url=item.link %}
+  {% endif %}
+{% endfor %}
+<body class="page {% if global.page.page_class %}{{ global.page.page_class }}{% endif %} {% if home==1 %}page-home{% endif %}">
+<!-- Google Tag Manager (noscript) -->
+{#<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5SX552"#}
+{#                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>#}
+<!-- End Google Tag Manager (noscript) -->
+{% block global_content %}{% endblock %}
+{#{% include 'frontend/components/ajax-loading/ajax-loading.twig' %}#}
+
+<script type="text/javascript" src="{{ global.base_url }}/assets/js/frontend.min.js?{{ assets_version }}"></script>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=0ce9c012-fe3b-491a-8ece-1a3488aa6ffc&lang=ru_RU" type="text/javascript"></script>
+<script src="{{ global.base_url }}/assets/images/sprites/grunticon.loader.js"></script>
+<script>
+  grunticon([
+    "{{ global.base_url }}/assets/images/sprites/icons.data.svg.css",
+    "{{ global.base_url }}/assets/images/sprites/icons.data.png.css",
+    "{{ global.base_url }}/assets/images/sprites/icons.fallback.css"
+  ], grunticon.svgLoadedCallback);
+
+</script>
+</body>
+</html>

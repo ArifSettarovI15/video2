@@ -1,0 +1,174 @@
+<header class="view-header" data-class-space="flex">
+  <!-- row 1 -->
+  <div class="view-header__row1" data-class-space="flex justify-center">
+    <div class="view-header__row1-container" data-class-space="flex min173 max206 p-l3 p-r3">
+      <!--col 1-->
+      <nav class="view-header__row1-col1 view-header-nav1">
+        <ul class="view-header-nav1__list" data-class-unit="list_type1">
+          <!--tab 1-->
+          <li class="view-header-nav1__item1{% if '/service' not in global.server.REQUEST_URI %}_active{% endif %}" data-class-unit="item_type1">
+            <a href="{{ global.base_url }}" class="view-header-nav1-item__link" data-class-unit="item-container_type1">
+              <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="view-header-nav1-item__icon" data-class-unit="item-icon_type1">
+                <use xlink:href="#uEA01-1-cart"></use>
+              </svg>
+              <hgroup class="view-header-nav1-item__name" data-class-unit="item-title_type1" data-class-text="size12">
+                <h5 class="view-header-nav1-item__name-part1" data-class-text="group2_bold">
+                  <span data-class-text="upper">Эпицентр</span>
+                </h5>
+                <h6 class="view-header-nav1-item__name-part2" data-class-text="group1_regular">
+                  Интернет магазин
+                </h6>
+              </hgroup>
+            </a>
+          </li>
+          <!--tab 2-->
+          <li class="view-header-nav1__item2{% if '/service' in global.server.REQUEST_URI %}_active{% endif %}" data-class-unit="item_type1">
+            <a href="{{ global.base_url }}/service/" class="view-header-nav1-item__link" data-class-unit="item-container_type1">
+              <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="view-header-nav1-item__icon" data-class-unit="item-icon_type1">
+                <use xlink:href="#uEA0E-6"></use>
+              </svg>
+              <hgroup class="view-header-nav1-item__name" data-class-unit="item-title_type1" data-class-text="size12">
+                <h5 class="view-header-nav1-item__name-part1" data-class-text="group2_bold">
+                  <span data-class-text="upper">Эпицентр&nbsp;</span>Сервис
+                </h5>
+                <h6 class="view-header-nav1-item__name-part2" data-class-text="group1_regular">
+                  Ремонт и обслуживание
+                </h6>
+              </hgroup>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!--col 2-->
+      <nav class="view-header__row1-col2 view-header-nav2">
+        <ul class="view-header-nav2__list auth_block" data-class-unit="list_type1">
+          {% include './parts/auth.html.twig' %}
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <!-- row 2 -->
+  <div class="view-header__row2" data-class-space="flex justify-center">
+    <div class="view-header__row2-container" data-class-space="flex max206 p-l3 p-r3">
+      <a href="{{ global.base_url }}" class="view-header__row2-col1 view-logotype" data-class-space="flex min35 max40">
+        <img title="{{ global.fields.company.company_name }}" alt="{{ global.company.company_name }}" src="{{ global.base_url }}/assets/images/logotype-epicentr.png" class="view-logotype__img">
+      </a>
+      <!---->
+      <div class="view-header__row2-col2" data-class-space="flex min60 m-l5">
+        <address class="view-header-contacts">
+          <a href="{{ global.base_url }}/contacts.html" class="view-header-contacts__city-link" data-class-unit="item_type1 item-container_type1">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="view-header-contacts____point-icon" data-class-unit="item-icon_type1">
+              <use xlink:href="#uEA07-15-point"></use>
+            </svg>
+            <span class="view-header-contacts__text-city" data-class-unit="item-title_type1 link_type2">
+              {{ global.fields.company.company_city }}
+            </span>
+          </a>
+          <!---->
+          <hgroup class="view-header-contacts__phone" data-class-unit="item_type1 item-container_type1" data-class-text="group2_bold size18">
+            {% if '/service' in global.server.REQUEST_URI %}
+              <a href="tel:{{ global.fields.shops.list.service_simf.phone_clean|replace({' ':'','(':'',')':''}) }}" class="view-header-contacts__number1"  data-class-space="m-r1">
+              <span class="view-header-contacts__number-part1" data-class-text="group2_regular size16 color1-6">
+               &nbsp;{{ global.fields.shops.list.service_simf.shop_phone_parts[0] }}
+              </span>
+                <span class="view-header-contacts__number-part2">
+                &nbsp;{{ global.fields.shops.list.service_simf.shop_phone_parts[1] }}
+              </span>,
+              </a> <a  href="tel:{{ global.fields.shops.list.service_simf.phone2_clean|replace({' ':'','(':'',')':''}) }}" class="view-header-contacts__number2">
+              <span class="view-header-contacts__number-part1" data-class-text="group2_regular size16 color1-6">
+                {{ global.fields.shops.list.service_simf.shop_phone_parts2[0] }}
+              </span>
+                <span class="view-header-contacts__number-part2" data-class-text="">
+                &nbsp;{{ global.fields.shops.list.service_simf.shop_phone_parts2[1] }}
+              </span>
+              </a>
+            {% else %}
+              <a href="tel:{{ global.fields.company.main_phone_clean|replace({' ':'','(':'',')':''}) }}" class="view-header-contacts__number1"  data-class-space="m-r1">
+              <span class="view-header-contacts__number-part1" data-class-text="group2_regular size16 color1-6">
+                {{ global.fields.company.main_phone_parts[0] }}
+              </span>
+                <span class="view-header-contacts__number-part2">
+                &nbsp;{{ global.fields.company.main_phone_parts[1] }}
+              </span>,
+              </a> <a href="tel:{{ global.fields.company.add_phone_clean|replace({' ':'','(':'',')':''}) }}" class="view-header-contacts__number2">
+              <span class="view-header-contacts__number-part1" data-class-text="group2_regular size16 color1-6">
+                {{ global.fields.company.add_phone_parts[0] }}
+              </span>
+                <span class="view-header-contacts__number-part2" data-class-text="">
+                &nbsp;{{ global.fields.company.add_phone_parts[1] }}
+              </span>
+              </a>
+            {% endif %}
+          </hgroup>
+        </address>
+        <!---->
+        <nav class="view-header-menu">
+          <ul class="view-header-menu__list" data-class-unit="list_type1">
+            {% if '/service' in global.server.REQUEST_URI %}
+              <li class="view-header-menu__item3" data-class-unit="item_type1">
+                <div class="view-header-menu-item__container" data-class-unit="item-container_type1">
+                  <a href="{{ global.base_url }}/service/servisnoe-obsluzhivanie.html" class="view-header-menu-item__link" data-class-unit="item-title_type2 link_type2">
+                    Обслуживание
+                  </a>
+                </div>
+              </li>
+              <li class="view-header-menu__item3" data-class-unit="item_type1">
+                <div class="view-header-menu-item__container" data-class-unit="item-container_type1">
+                  <a href="{{ global.base_url }}/service/about_service.html" class="view-header-menu-item__link" data-class-unit="item-title_type2 link_type2">
+                    О сервисе
+                  </a>
+                </div>
+              </li>
+            {% else %}
+            <!--1-->
+            <li class="view-header-menu__item1" data-class-unit="item_type1">
+              <div class="view-header-menu-item__container" data-class-unit="item-container_type1">
+                <a href="{{ global.base_url }}/how_to.html" class="view-header-menu-item__link" data-class-unit="item-title_type2 link_type2">
+                  Как заказать?
+                </a>
+              </div>
+            </li>
+            <!--2-->
+            <li class="view-header-menu__item2" data-class-unit="item_type1">
+              <div class="view-header-menu-item__container" data-class-unit="item-container_type1">
+                <a href="{{ global.base_url }}/payment-and-delivery.html" class="view-header-menu-item__link" data-class-unit="item-title_type2 link_type2">
+                  Доставка
+                </a>
+              </div>
+            </li>
+            <!--4-->
+            <li class="view-header-menu__item4" data-class-unit="item_type1">
+              <div class="view-header-menu-item__container" data-class-unit="item-container_type1">
+                <a href="{{ global.base_url }}/payment.html" class="view-header-menu-item__link" data-class-unit="item-title_type2 link_type2">
+                  Оплата
+                </a>
+              </div>
+            </li>
+
+            <!--3-->
+            <li class="view-header-menu__item3" data-class-unit="item_type1">
+              <div class="view-header-menu-item__container" data-class-unit="item-container_type1">
+                <a href="{{ global.base_url }}/about.html" class="view-header-menu-item__link" data-class-unit="item-title_type2 link_type2">
+                  О нас
+                </a>
+              </div>
+            </li>
+            {% endif %}
+
+            <!--5-->
+            <li class="view-header-menu__item5" data-class-unit="item_type1">
+              <div class="view-header-menu-item__container" data-class-unit="item-container_type1">
+                <a href="{{ global.base_url }}/contacts.html" class="view-header-menu-item__link" data-class-unit="item-title_type2 link_type2">
+                  Контакты
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+
+
+      </div>
+    </div>
+  </div>
+  <!---->
+</header>

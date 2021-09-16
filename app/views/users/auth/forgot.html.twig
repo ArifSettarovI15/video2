@@ -1,0 +1,28 @@
+{% extends "global.html.twig" %}
+{% block content %}
+<div class="main__registration">
+    <div class="forgot-block container">
+        <div class="forgot-block__desc">
+           Для восстановления пароля, введите свой Email
+        </div>
+        <div class="form form_style_1" data-insert=".forgot-block" data-url="{{ global.settings.links.forgot }}">
+            <input class="element" name="action" value="process_forgot" type="hidden">
+            <div class="form__element">
+                <div>
+                    <input type="text" name="email" class="element form__input required">
+                    <div class="form__caption">Email *</div>
+                </div>
+            </div>
+            <div>
+                <div class="form-block__line">
+                    <div class="form-element">
+                       <div>
+                           <div class="btn_color_blue btn btn_small submit">Отправить</div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+<div class="paging">
+
+    <div class="total">
+        <div>Всего:</div>
+        <div class="value">{{ paging_data.total }}</div>
+    </div>
+    <div class="pages">
+        {% if paging_data.pages %}
+          {% for page in paging_data.pages %}
+            <div class="{{ page.name }}
+            {% if page.name=='next' or page.name=='prev'%}arrow page{% endif %}
+            {% if page.disabled  or page.name=='middle'  %}disabled{% endif %}
+            {% if paging_data.current_page==page.value %}active {% endif %}" data-value="{{ page.value }}">
+
+              {% if page.name=='next'%}
+                {% if  page.disabled%}
+                 <i class="next fa"></i>
+                  {% else %}
+                    <a href="{{ paging_data.page_link_main }}page/{{ page.value }}/">
+                      <i class="next fa"></i></a>
+                {% endif %}
+
+              {% elseif  page.name=='prev'%}
+                {% if  page.disabled%}
+                  <i class="prev fa"></i>
+              {% else %}
+                <a href="{{ paging_data.page_link_main }}{% if page.value!=1 %}page/{{ page.value }}/{% endif %}">
+                  <i class="prev fa"></i></a>
+              {% endif %}
+
+              {% elseif  page.name=='middle'%}
+                  {{ page.value }}
+              {% else %}
+                <a href="{{ paging_data.page_link_main }}{% if page.value!=1 %}page/{{ page.value }}/{% endif %}">{{ page.value }}</a>
+              {% endif %}
+
+
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+      {% if paging_data.show_per_page %}
+        <div class="per_page">
+          / <a class="per_page_value" data-value="{{ paging_data.per_page }}" href="#" data-jq-dropdown="#dropdown_perpage">{{ paging_data.per_page }}</a>
+          <div id="dropdown_perpage" class="dropdown_perpage jq-dropdown-relative jq-dropdown jq-dropdown-tip jq-dropdown-anchor-right">
+            <ul class="jq-dropdown-menu">
+              <li><a data-value="1" href="#">1</a></li>
+              <li><a data-value="10" href="#">10</a></li>
+              <li><a data-value="20" href="#">20</a></li>
+              <li><a data-value="50" href="#">50</a></li>
+              <li><a data-value="100" href="#">100</a></li>
+            </ul>
+          </div>
+        </div>
+      {% endif %}
+</div>

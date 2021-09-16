@@ -1,0 +1,42 @@
+<div class="callback_form form" data-url="{{ global.base_url }}/callback/" data-callback="HideAllModalForm">
+  <input type="hidden" class="element" name="action" value="process_callback">
+  <div class="fields">
+    <div class="line">
+      <div class="label required">
+        Имя:
+      </div>
+      <div class="value">
+        <input name="name" class="element required" type="text" maxlength="100">
+      </div>
+    </div>
+
+    <div class="line">
+      <div class="label required">
+        Телефон:
+      </div>
+      <div class="value">
+        <input name="phone" class="element required" type="text">
+      </div>
+    </div>
+
+    <div class="line">
+      <div class="label required">
+        Город:
+      </div>
+      <div class="value">
+        <select name="city" class="element required">
+            <option value="">Выберите город</option>
+          <option value="Севастополь">Севастополь</option>
+          <option value="Симферополь">Симферополь</option>
+          <option value="Ялта">Ялта</option>
+          <option value="other">Другой город</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="form_under">
+    <div class="submit button_1">Перезвоните мне</div>
+  </div>
+</div>

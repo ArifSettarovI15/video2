@@ -1,0 +1,182 @@
+<footer class="view-footer" data-class-space="flex">
+  <!--row 1-->
+  <div class="view-footer__row1" data-class-space="flex justify-center">
+    <div class="view-footer__row1-container" data-class-space="flex max206 p-l3 p-r3">
+      <menu class="view-footer-menu" data-class-space="flex min35">
+        <!--part 1-->
+        <div class="view-footer-menu__part1" data-class-space="flex min35 max40">
+          <span class="view-footer-menu__title">
+            Помощь покупателю
+          </span>
+          <nav class="view-footer-menu__list">
+            <!--item 1-->
+            <li class="view-footer-menu__item1">
+              <a href="{{ global.base_url }}/how_to.html" class="view-footer-menu__link" data-class-unit="link_type3">
+                <span data-class-unit="link-text_type3_mod3-2">
+                  Как сделать заказ
+                </span>
+              </a>
+            </li>
+            <!--item 2-->
+            <li class="view-footer-menu__item2">
+              <a href="{{ global.base_url }}/payment.html" class="view-footer-menu__link" data-class-unit="link_type3_active">
+                <span data-class-unit="link-text_type3_mod3-2">
+                  Оплата
+                </span>
+              </a>
+            </li>
+            <!--item 3-->
+            <li class="view-footer-menu__item3">
+              <a href="{{ global.base_url }}/payment-and-delivery.html" class="view-footer-menu__link" data-class-unit="link_type3">
+                <span data-class-unit="link-text_type3_mod3-2">
+                  Доставка
+                </span>
+              </a>
+            </li>
+          </nav>
+        </div>
+        <!--part 2-->
+        <div class="view-footer-menu__part2" data-class-space="min30 m-l10">
+          <span class="view-footer-menu__title">
+            Информация для покупателя
+          </span>
+          <nav class="view-footer-menu__list">
+            <!--item 1-->
+            <li class="view-footer-menu__item1">
+              <a href="{{ global.base_url }}/zaschita-dannyh-klienta.html" class="view-footer-menu__link" data-class-unit="link_type3">
+                <span data-class-unit="link-text_type3_mod3-2">
+                  Политика конфиденциальности
+                </span>
+              </a>
+            </li>
+            <!--item 2-->
+            <li class="view-footer-menu__item2">
+              <a href="{{ global.base_url }}/garantijnye-objazatelstva.html" class="view-footer-menu__link" data-class-unit="link_type3">
+                <span data-class-unit="link-text_type3_mod3-2">
+                  Гарантийные обязательства
+                </span>
+              </a>
+            </li>
+            <!--item 2-->
+            <li class="view-footer-menu__item2">
+              <a href="{{ global.base_url }}/uslovija-vozvrata-tovara.html" class="view-footer-menu__link" data-class-unit="link_type3">
+                <span data-class-unit="link-text_type3_mod3-2">
+                  Условия возврата
+                </span>
+              </a>
+            </li>
+            <!--item 3-->
+            <li class="view-footer-menu__item3">
+              <a href="{{ global.base_url }}/news/sale/" class="view-footer-menu__link" data-class-unit="link_type3">
+                <span data-class-unit="link-text_type3_mod3-2">
+                  Акции
+                </span>
+              </a>
+            </li>
+          </nav>
+        </div>
+        <!--part 3-->
+        <div class="view-footer-menu__part3" data-class-space="min30 m-l10">
+          <span class="view-footer-menu__title">
+            О компании
+          </span>
+          <nav class="view-footer-menu__list">
+            <!--item 1-->
+            <li class="view-footer-menu__item1">
+              <a href="{{ global.base_url }}/about.html" class="view-footer-menu__link" data-class-unit="link_type3">
+                <span data-class-unit="link-text_type3_mod3-2">
+                  О нас
+                </span>
+              </a>
+            </li>
+            <!--item 2-->
+            <li class="view-footer-menu__item2">
+              <a href="{{ global.base_url }}/service/" class="view-footer-menu__link" data-class-unit="link_type3">
+                <span data-class-unit="link-text_type3_mod3-2">
+                  Сервисный центр
+                </span>
+              </a>
+            </li>
+            <!--item 4-->
+            <li class="view-footer-menu__item4">
+              <a href="{{ global.base_url }}/contacts.html" class="view-footer-menu__link" data-class-unit="link_type3">
+                <span data-class-unit="link-text_type3_mod3-2">
+                  Контакты
+                </span>
+              </a>
+            </li>
+          </nav>
+        </div>
+      </menu><!--/view-footer-menu-->
+      <address class="view-footer-contacts" data-class-space="min30 m-l3 m-r6">
+        {% for shop in global.fields.shops.list %}
+        <!--part 1-->
+        <div class="view-footer-contacts__part{{ loop.index }}">
+          <span class="view-footer-contacts__title">
+            {{ shop.shop_name }}:
+          </span>
+          <hgroup class="header-contacts__phone">
+            <div class="view-footer-contacts__number1">
+              <span data-class-text="group2_regular size14">
+               {{ shop.shop_phone_parts[0] }}
+              </span>
+              <span data-class-text="group2_bold size16">
+                &nbsp;{{ shop.shop_phone_parts[1] }}
+              </span>
+            </div>
+            {% if shop.phone2 %}
+            ,&nbsp;&nbsp;
+            <div class="view-footer-contacts__number2">
+              <span data-class-text="group2_regular size14">
+                {{ shop.shop_phone_parts2[0] }}
+              </span>
+              <span data-class-text="group2_bold size16">
+                &nbsp;{{ shop.shop_phone_parts2[1] }}
+              </span>
+            </div>
+            {% endif %}
+          </hgroup>
+        </div>
+        {% endfor %}
+        <!--part 3-->
+          <a  data-id="modal_callback" href="#" class="modal_form_open view-footer-contacts__part3" data-class-unit="link_type3">
+          <span data-class-unit="link-text_type3_mod3-2">
+            Форма обратной связи
+          </span>
+        </a>
+      </address>
+    </div>
+  </div>
+  <!--row 2-->
+  <div class="view-footer__row2" data-class-space="flex justify-center">
+    <div class="view-footer__row2-container" data-class-space="flex max206 p-l3 p-r3">
+      <!--col 1-->
+      <div class="view-footer__row2-col1 view-copiright" data-class-text="group1_regular size14" data-class-space="flex max132">
+        <span class="view-copiright__part1">
+          © 2016 Все права защищены. Компания ЭПИЦЕНТР.
+        </span>
+        <span class="view-copiright__part2">
+          <span data-class-text="underline_dashed">
+            Информация, размещенная на сайте, не является публичной офертой
+          </span>
+        </span>
+      </div>
+      <!--col 2-->
+      <div class="view-footer__row2-col2">
+        <a href="https://vk.com.ru" class="developer-link" data-class-unit="animate1-trigger animate1-container" target="_blank">
+{#          <img src="{{ global.base_url }}/assets/images/logotype-tigerweb.png" alt="Веб-студия TigerWeb" data-class-unit="animate1-el_visivle">#}
+{#          <img src="{{ global.base_url }}/assets/images/logotype-tigerweb_hover.png" alt="Веб-студия TigerWeb" data-class-unit="animate1-el_hidden">#}
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-form modal_form" data-value="modal_callback" data-class-unit="modal_visible overlay_type1" data-class-space="flex" >
+  <div data-class-space="flex max206 p-l3 p-r3 justify-center">
+    <div class="modal-form__container">
+      {% include 'parts/callback-form2.html.twig' %}
+    </div>
+
+  </div>
+</div>

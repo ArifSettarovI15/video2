@@ -1,0 +1,18 @@
+<div class="total">Всего: {{ content_total }}</div>
+<div class="paging">
+  {% if pages %}
+  Страницы:
+  {% for page in pages %}
+    <span class="button {% if current_page==page %}current_page {% endif %}" data-id="{{ page }}">{{ page }}</span>
+  {% endfor %}
+  {% endif %}/ <a class="per_page_value" data-value="{{ per_page }}" href="#" data-jq-dropdown="#dropdown_perpage">{{ per_page }}</a>
+  <div id="dropdown_perpage" class="jq-dropdown-relative jq-dropdown jq-dropdown-tip jq-dropdown-anchor-right">
+    <ul class="jq-dropdown-menu">
+      <li><a data-value="1" href="#">1</a></li>
+      <li><a data-value="10" href="#">10</a></li>
+      <li><a data-value="20" href="#">20</a></li>
+      <li><a data-value="50" href="#">50</a></li>
+      <li><a data-value="100" href="#">100</a></li>
+    </ul>
+  </div>
+</div>

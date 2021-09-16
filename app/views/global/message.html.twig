@@ -1,0 +1,18 @@
+<div class="inline_notification {{ message_class }}">
+  {% if message_head %}
+    <div class="inline_notification_head">{{ message_head }}</div>
+  {% endif %}
+  {% if message_class=='' %}
+      {% set message_class='message' %}
+  {% endif %}
+  {% if  message %}
+    <div class="inline_notification_body">
+      {{ message|raw }}
+    </div>
+  {% endif %}
+  {% if  message_desc %}
+    <div class="inline_notification_desc">
+      {{ message_desc|raw }}
+    </div>
+  {% endif %}
+</div>

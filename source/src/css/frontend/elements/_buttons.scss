@@ -1,0 +1,429 @@
+.button {
+  $root: &;
+  width: 100%;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  vertical-align: middle;
+  border-radius: $buttons__border-radius;
+  background-color: $color__primary;
+  @include transitions(background-color, box-shadow, border-color);
+  user-select: none;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0 14px;
+
+  &__text {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin-right: 8px;
+    color: $color__light;
+    @include transitions(color);
+  }
+
+  &__icon {
+    @include size(24px);
+    flex: 0 0 24px;
+    display: inline-block;
+
+    & + #{$root}__text {
+      margin-right: 0;
+      margin-left: 8px;
+    }
+
+    svg * {
+      @include transitions(fill);
+    }
+  }
+
+  &:hover {
+    background-color: $color__primary--light;
+  }
+
+  &_lg {
+    @extend %btn--lg;
+  }
+
+  &_md {
+    @extend %btn--md;
+  }
+
+  &_sm {
+    @extend %btn--sm;
+  }
+
+  &:hover:before {
+    opacity: 1;
+  }
+
+  &_primary {
+    background: $color__primary--light;
+    box-shadow: 0 4px 8px rgba(57, 85, 254, 0.3);
+    border-radius: 6px;
+    @include transitions(background, box-shadow);
+
+    &:before {
+      content: '';
+      @extend %absolute-full;
+      @include size(100%);
+      background: linear-gradient(180deg, #218CFE 0%, #3955FE 93.75%);
+      @include transitions(opacity);
+    }
+
+    &:hover {
+      box-shadow: 0 16px 24px rgba(57, 85, 254, 0.24);
+
+      &:before {
+        opacity: 0;
+      }
+    }
+  }
+
+  &_secondary {
+    background-color: transparent;
+    color: whitesmoke;
+    box-shadow: 0 4px 8px rgb(76, 72, 88);
+
+    &:before {
+      content: '';
+      @extend %absolute-full;
+      @include size(100%);
+      background: linear-gradient(180deg, #362253 10%, #5c9f92 100%);
+      @include transitions(opacity);
+    }
+
+    #{$root}__text {
+      color: $color__light;
+    }
+
+    &:hover {
+      background-color: $color__star;
+      box-shadow: 0 16px 24px rgb(55, 46, 71);
+
+      &:before {
+        opacity: 0;
+      }
+    }
+  }
+
+  &_danger {
+    width: 100%;
+    background: linear-gradient(180deg, #FF8A80 0%, #FF5252 100%);
+    box-shadow: 0 16px 24px rgba(255, 23, 68, 0.24);
+
+    &:before {
+      background: linear-gradient(180deg, #FF5252 0%, #FF1744 100%);
+    }
+
+    #{$root}__text {
+      color: $color__light;
+    }
+
+    &:hover {
+      box-shadow: 0 4px 8px rgba(255, 23, 68, 0.3);
+    }
+
+    &:active {
+      box-shadow: none;
+
+      &:before {
+        opacity: 0;
+      }
+    }
+  }
+
+  &_tertiary {
+    background-color: $color__light;
+    border: 0;
+
+    #{$root}__text {
+      color: $color__primary;
+    }
+  }
+
+  &_min {
+    background-color: $color__light;
+    #{$root}__text {
+      color: $color__dark;
+    }
+
+    #{$root}__icon {
+      display: none;
+    }
+
+    &:not(.button_active):hover {
+      background-color: $color__primary--light;
+
+      #{$root}__text {
+        color: $color__light;
+      }
+    }
+
+    &#{$root}_active {
+      border: 2px solid $color__primary;
+      background-color: transparent;
+
+      #{$root}__icon {
+        display: block;
+      }
+    }
+  }
+
+  // Outline button
+  &_outline {
+    &_1,
+    &_2 {
+      border: 2px solid $color__primary--lightest;
+      background-color: transparent;
+      #{$root}__text {
+        color: $color__dark;
+      }
+
+      #{$root}__icon {
+        svg * {
+          fill: $color__primary;
+        }
+      }
+
+      &:hover {
+        background-color: $color__primary;
+        border-color: transparent;
+        box-shadow: 0 4px 8px rgba(57, 85, 254, 0.3);
+
+        #{$root}__text {
+          color: $color__light;
+        }
+
+        #{$root}__icon {
+          svg * {
+            fill: $color__light;
+          }
+        }
+      }
+    }
+
+    &_2 {
+      border-color: $color__primary--light;
+    }
+
+    &_3 {
+      border: 2px solid $color__star;
+      background-color: transparent;
+
+      &:before {
+        content: '';
+        @extend %absolute-full;
+        @include size(100%);
+        background-color: $color__light;
+        background: linear-gradient(180deg, #FFCC00 0%, #FF9600 100%);
+        opacity: 0;
+        @include transitions(opacity);
+      }
+
+      #{$root}__text {
+        color: $color__dark;
+      }
+
+      &:hover {
+        &:before {
+          opacity: 1;
+        }
+
+        #{$root}__text {
+          color: $color__light;
+        }
+      }
+    }
+
+    &_4 {
+      border: 2px solid $color__danger;
+      background-color: transparent;
+
+      #{$root}__text {
+        color: $color__dark;
+      }
+
+      &:hover {
+        background-color: $color__danger;
+
+        #{$root}__text {
+          color: $color__light;
+        }
+
+        #{$root}__icon {
+          svg * {
+            fill: $color__light;
+          }
+        }
+      }
+    }
+  }
+
+  &_into_input {
+    @include size(30px);
+    background-color: $color__primary;
+    border-radius: 50px;
+    @extend %flex-center;
+
+    #{$root}__icon {
+      @include size(14px);
+    }
+  }
+
+  &.disabled {
+    box-shadow: none !important;
+    background-color: $color__gray--2 !important;
+
+    #{$root}__text {
+      color: $color__light !important;
+    }
+
+    #{$root}__icon {
+      svg * {
+        fill: $color__light !important;
+      }
+    }
+  }
+}
+
+.btn {
+  $root: &;
+  border-radius: $buttons__border-radius;
+  cursor: pointer;
+  @include transitions(background-color, box-shadow);
+  @extend %flex-center;
+  &_md {
+    @include size(46px);
+  }
+
+  &_sm {
+    @include size(40px);
+  }
+
+  &_xs {
+    @include size(36px);
+
+    #{$root}__icon {
+      @include size(14px);
+      flex: 0 0 14px;
+    }
+  }
+  &_xxs {
+    @include size(32px);
+
+    #{$root}__icon {
+      @include size(20px);
+      flex: 0 0 20px;
+    }
+  }
+
+  &__icon {
+    display: block;
+    @include size(24px);
+    flex: 0 0 24px;
+
+    svg * {
+      fill: $color__primary;
+      @include transitions(fill);
+    }
+  }
+
+  &:hover {
+    background-color: $color__primary;
+    box-shadow: 0 4px 8px rgba(57, 85, 254, 0.3);
+    #{$root}__icon {
+      svg * {
+        fill: $color__light;
+      }
+    }
+  }
+
+  &_round_arrow {
+    border-radius: 50%;
+    background-color: $color__light;
+
+    &:hover {
+      background-color: $color__light;
+      #{$root}__icon {
+        svg * {
+          fill: $color__primary;
+        }
+      }
+    }
+  }
+
+  &_sec {
+    background-color: $color__primary;
+
+    #{$root}__icon {
+      svg * {
+        fill: $color__light;
+      }
+    }
+  }
+
+  &_2 {
+    box-shadow: 0 0 0 2px $color__primary--lightest inset;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
+  &_burger {
+    #{$root}__icon_2 {
+      display: none;
+    }
+  }
+}
+
+.check-btn {
+  width: 100%;
+
+  .iradio {
+    $root: &;
+    width: 100%;
+    padding: 6px 24px;
+    @extend %flex-center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.15;
+    border-radius: 4px;
+    @include transitions(background-color, color, box-shadow);
+
+    .fc__name {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.15;
+      min-height: 20px;
+      text-align: center;
+    }
+
+    .fc__icon {
+      display: none;
+      @include size(20px);
+      flex: 0 0 20px;
+      margin-right: 6px;
+    }
+
+    &:not(.checked):hover {
+
+    }
+
+    &.checked {
+      box-shadow: 0 0 0 2px $color__primary inset;
+      .fc__icon {
+        display: block;
+        svg * {
+          fill: $color__primary;
+        }
+      }
+    }
+  }
+}

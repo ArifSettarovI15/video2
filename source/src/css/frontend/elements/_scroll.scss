@@ -1,0 +1,13 @@
+.ps-scrollbar-y-rail {
+  opacity: 1 !important;
+  width: 8px !important;
+  right: 0 !important;
+  background-color: $color__primary--1 !important;
+}
+
+.ps-scrollbar-y {
+  width: 4px !important;
+  right: 2px !important;
+  border-radius: 10px !important;
+  background-color: $color__primary--lightest !important;
+}

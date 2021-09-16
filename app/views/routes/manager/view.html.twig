@@ -1,0 +1,15 @@
+{% extends "manager/global.html.twig" %}
+{% block header_title %}{{ page_name }} - {% endblock %}
+{% block content %}
+
+    <a class="btn btn-primary" href="{{ global.base_url }}/manager/routes/add/">Добавить</a>
+
+    <div class=" routes_table">
+        <ol class="sortable">
+            {% set level=0 %}
+            {% set parent=0 %}
+           {% include 'routes/manager/tree_element.html.twig' %}
+        </ol>
+    </div>
+
+{% endblock %}

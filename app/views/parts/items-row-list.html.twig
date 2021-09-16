@@ -1,0 +1,38 @@
+{% for item in items %}
+    <!--item {{ loop.index }}-->
+    <li class="items-row-list__item{{ loop.index }}">
+        {% include 'shop/product/product_item.html.twig' with {'show_options':show_options,'buttonDelete':buttonDelete} %}
+    </li>
+{% endfor %}
+{% if another_items %}
+    <li class="items-row-list__item{{ loop.index }} show_all_cat">
+        <div class="item-container">
+            <div class="item-container__section1">
+                <figure class="item-content">
+                    <div class="img-block">
+
+                        <a href="{{ another_items.cat.full_cat_url }}" class="img-wrapper">
+                            <img src="{{ another_items.cat.item_icon_url }}" alt="{{ another_items.cat.cat_title }}" class="img">
+                        </a>
+                    </div>
+
+                    <figcaption class="item-info">
+
+                        <a href="{{ another_items.cat.full_cat_url }}" class="item-info__row1 item-title-wrapper"
+                           data-class-unit="link_type3">
+                            <h3 class="item-title" data-class-unit="link-text_type3_mod3">
+                                {{ another_items.cat.cat_title }}
+                            </h3>
+                        </a>
+                        <div class="price-wrapper">
+                            Показать все товары<br/>
+                            Всего <strong class="price_type1_size4 item-price">
+                                {{ another_items.total.count }}
+                            </strong> {{ another_items.total.count_ending }}
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </li>
+{% endif %}

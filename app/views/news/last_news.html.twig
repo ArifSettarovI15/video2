@@ -1,0 +1,19 @@
+{% if last_news %}
+<section class="home_news">
+  <div class="container">
+    <div class="title_1">
+      <div class="title">Новости</div>
+      <div class="line"></div>
+      <div class="nav">
+        <div class="prev"></div>
+        <div class="next"></div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="list slider1">
+      {% include 'news/last_news_list.html.twig' %}
+    </div>
+  </div>
+</section>
+{% endif %}

@@ -1,0 +1,8 @@
+{% extends "emails/global.html.twig" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+   {{ email_content|raw }}
+    <div style="margin-top: 20px;text-align: center">
+       <a href="{{ global.base_url }}/unsubscribe/{{ email }}/" style="color:#cccccc;font-size: 12px;">Отписаться</a>
+    </div>
+{% endblock %}

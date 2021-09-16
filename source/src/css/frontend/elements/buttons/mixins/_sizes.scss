@@ -1,0 +1,27 @@
+@import "../../../../../../../source/src/css/frontend/helpers/helpers";
+@import "../variables";
+@import "typography";
+@import "width";
+
+// Sizes
+@mixin btn-size-large() {
+  height: $btn-height-large;
+  padding: 0 10px;
+  @include btn-width-large;
+  @include typo-button-large;
+}
+
+@mixin btn-size-small() {
+  height: $btn-height-small;
+
+  @include btn-width-small;
+  @include typo-button-small;
+}
+
+@mixin btn-size-li() {
+  height: $btn-height-small;
+  padding-left: 20px;
+
+  @include btn-width-full;
+  @include typo-button-large;
+}

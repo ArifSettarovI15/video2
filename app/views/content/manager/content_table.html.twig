@@ -1,0 +1,36 @@
+{% for item in list %}
+  <tr  data-id="{{ item.content_id }}">
+    <td class="data_id">{{ item.content_id }}</td>
+    <td>
+      <div class="object_status  {% if item.content_status!=1%}no{% else %}yes{% endif %}" data-value="{{ item.content_id }}">
+        <span class="badge badge-danger">нет</span>
+        <span class="badge badge-success">да</span>
+      </div>
+    </td>
+    <td class="image"><img src="{{ item.img_url }}"></td>
+    <td class="image"><img src="{{ item.thumb_url }}"></td>
+      {% if variables.content_type=='akcii' %}
+        <td>
+          {% if item.content_time_end %}
+              {{ item.content_time_end|date("d.m.Y H:i") }}
+          {% endif %}
+        </td>
+      {% endif %}
+  {% if variables.content_type=='news' %}
+    <td>{{ item.content_time|date("d.m.Y H:i") }}</td>
+    {% endif %}
+    <td>{{ item.content_title }}</td>
+      {% if variables.content_type=='news' %}
+    <td>{{ item.cat_title }}</td>
+    {% endif %}
+      {% if variables.content_type=='akcii' %}
+        <td>{{ item.content_dop }}</td>
+      {% endif %}
+    <td>{{ item.content_views }}</td>
+    <td>
+      <a target="_blank" class="btn btn-success btn-xs" href="{{ item.content_full_url }}"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+      <a href="{{ global.base_url }}/manager/content/edit/{{ item.content_id  }}/" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+      <div data-value="{{ item.content_id }}" class="btn btn-danger btn-xs delete"><i class="fa"></i></div>
+    </td>
+  </tr>
+{% endfor %}

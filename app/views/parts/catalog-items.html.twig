@@ -1,0 +1,99 @@
+{% if (variables.options.brand_id or variables.options.option or variables.options.type_id) and  paging_data.current_page==1 %}
+  <div class="filters_line">
+    <div class="name">Фильтр:</div>
+    {% if variables.options.brand_id %}
+      <div class="filter_block">
+        <div class="o_title">
+          Бренд
+        </div>
+        <div class="o_body">
+          {% if variables.options.brand_id|length>1 %}
+            {{ variables.options.brand_id|length }}&nbsp;шт.
+          {% else %}
+            {{ variables.filters.vendors['data'][variables.options.brand_id[0]]['vendor_name'] }}
+          {% endif %}
+        </div>
+        <div class="o_del">
+          <i data-value="vendor" class="fa fa-times"></i>
+        </div>
+      </div>
+    {% endif %}
+    {% if variables.options.type_id %}
+      <div class="filter_block">
+        <div class="o_title">
+          Тип
+        </div>
+        <div class="o_body">
+          {% if variables.options.type_id|length>1 %}
+            {{ variables.options.type_id|length }}&nbsp;шт.
+          {% else %}
+            {{ variables.filters.types['data'][variables.options.type_id[0]]['type_title'] }}
+          {% endif %}
+        </div>
+        <div class="o_del">
+          <i data-value="type" class="fa fa-times"></i>
+        </div>
+      </div>
+    {% endif %}
+    {% if variables.options.option %}
+      {% for op_key,op_data in variables.options.option %}
+          <div class="filter_block">
+            <div class="o_title">
+              {{ variables.filters.fields[op_key]['info']['title'] }}
+            </div>
+            <div class="o_body">
+              {% if op_data|length>1 %}
+                {{ op_data|length }}&nbsp;шт.
+              {% else %}
+                {{ op_data[0] }}
+              {% endif %}
+            </div>
+            <div class="o_del">
+              <i data-value="{{ op_key }}" class="fa fa-times"></i>
+            </div>
+          </div>
+        {% endfor %}
+    {% endif %}
+  </div>
+{% endif %}
+{% set buttonToFavorites = true %}
+{% set allItems = list %}
+{% if paging_data.current_page==1%}
+  {% set maxItemsInList = (paging_data.per_page/2) %}
+{% else %}
+    {% set maxItemsInList = (paging_data.per_page) %}
+{% endif %}
+{% set manyItems = (list|length > maxItemsInList) %}
+
+  {% set showMoreItems = (paging_data.total  > maxItemsInList * 2) %}
+
+
+{% set items = allItems[0 : maxItemsInList] %}
+<div class="catalog__list-wrapper"> 
+  <!--items row list-->
+  {% include './shop/catalog/products_list.html.twig' %}
+</div>
+
+{% if paging_data.current_page==1 %}
+  <div class="catalog__callback-form">
+  <!--callback form-->
+  {% include './parts/callback-form.html.twig' %}
+  </div>
+{% endif %}
+
+{% if manyItems %}
+  {% set items = allItems[maxItemsInList : (maxItemsInList)] %}
+    <div class="catalog__list-wrapper">
+      <!--items row list-->
+      {% include './shop/catalog/products_list.html.twig' %}
+
+    </div>
+{% endif %}
+
+  {% if paging_data.pages %}
+  <div class="catalog__list-wrapper">
+      <div class="paging_block show-more-items">
+        {% include 'parts/paging_more.html.twig' %}
+      </div>
+  </div>
+  {% endif %}

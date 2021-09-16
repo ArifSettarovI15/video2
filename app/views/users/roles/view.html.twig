@@ -1,0 +1,36 @@
+{% extends "manager/global.html.twig" %}
+{% block bread %}
+  <li class="active">Роли</li>
+{% endblock %}
+{% block title %}Роли пользователей{% endblock %}
+{% block head_title %}Роли -  Пользователи - {{ parent() }}{% endblock %}
+{% block content %}
+  {% include 'users/manage/menu.html.twig' %}
+
+  <div class="actions">
+    <a class="button" href="{{ global.base_url }}/manager/roles/add/">Добавить</a>
+  </div>
+
+  <div class="roles_table_content">
+    <table class="table_bordered table_striped user_list">
+      <thead>
+      <tr>
+        <th style="width:60px;">ID</th>
+        <th>Название</th>
+        <th class="action_button"></th>
+        <th class="action_button"></th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for role in roles_list %}
+        <tr>
+          <td class="data_id">{{ role.id }}</td>
+          <td class="data_email" style="white-space: nowrap"> {{ role.title }}</td>
+          <td><a href="{{ global.base_url }}/manager/roles/edit/{{ role.id }}/"><i class="fa fa-pencil"></i></a></td>
+          <td><a onclick="return confirmDelete();" href="{{ global.base_url }}/manager/roles/delete/{{ role.id }}/"><i class="fa fa-times"></i></a></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

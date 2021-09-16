@@ -1,0 +1,68 @@
+{
+  "name": "TigerWeb-app-starter",
+  "version": "0.0.1",
+  "description": "",
+  "main": "package.json",
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.tigerweb.ru:sheva/Frontend.git"
+  },
+  "scripts": {
+    "postinstall": "sh scripts/post-npm.sh"
+  },
+  "keywords": [
+    "css",
+    "js"
+  ],
+  "author": "Yevgeniy Shevchenko  <sheva@tigerweb.ru>",
+  "license": "Apache-2.0",
+  "homepage": "https://tigerweb.ru",
+  "browserslist": [
+    "last 2 versions"
+  ],
+  "devDependencies": {
+    "autoprefixer": "^6.6.0",
+    "babel-preset-es2015": "^6.18.0",
+    "grunt": "^0.4.5",
+    "grunt-autoprefixer": "^3.0.4",
+    "grunt-babel": "^6.0.0",
+    "grunt-browser-sync": "^2.2.0",
+    "grunt-concurrent": "^2.3.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-imagemin": "^4.0.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-cwebp": "^3.0.3",
+    "grunt-grunticon": "^2.3.2",
+    "grunt-html-build": "^0.6.1",
+    "grunt-newer": "^1.2.0",
+    "grunt-postcss": "^0.8.0",
+    "grunt-sass": "^2.0.0",
+    "grunt-sass-globbing": "^1.5.1",
+    "grunt-text-replace": "^0.4.0",
+    "imagemin": "^5.2.2",
+    "jshint-stylish": "^2.2.1",
+    "load-grunt-config": "^3.0.1",
+    "load-grunt-tasks": "^3.5.2"
+  },
+  "dependencies": {
+    "bower": "^1.8.8",
+    "es6-promise": "^4.2.8",
+    "glob": "^7.1.6",
+    "grunt-cli": "^1.3.2",
+    "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-image-resize": "^1.0.0",
+    "grunt-webp": "0.0.4",
+    "imagemagick": "^0.1.3",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-pngquant": "^9.0.1",
+    "jquery-datetimepicker": "^2.5.21",
+    "natives": "^1.1.6",
+    "time-grunt": "^1.4.0",
+    "webp-bin": "^0.1.4"
+  }
+}

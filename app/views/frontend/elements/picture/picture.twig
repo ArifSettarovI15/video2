@@ -1,0 +1,31 @@
+<picture>
+    {% set stop=0 %}
+    {% for ii,jj in  image[kk2] %}
+        {% if max_size==ii %}
+            {% set stop=1 %}
+        {% endif %}
+        {% if stop==0 %}
+            {% if image[webp] %}
+                <source srcset="{{ jj.webp.url }}" type="{{ jj.webp.type }}" media="(max-width: {{ jj.webp.max }}px)">
+            {% endif %}
+            <source srcset="{{ jj.img.url }}" type="{{ jj.img.type }}" media="(max-width: {{ jj.img.max }}px)">
+        {% endif %}
+
+    {% endfor %}
+
+
+    {% if lazy %}
+        {% if image[webp] %}
+            <source data-srcset="{{ image[kk][max_size~'_webp'] }}" type="image/webp" >
+        {% endif %}
+        <source data-srcset="{{ image[kk][max_size] }}" type="{{ image.type }}">
+    <img class="{{ class }} lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ image[kk][max_size] }}" alt="{{ alt }}" {{ dop_html }} />
+    {% else %}
+        {% if image[webp] %}
+
+            <source srcset="{{ image[kk][max_size~'_webp'] }}" type="image/webp">
+        {% endif %}
+        <source srcset="{{ image[kk][max_size] }}" type="{{ image.type }}">
+        <img class="{{ class }}" src="{{ image[kk][max_size] }}" alt="{{ alt }}" title="{{ alt }}" {{ dop_html }} />
+    {% endif %}
+</picture>

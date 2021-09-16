@@ -1,0 +1,25 @@
+<div class="container" >
+  <ul class="breadcrumbs" vocab="http://schema.org/" typeof="BreadcrumbList">
+    <li property="itemListElement" typeof="ListItem" class="breadcrumbs__item">
+      <a property="item" typeof="WebPage" href="{{ global.base_url }}" class="breadcrumbs__title"  data-class-unit="link_type1">
+        <span property="name"  class="breadcrumbs__text" data-class-unit="link-text_type3_mod3">Главная</span>
+        <meta property="position" content="1">
+      </a>
+    </li>
+    {% set b_pos=2 %}
+    {% for item in global.page.breadcrumbs %}
+      <li property="itemListElement" typeof="ListItem" class="breadcrumbs__item{% if item.link=='' %}_current{% endif %}">
+        {% if item.link %}
+          <a property="item" typeof="WebPage" href="{{ item.link }}" class="breadcrumbs__title"  data-class-unit="link_type1">
+            <span property="name"  class="breadcrumbs__text" data-class-unit="link-text_type3_mod3">{{ item.title }}</span>
+            <meta property="position" content="{{ b_pos }}">
+          </a>
+          {% set b_pos=b_pos+1 %}
+        {% else %}
+          <span property="name"  class="breadcrumbs__text">{{ item.title }}</span>
+          <meta property="position" content="{{ b_pos }}">
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

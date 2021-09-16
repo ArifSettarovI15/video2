@@ -1,0 +1,4 @@
+{% for item in list %}
+    {% set image_info={'file_id': item.file_id,'file_type': item.file_type,'icon_url':item.thumb,'file_url':item.file_url }%}
+  {% include 'files/upload_image_part.html.twig' %}
+{% endfor %}

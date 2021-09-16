@@ -1,0 +1,36 @@
+{% extends "manager/global.html.twig" %}
+{% block content %}
+    <div class="actions">
+        <a class="btn btn-primary" href="{{ global.base_url }}/manager/seo/add/">Добавить</a>
+    </div>
+    <div class="table_data">
+        <div class="table_data_navigation">
+            {% include 'parts/paging.html.twig' %}
+        </div>
+        <table class="table_bordered table_striped">
+            <thead>
+            <tr>
+                <th style="width: 70px">ID</th>
+                <th style="width: 125px">Фото</th>
+                <th>URL</th>
+                <th>Название</th>
+                <th>Keywords</th>
+                <th>Desc</th>
+                <th class="action_button_3"></th>
+            </tr>
+            <tr>
+                <th><input data-name="seo_id" data-type="filter_value" min="0" type="text"></th>
+                <th></th>
+                <th><input data-name="seo_url" data-type="filter_value" type="text"></th>
+                <th><input data-name="seo_title" data-type="filter_value" type="text"></th>
+                <th></th>
+                <th></th>
+                <th class="action_button"></th>
+            </tr>
+            </thead>
+            <tbody class="table_content">
+            {% include 'seo/manager/seo_table.html.twig' %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

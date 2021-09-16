@@ -1,0 +1,20 @@
+{% if paging_data.pages %}
+          {% for page in paging_data.pages %}
+            {% if page.name=='next'%}
+              {% if  page.disabled%}
+                {% else %}
+                        <a data-value="{{ page.value }}" class="show-more-items__button" href="{{ paging_data.page_link_main }}{% if page.value!=1 %}page/{{ page.value }}/{% endif %}">
+                            <i class="icon"></i>
+                            <span class="texts">
+                            <div class="text1">
+                              Показать ещё {{ paging_data.per_page }}
+                            </div>
+                            <small class="text2">
+                              Показано {{ paging_data.per_page*paging_data.current_page }} из {{ paging_data.total }}
+                            </small>
+                          </span>
+                        </a>
+                {% endif %}
+              {% endif %}
+          {% endfor %}
+{% endif %}

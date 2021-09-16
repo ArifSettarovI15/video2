@@ -1,0 +1,16 @@
+{% for item in list %}
+  <tr>
+    <td class="data_id">{{ item.cs_group_id }}</td>
+    <td>
+      <div class="badge_status  {% if item.cs_group_status!=1%}no{% else %}yes{% endif %}" data-type="status"  data-value="{{ item.cs_group_id }}">
+        <span class="badge badge-danger">Нет</span>
+        <span class="badge badge-success">Да</span>
+      </div>
+    <td><a href="{{ global.base_url }}/manager/settings/view/{{ item.cs_group_id  }}/">{{ item.cs_group_name }}</a></td>
+    <td>
+      <a href="{{ global.base_url }}/manager/settings/fields/{{ item.cs_group_id  }}/" class="btn btn-warning btn-xs"><i class="fa fa-database"></i></a>
+      <a href="{{ global.base_url }}/manager/settings/edit/{{ item.cs_group_id  }}/" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+      <div data-value="{{ item.cs_group_id }}" class="btn btn-danger btn-xs delete"><i class="fa"></i></div>
+    </td>
+  </tr>
+{% endfor %}

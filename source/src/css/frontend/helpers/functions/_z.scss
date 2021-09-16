@@ -1,0 +1,19 @@
+/// Получение значения z-index из имени слоя
+/// @access public
+/// @param {String} $layer - Имя слоя
+/// @return {Number}
+/// @require $z-indexes
+@function z($layer) {
+  @if not map-has-key($z-indexes, $layer) {
+    @error 'Нет слоя с именем `#{$layer}` в $z-indexes. '
+         + 'Слой должен быть одним из #{map-keys($z-indexes)}.';
+  }
+  @return map-get($z-indexes, $layer);
+}
+
+$z-indexes: (
+  'modal': 120,
+  'menu': 100,
+  'overflow': 99,
+  'default': 1
+)

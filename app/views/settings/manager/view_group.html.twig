@@ -1,0 +1,13 @@
+{% extends "manager/global.html.twig" %}
+{% block content %}
+  <div class="form">
+    <div class="fields">
+      {{ fields|raw }}
+        <input type="hidden" class="element" name="action" value="process_edit">
+        <input type="hidden" class="element" name="group_id" value="{{ info.cs_group_id }}">
+    </div>
+    <div class="submit btn btn-primary">
+        Сохранить
+    </div>
+  </div>
+{% endblock %}

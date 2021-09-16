@@ -1,0 +1,20 @@
+@import '../../../../source/src/css/frontend/helpers/variables';
+@import '../../../../source/src/css/frontend/helpers/config';
+@import '../../../../source/src/css/frontend/helpers/mixins';
+@import '../../../../source/src/css/frontend/elements/placeholders';
+
+.slick-dotted.slick-slider {
+  margin-bottom: 0;
+}
+
+//.slick-track {
+//  display: flex;
+//}
+
+.slick-track {
+  margin: 0;
+}
+
+.slick-list {
+  width: 100%;
+}

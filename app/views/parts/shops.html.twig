@@ -1,0 +1,55 @@
+{% if  global.fields.company.shop_list %}
+  <section class="home_shops">
+    <div class="container">
+      <div class="title_1">
+        <div class="title">Магазины</div>
+        <div class="line {% if show_shops_slider %}right_space{% endif %}"></div>
+        <div class="nav">
+          <div class="prev"></div>
+          <div class="next"></div>
+        </div>
+      </div>
+    </div>
+    {% if show_map %}<script src="//api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>{% else %}<div class="shop_line"></div>{% endif %}
+    <div class="container">
+      <div class="list slider1 {% if show_map %}with_map{% endif %}">
+        <ul class="{% if show_shops_slider %}bxslider{% else %}grid{% endif %}">
+          {% for line_key,item in global.fields.company.shop_list %}
+            <li>
+              <div class="shop" itemscope itemtype="http://schema.org/Organization">
+                <div class="info">
+                  <meta itemprop="name" content="{{ global.fields.company.name }}">
+                  <link itemprop="url" href="{{ global.base_url }}" />
+                  <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                    <meta itemprop="addressCountry" content="Россия">
+                    <meta itemprop="addressRegion" content="Республика Крым">
+                    {% if item.shop_type  %}<div class="name">{{ item.shop_type }}</div>{% endif %}
+                  {% if item.city %}<div class="city" itemprop="addressLocality">{{ item.city }}</div>{% endif %}
+                  {% if item.addr %}<span itemprop="streetAddress">{{ item.addr }}</span><br/>{% endif %}
+                  </div>
+                  <div class="work_head">Время работы:</div>
+                  {% if item.work_time %}<span>{{ item.work_time }}</span><br/>{% endif %}
+                  {% if item.phone %}<div  class="work_head">Тел.: <a href="tel:{{ item.phone_clean|replace({' ':'','(':'',')':''}) }}"><span itemprop="telephone">{{ item.phone|replace({')':') <span>'})|raw }}{{ '</span>'|raw }}</span></a></div>{% endif %}
+                  {% if item.phone_city %}Тел./факс:<a href="tel:{{ item.phone_city_clean|replace({' ':'','(':'',')':''}) }}"><span itemprop="faxNumber">{{ item.phone_city|replace({')':') <span>'})|raw }}{{ '</span>'|raw }}</span></a><br/>{% endif %}
+                  {% if item.email %}<span itemprop="email">{{  item.email }}</span>{% endif %}
+                </div>
+                <div {% if item.shop_photo %}class="img" style="background-image: url('{{ item.shop_photo.thumb }}');"{% endif %}>
+
+                </div>
+              </div>
+            </li>
+            {% if show_map %}
+              <li>
+                <div class="map-container">
+                  {% set coor = item.coor|split(' ') %}
+                  <div data-line="{{ line_key }}" data-coor1="{{ coor[1] }}" data-coor2="{{ coor[0] }}" class="ya_map" id="map_{{ line_key }}"></div>
+                </div>
+              </li>
+            {% endif %}
+
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+{% endif %}

@@ -1,0 +1,35 @@
+<script type="text/javascript">
+  tinymce.init({
+    selector: ".rich",
+    language: "ru",
+      language_url: "/assets/js/tinymce/langs/ru.js",
+    file_browser_callback_types: 'image',
+    file_picker_types: 'image',
+    images_upload_credentials: true,
+    automatic_uploads: true,
+    relative_urls : false,
+    remove_script_host : true,
+    convert_urls : true,
+    file_browser_callback: function(field_name, url, type, win) {
+      var filebrowser = "/files/list/?module=content&folder_name=content&input_name=content_file";
+      tinymce.activeEditor.windowManager.open({
+        title : "Менеджер файлов",
+        width : 800,
+        height : 500,
+        url : filebrowser
+      }, {
+        window : win,
+        input : field_name
+      });
+      return false;
+    },
+    plugins: [
+      "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+      "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+      "save table contextmenu directionality emoticons template paste textcolor "
+    ],
+    toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
+    toolbar2: " | link unlink anchor | image media | forecolor backcolor  | print preview code ",
+    image_advtab: true
+  });
+</script>

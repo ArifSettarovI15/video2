@@ -1,0 +1,67 @@
+<nav class="view-main-menu{% if menu_full %}{% else %} minimazed{% endif %}" data-class-space="column">
+  <span class="view-main-menu-button" data-class-unit="button_type1_theme1">
+    <i class="view-main-menu-button__icon" data-class-unit="button-icon_type1"></i>
+    <small class="view-main-menu-button__text" data-class-unit="button-text_type1">Каталог товаров</small>
+  </span>  
+  <menu class="view-main-menu__list" data-class-space="column" data-class-unit="list_type2">
+    <!--level 1-->
+    {% for level1__item in global.menu_cats['levels'][1][0] %}
+    <!--item 1-->
+    <li data-stage="0" class="view-main-menu__item-_{{loop.index}} {% if global.menu_cats['levels'][2][level1__item.cat_id] %}{% else %}leaf{% endif %}" data-class-unit="list-item_type2">
+      <a href="{{level1__item.full_cat_url}}" class="view-main-menu__item-link" data-class-unit="list-item-container_type2 link_type1">
+        {{level1__item.cat_short_title}}
+      </a>
+
+      {% if global.menu_cats['levels'][2][level1__item.cat_id] %}
+    <!--level 2-->
+      <ul class="view-main-sub-menu__list">
+        {% for level2__item in global.menu_cats['levels'][2][level1__item.cat_id] %}
+        <li class="view-main-sub-menu__category">
+          <a href="{{level2__item.full_cat_url}}" class="view-main-sub-menu__category-link" data-class-unit="link_type3">
+            <h3 class="view-main-sub-menu__category-title" data-class-unit="link-text_type3_mod3">
+              {{level2__item.cat_short_title}}
+            </h3>
+          </a>
+
+          {% if global.menu_cats['levels'][3][level2__item.cat_id] %}
+    <!--level 3-->
+          <ul class="view-main-sub-menu__partition-list">
+            {% for level3__item in global.menu_cats['levels'][3][level2__item.cat_id] %}
+              <li class="view-main-sub-menu__partition-item">
+                <a href="{{level3__item.full_cat_url}}" class="view-main-sub-menu__partition-link" data-class-unit="link_type3">
+                  <h4 class="view-main-sub-menu__partition-title" data-class-unit="link-text_type3_mod1_2">
+                    {{level3__item.cat_short_title}}
+                  </h4>
+                </a>
+
+                {% if global.menu_cats['levels'][4][level3__item.cat_id] %}
+                  <!--level 4-->
+                  <ul class="view-main-sub-menu__partition-list">
+                    {% for level4__item in global.menu_cats['levels'][4][level3__item.cat_id] %}
+                      <li class="view-main-sub-menu__partition-item">
+                        <a href="{{level4__item.full_cat_url}}" class="view-main-sub-menu__partition-link" data-class-unit="link_type3">
+                          <h4 class="view-main-sub-menu__partition-title" data-class-unit="link-text_type3_mod1_2">
+                            {{level4__item.cat_short_title}}
+                          </h4>
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                  <!--/level 4/-->
+                {% endif %}
+
+              </li>
+            {% endfor %}
+          </ul>
+    <!--/level 3/-->
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    <!--/level 2/-->
+      {% endif %}
+    </li>
+    {% endfor %}
+    <!--/level 1/-->
+  </menu>
+</nav>

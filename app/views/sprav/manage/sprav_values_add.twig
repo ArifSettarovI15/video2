@@ -1,0 +1,80 @@
+{% extends "manager/global.html.twig" %}
+{% block content %}
+    <div class="form">
+        <div class="fields sprav_{{ sprav_info.sprav_name}}">
+
+            <div class="line">
+                <div class="label required">
+                    Название:
+                </div>
+                <div class="value">
+                    <input name="svid_title" class="element required" type="text"  maxlength="250"  value="{{ info.svid_title }}">
+                </div>
+            </div>
+            <div class="line">
+                <div class="label">
+                    Значение:
+                </div>
+                <div class="value">
+                    <input name="svid_value" class="element" type="text"  maxlength="250"  value="{{ info.svid_value }}">
+                    <div class="colorpicker-box" {% if '#' in info.svid_value %}style="background-color: {{ info.svid_value }}" {% endif %}></div>
+                </div>
+            </div>
+
+            <div class="line">
+                <div class="label">
+                    URL:
+                </div>
+                <div class="value">
+                    <input name="svid_eng" class="element" type="text"  maxlength="150"  value="{{ info.svid_eng }}">
+                </div>
+            </div>
+            <div class="line">
+                <div class="label">
+                    SVG иконка:
+                </div>
+                <div class="value">
+                    <input name="svid_svg" class="element" type="text"  maxlength="25"  value="{{ info.svid_svg }}">
+                </div>
+            </div>
+            <div class="line">
+                <div class="label">
+                    Фото:
+                </div>
+                <div class="value">
+                    {% set image_data=image_data1 %}
+                    {% include 'files/upload_image.html.twig' %}
+                </div>
+            </div>
+            <div class="line">
+                <div class="label">
+                    Главный синоним:
+                </div>
+                <div class="value">
+                    <select class="element" name="svid_syn_id">
+                        <option value="0">-</option>
+                        {% for item in sync_list %}
+                            {% if  item.svid!=info.svid %}
+                            <option value="{{ item.svid }}" {% if item.svid==info.svid_syn_id %}selected="selected"{% endif %}>{{ item.svid_title }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            {% if edit==1 %}
+                <input type="hidden" class="element" name="action" value="process_edit">
+                <input type="hidden" class="element" name="sprav_id" value="{{ info.sprav_id }}">
+                <input type="hidden" class="element" name="svid" value="{{ info.svid }}">
+            {% else %}
+                <input type="hidden" class="element" name="action" value="process_add">
+            {% endif %}
+        </div>
+        <div class="submit btn btn-primary">
+            {% if edit==1 %}
+                Сохранить
+            {% else %}
+                Добавить
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

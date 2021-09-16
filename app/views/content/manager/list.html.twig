@@ -1,0 +1,89 @@
+{% extends "manager/global.html.twig" %}
+{% block content %}
+    <div class="actions">
+        <a class="btn btn-primary" href="{{ global.base_url }}/manager/content/{% if variables.content_type %}{{ variables.content_type }}/{% endif %}add/">Добавить</a>
+    </div>
+    <div class="table_data">
+        <div class="table_data_navigation">
+            {% include 'parts/paging.html.twig' %}
+        </div>
+        Сортировка:<br/>
+        <select data-name="order" data-type="filter_value">
+            <option value="date">По дате</option>
+            <option value="name">По названию</option>
+            <option value="sort"  {% if variables.content_type=='akcii' %}selected{% endif %}>По сортировке</option>
+        </select>
+        <table class="table_bordered table_striped">
+            <thead>
+            <tr>
+                <th style="width: 70px">ID</th>
+                <th style="width: 100px">Акт</th>
+                <th style="width: 100px">Фото</th>
+                <th style="width: 100px">Тумба</th>
+               {% if variables.content_type=='news' %}
+                   <th style="width: 100px">Дата</th>
+               {% endif %}
+                {% if variables.content_type=='akcii' %}
+                    <th style="width: 100px">Окончание</th>
+                {% endif %}
+                <th>Название</th>
+                {% if variables.content_type=='news' %}
+                <th>Категория</th>
+                {% endif %}
+                {% if variables.content_type=='akcii' %}
+                    <th></th>
+                {% endif %}
+                <th style="width: 100px">Промотров</th>
+                <th class="action_button_3"></th>
+            </tr>
+            <tr>
+                <th><input data-name="content_id" data-type="filter_value" min="0" type="text"></th>
+                <th>
+                    <select data-name="cat_status" data-type="filter_value">
+                        <option value="-1">Все</option>
+                        <option value="0">Выкл</option>
+                        <option value="1">Вкл</option>
+                    </select>
+                </th>
+                <th>
+                    <select data-name="cat_thumb" data-type="filter_value">
+                        <option value="-1">Все</option>
+                        <option value="0">Нет</option>
+                        <option value="1">Есть</option>
+                    </select>
+                </th>
+                <th>
+                    <select data-name="cat_thumb3" data-type="filter_value">
+                        <option value="-1">Все</option>
+                        <option value="0">Нет</option>
+                        <option value="1">Есть</option>
+                    </select>
+                </th>
+                {% if variables.content_type=='akcii' %}
+                    <th></th>
+                {% endif %}
+                {% if variables.content_type=='news' %}
+                    <th></th>
+                {% endif %}
+                <th><input data-name="content_title" data-type="filter_value" type="text"></th>
+                {% if variables.content_type=='news' %}
+                <th><select data-name="content_cat" data-type="filter_value">
+                        <option value="0">Все</option>
+                        {% for cat in variables.cats %}
+                            <option value="{{ cat.id }}">{{ cat.title }}</option>
+                        {% endfor %}
+                    </select></th>
+                {% endif %}
+                {% if variables.content_type=='akcii' %}
+                    <th></th>
+                {% endif %}
+                <th></th>
+                <th class="action_button"></th>
+            </tr>
+            </thead>
+            <tbody class="table_content  {% if variables.content_type=='akcii' %}sortable{% endif %}">
+            {% include 'content/manager/content_table.html.twig' %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

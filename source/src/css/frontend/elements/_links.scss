@@ -1,0 +1,96 @@
+.link {
+  $root: &;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+
+  &__text {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.15;
+    color: $color__dark;
+    border-bottom: 4px ;
+    @include transitions(color, border-color);
+
+    & + #{$root}__icon {
+      margin-right: 0;
+      margin-left: 8px;
+    }
+  }
+
+  &__icon {
+    display: inline-block;
+    @include size(24px);
+    min-width: 24px;
+    margin-right: 8px;
+
+    svg * {
+      fill: $color__primary;
+      @include transitions(fill);
+    }
+  }
+
+  &_primary {
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      @include size(0, 4px);
+      border-radius: 2px;
+      background-color: $color__primary;
+      @include transitions(width);
+    }
+    &.active:before,
+    &:hover:before {
+      width: 100%;
+    }
+  }
+
+  &_underline_hide {
+    #{$root}__text {
+      position: relative;
+      transition-delay: .1s;
+      border-bottom: 2px solid transparent;
+      &:before {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        @include size(100%, 2px);
+        background-color: $color__primary;
+        border-radius: 2px;
+        @include transitions(width);
+      }
+    }
+
+    &:hover {
+      #{$root}__text {
+        color: $color__primary;
+        &:before {
+          width: 0;
+        }
+      }
+    }
+  }
+
+  &_underline {
+
+  }
+
+  &_dotted {
+    display: block;
+
+    #{$root}__text {
+      border-bottom: 2px dotted $color__primary;
+    }
+
+    &:hover {
+      #{$root}__text {
+        color: $color__primary;
+        border-color: transparent;
+      }
+    }
+  }
+}

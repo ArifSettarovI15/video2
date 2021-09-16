@@ -1,0 +1,44 @@
+{% for item in list %}
+    <tr  data-id="{{ item.sprav_id }}">
+        <td class="data_id">{{ item.sprav_id }}</td>
+        <td>
+            <div class="badge_status  {% if item.sprav_status!=1%}no{% else %}yes{% endif %}" data-type="status"  data-value="{{ item.sprav_id }}">
+                <span class="badge badge-danger">Акт</span>
+                <span class="badge badge-success">Акт</span>
+            </div>
+            <div class="badge_status  {% if item.sprav_filter!=1%}no{% else %}yes{% endif %}" data-type="filter"  data-value="{{ item.sprav_id }}">
+                <span class="badge badge-danger">Фил</span>
+                <span class="badge badge-success">Фил</span>
+            </div>
+            <div class="badge_status  {% if item.sprav_object_id!=1%}no{% else %}yes{% endif %}" data-type="object_id"  data-value="{{ item.sprav_id }}">
+                <span class="badge badge-danger">Offer</span>
+                <span class="badge badge-success">Item</span>
+            </div>
+            <div class="badge_status  {% if item.sprav_main!=1%}no{% else %}yes{% endif %}" data-type="main"  data-value="{{ item.sprav_id }}">
+                <span class="badge badge-danger">Главный</span>
+                <span class="badge badge-success">Главный</span>
+            </div>
+            <div class="badge_status  {% if item.sprav_top!=1%}no{% else %}yes{% endif %}" data-type="top"  data-value="{{ item.sprav_id }}">
+                <span class="badge badge-danger">Топ фильтр</span>
+                <span class="badge badge-success">Топ фильтр</span>
+            </div>
+        </td>
+        <td>
+            <a href="{{ global.base_url }}/manager/sprav/{{ item.sprav_id  }}/view/">{{ item.sprav_title }}</a>
+        </td>
+        <td>
+            {{ item.sprav_label }}
+        </td>
+        <td>
+            {{ item.sprav_data_type }}
+        </td>
+        <td>
+            {{ item.sprav_code }}
+        </td>
+        <td>
+             <a target="_blank" href="{{ global.base_url }}/manager/sprav/{{ item.sprav_id  }}/add/" class="btn btn-success btn-xs"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+            <a target="_blank" href="{{ global.base_url }}/manager/sprav/edit/{{ item.sprav_id  }}/" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+            <div data-value="{{ item.sprav_id }}" class="btn btn-danger btn-xs delete"><i class="fa"></i></div>
+        </td>
+    </tr>
+{% endfor %}

@@ -1,0 +1,9 @@
+{% macro icon(name, embed=0,width='', height='') %}
+    {% include 'frontend/elements/svg/svg.twig' with {
+        'name':name,
+        'class':name,
+        'embed':embed,
+        'height': height,
+        'width': width
+    }%}
+{% endmacro %}

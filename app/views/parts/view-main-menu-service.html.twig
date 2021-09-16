@@ -1,0 +1,18 @@
+<nav class="view-main-menu" data-class-space="column">
+  <span class="view-main-menu-button" data-class-unit="button_type1_theme1">
+    <i class="view-main-menu-button__icon" data-class-unit="button-icon_type1"></i>
+    <small class="view-main-menu-button__text" data-class-unit="button-text_type1">Каталог услуг</small>
+  </span>
+    <menu class="view-main-menu__list services_list_menu" data-class-space="column" data-class-unit="list_type2">
+        <!--level 1-->
+        {% for level1__item in global.menu_cats['levels'][1][0] %}
+            <!--item 1-->
+            <li class="view-main-menu__item-_{{loop.index}}" data-class-unit="list-item_type2">
+                <a href="{{level1__item.full_cat_url}}" class="view-main-menu__item-link" data-class-unit="list-item-container_type2 link_type1">
+                    {{level1__item.service_cat_title}}
+                </a>
+            </li>
+        {% endfor %}
+        <!--/level 1/-->
+    </menu>
+</nav>

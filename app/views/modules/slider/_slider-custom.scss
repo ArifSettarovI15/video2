@@ -1,0 +1,127 @@
+@import '../../../../source/src/css/frontend/helpers/variables';
+@import '../../../../source/src/css/frontend/helpers/config';
+@import '../../../../source/src/css/frontend/helpers/mixins';
+
+//.lavalamp-object {
+//  background-color: $color__primary;
+//  border-radius: 20px;
+//  overflow: hidden;
+//}
+
+// Dots
+.slick-dots {
+  li {
+    margin: 0 4px;
+    min-width: 10px;
+    @include size(auto, 10px);
+
+    button {
+      @include size(10px);
+      padding: 0;
+      background-color: $color__primary--lightest;
+      border-radius: 20px;
+      font-size: inherit;
+      line-height: 1;
+
+      &:before {
+        content: none;
+      }
+    }
+
+    &.slick-active {
+      font-size: 20px;
+    }
+  }
+}
+
+// Arrows
+.slide-btn {
+  $root: &;
+  @extend %flex-center;
+  @include size(36px);
+  border-radius: 4px;
+  position: absolute;
+  background-color: transparent;
+  cursor: pointer;
+  @include transitions(background-color);
+  &__icon {
+    @include size(24px);
+    svg * {
+      fill: $color__dark;
+      @include transitions(fill);
+    }
+  }
+
+  &_prev {
+
+    right: -20px;
+    top: calc(50% - 18px);
+    z-index: 1;
+    //#{$root}__icon {
+    //  transform: rotate(90deg);
+    //}
+  }
+
+  &_next {
+    left: -20px;
+    top: calc(50% - 18px);
+    z-index: 1;
+    //#{$root}__icon {
+    //  transform: rotate(-90deg);
+    //}
+  }
+
+  &:hover {
+    background-color: $color__primary;
+    #{$root}__icon {
+      svg * {
+        fill: $color__light;
+      }
+    }
+  }
+
+  &.slick-disabled {
+    background-color: transparent;
+
+    #{$root}__icon {
+      svg * {
+        fill: $color__gray--2;
+      }
+    }
+  }
+}
+
+//.slick-arrow {
+//  $root: &;
+//  position: absolute;
+//  border-radius: 6px;
+//  overflow: hidden;
+//  @extend %flex-center;
+//  @include size(46px);
+//  @include transitions(background-color);
+//  z-index: 1;
+//  cursor: pointer;
+//  &__icon {
+//    @include size(32px);
+//  }
+//
+//  &_prev {
+//    left: 0;
+//    #{$root}__icon {
+//      transform: rotate(180deg);
+//    }
+//  }
+//
+//  &_next {
+//    right: 0;
+//  }
+//
+//  &:hover {
+//    svg * {
+//      fill: $color__light;
+//    }
+//
+//    background-color: $color__primary;
+//  }
+//}
+

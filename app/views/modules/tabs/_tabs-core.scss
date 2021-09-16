@@ -1,0 +1,165 @@
+@import '../../../../source/src/css/frontend/helpers/variables';
+@import '../../../../source/src/css/frontend/helpers/config';
+@import '../../../../source/src/css/frontend/helpers/mixins';
+
+.tabs {
+  $root: &;
+  //overflow-x: visible;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    @include size(35px);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, $color__light 100%);
+  }
+
+  &__inner {
+    overflow: hidden;
+  }
+
+  &__list {
+    display: inline-flex;
+  }
+
+  &__item {
+    margin: 0 12px;
+    padding: 0 10px;
+    display: inline-flex;
+    align-items: center;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:not(.disabled):not(&_active):hover {
+      color: #8ABEC9;
+    }
+  }
+  &__link2,
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    padding-bottom: 14px;
+    color: $color__dark;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.15;
+    white-space: nowrap;
+    transition: color .3s;
+    cursor: pointer;
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 4px;
+      border-radius: 4px;
+      background-color: #8ABEC9;
+      opacity: 0;
+      //transition: opacity .3s;
+    }
+
+    &_active:before {
+      opacity: 1;
+    }
+  }
+
+  &__icon {
+    flex: 0 0 24px;
+    margin-right: 8px;
+    @include size(24px);
+  }
+
+  // secondary style
+
+  &_2 {
+    #{$root}__item {
+      margin: 0;
+    }
+    #{$root}__link2,
+    #{$root}__link {
+      padding: 8px 14px;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.15;
+      border-radius: 6px;
+      overflow: hidden;
+      @include transitions(background-color, color, box-shadow);
+
+      &:before {
+        content: none;
+      }
+
+      &:not(#{$root}__link2_active):not(#{$root}__link_active):hover {
+        color: $color__primary;
+        box-shadow: 0 0 0 2px $color__primary inset;
+      }
+
+      &_active {
+        color: $color__light;
+        background-color: $color__primary;
+      }
+    }
+  }
+
+  &_nav {
+    #{$root}__item {
+      margin: 0 16px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    #{$root}__text {
+
+    }
+  }
+
+  @include media('<md') {
+    &_nav {
+      #{$root}__item {
+        margin: 0 16px;
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      #{$root}__link {
+        width: 40px;
+        flex: 0 0 40px;
+        justify-content: center;
+      }
+
+      #{$root}__text {
+        display: none;
+      }
+
+      #{$root}__icon {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.tab-content {
+  &__content {
+    display: none;
+
+    &_active {
+      display: block;
+    }
+  }
+}

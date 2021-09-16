@@ -1,0 +1,25 @@
+{% extends "global.html.twig" %}
+{% block content %}
+    <div class="recover_block container">
+        {% if error=='' %}
+            <div class="form form_style_1">
+                {% include 'global/message.html.twig'%}
+                    <div class="form__element">
+                        <input  name="password" class="input-style element required" type="password" placeholder="Новый пароль">
+                    </div>
+                    <div class="form__element">
+                        <input  name="password2" class="input-style element required" type="password" placeholder="Повторите пароль">
+                    </div>
+
+
+
+                <input class="element" name="action" value="process_recover" type="hidden">
+
+                <div class="btn_color_blue btn btn_small submit">{{ global.lang.users.recover_go }}</div>
+            </div>
+
+           {% else %}
+               {% include 'global/message.html.twig'%}
+        {% endif %}
+    </div>
+{% endblock %}

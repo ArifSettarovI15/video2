@@ -1,0 +1,13 @@
+<ul class="bxslider">
+    {% for item in last_news %}
+        <li>
+            <div class="item news_item">
+                <div class="date">{{ item.short_date }}</div>
+                <div class="title"><a href="{{ item.content_full_url }}">{{ item.content_title }}</a></div>
+                <div class="text">
+                    {{ item.content_cut }}
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>

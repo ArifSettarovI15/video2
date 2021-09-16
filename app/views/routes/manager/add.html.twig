@@ -1,0 +1,140 @@
+{% extends "manager/global.html.twig" %}
+
+{% if edit==1 %}
+    {% set pp_title='Редактировать' %}
+{% else %}
+    {% set pp_title='Добавить' %}
+{% endif %}
+
+{% block header_title %}{{ page_name }} - {% endblock %}
+{% block content %}
+<div class="routes_add_form form">
+       <div class="fields">
+           <div class="line">
+               <div class="label">
+                   {{ global.lang.routes.module }}:
+               </div>
+               <div class="value">
+                   <select name="module" class="element required" >
+                       <option value="">{{ global.lang.routes.select_module }}</option>
+                       {% for module in modules_list %}
+                           <option {% if module==info.module%}selected="selected"{% endif %} value="{{ module }}">{{ module }}</option>
+                       {% endfor %}
+                   </select>
+               </div>
+           </div>
+
+           <div class="line">
+               <div class="label">
+                   {{ global.lang.routes.action }}:
+               </div>
+               <div class="value">
+                   <select  name="route_action" class="element" >
+                       {% if info.module %}
+                           <option value="">{{ global.lang.routes.without_action }}</option>
+                           {% for item in info.actions_list %}
+                               <option {% if item==info.action %}selected="selected" {% endif %}value="{{ item }}">{{ item }}</option>
+                           {% endfor %}
+                       {% else %}
+                           <option value="">{{ global.lang.routes.select_module_before }}</option>
+                       {% endif %}
+                   </select>
+               </div>
+           </div>
+
+
+           <div class="line">
+               <div class="label">
+                   {{ global.lang.routes.template }}:
+               </div>
+               <div class="value">
+                   <select name="template" class="element">
+                       {% if info.module %}
+                           <option value="">{{ global.lang.routes.without_template }}</option>
+                           {% for item in info.routes_list %}
+                               <option {% if item==info.twig %}selected="selected" {% endif %}value="{{ item }}">{{ item }}</option>
+                           {% endfor %}
+                       {% else %}
+                           <option value="">{{ global.lang.routes.select_module_before }}</option>
+                       {% endif %}
+                   </select>
+               </div>
+           </div>
+
+           <div class="line">
+               <div class="label">
+                   {{ global.lang.routes.parent }}:
+               </div>
+               <div class="value">
+                   <select name="parent_id" class="element">
+                       <option value="">{{ global.lang.routes.without_parent }}</option>
+                       {% set level=0 %}
+                       {% set parent=0 %}
+                       {% set current_id=info.parent_id %}
+                       {% include 'routes/manager/select_element.html.twig' %}
+                   </select>
+               </div>
+           </div>
+
+           <div class="line">
+               <div class="label">
+                   {{ global.lang.routes.regexp }}:
+               </div>
+               <div class="value">
+                   <div><span class="bold">{{ global.base_url }}/<span id="parent_route">{% if parent_info.regexp_value %}{{ parent_info.regexp_value }}/{% endif %}</span></span><span id="rule_value">{{ info.value }}</span></div>
+                   <input name="rule_value" type="hidden" value="{{ info.value }}">
+                   <div class="add_rules">
+                       <span class="btn stat btn-primary">{{ global.lang.routes.rule_static }}</span>
+                       <span class="btn btn-primary dyn">{{ global.lang.routes.rule_dynamic }}</span>
+                   </div>
+                   <div class="regexp_templates">
+                       <div class="line static multiline_template">
+                           <div>{{ global.lang.routes.rule_static }}</div>
+                           <div><input type="text" name="rule" placeholder="{{ global.lang.routes.rule }}"></div>
+                           <div><input type="text" name="request_name" placeholder="{{ global.lang.routes.request_name }}"></div>
+                           <div><input type="text" name="request_value" placeholder="{{ global.lang.routes.request_value }}"></div>
+                           <input type="hidden" name="static" value="1">
+                           <div><i class="fa fa-times delete_icon"></i></div>
+                       </div>
+                       <div class="line dynamic multiline_template">
+                           <div>{{ global.lang.routes.rule_dynamic }}</div>
+                           <div>
+                               <input name="rule">
+                               <select name="type" class="select2-disable">
+                                   <option value="">{{ global.lang.routes.select_type }}</option>
+                                   <option value="TYPE_UINT">Число</option>
+                                   <option value="TYPE_STR">Строка</option>
+                               </select>
+                           </div>
+                           <div><input type="text" name="request_name" placeholder="{{ global.lang.routes.request_name }}"></div>
+                           <div><input type="text" name="pos" placeholder="{{ global.lang.routes.pos }}"></div>
+                           <div><input type="hidden" name="request_value" placeholder="{{ global.lang.routes.request_value }}"></div>
+                           <input type="hidden" name="static" value="0">
+                           <div><i class="fa fa-times delete_icon"></i></div>
+                       </div>
+                   </div>
+
+                   <div class="regexp_data">
+
+                   </div>
+                   <div>
+                       <div class="btn btn-success submit2">{% if edit==1 %}{{ global.lang.admin.update }}{% else %}{{ global.lang.admin.add }}{% endif %}</div>
+                   </div>
+                   <input class="element" type="hidden" name="rules" value="">
+                   {% if edit==1 %}
+                       <input class="element" type="hidden" name="action" value="process_edit">
+                       <input class="element" type="hidden" name="id" value="{{ info.id }}">
+                       <div id="routes_data">
+                           <script>
+                               var routes_data={{ info.rules|json_encode|raw }};
+                           </script>
+                       </div>
+                   {% else %}
+                       <input class="element" type="hidden" name="action" value="process_add">
+                   {% endif %}
+               </div>
+           </div>
+
+       </div>
+</div>
+{% endblock %}

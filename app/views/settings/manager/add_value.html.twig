@@ -1,0 +1,21 @@
+{% extends "manager/global.html.twig" %}
+{% block content %}
+  <div class="form">
+    <div class="fields">
+    {{ fields|raw }}
+
+      {% if edit==1 %}
+        <input type="hidden" class="element" name="action" value="process_edit">
+      {% else %}
+        <input type="hidden" class="element" name="action" value="process_add">
+      {% endif %}
+    </div>
+    <div class="submit btn btn-primary">
+      {% if edit==1 %}
+        Сохранить
+      {% else %}
+        Добавить
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

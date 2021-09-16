@@ -1,0 +1,12 @@
+{% set current_level=level %}
+{% set current_parent=parent %}
+  {% for item in routes_list.levels[level][parent] %}
+    <option {% if current_id==item.id %} selected="selected"{% endif %} value="{{ item.id }}">{{ item.regexp_value }}</option>
+    {% set level=level+1 %}
+    {% set parent=item.id %}
+    {% if  routes_list.levels[level][parent]%}
+      {% include 'routes/manager/select_element.html.twig' %}
+    {% endif %}
+    {% set level=current_level %}
+    {% set parent=current_parent %}
+  {% endfor %}

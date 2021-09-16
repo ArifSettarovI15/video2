@@ -1,0 +1,40 @@
+{% for item in list %}
+    <tr>
+        <td class="data_id">{{ item.svid }}</td>
+        <td>
+            <div class="badge_status  {% if item.svid_status!=1%}no{% else %}yes{% endif %}" data-type="status"  data-value="{{ item.svid }}">
+                <span class="badge badge-danger">Акт</span>
+                <span class="badge badge-success">Акт</span>
+            </div>
+        </td>
+        <td>
+            {% if item.svid_svg %}
+                {% include 'frontend/elements/svg/svg.twig' with {
+                    'name':item.svid_svg,
+                    'class':item.svid_svg,
+                    'width':20,
+                    'height':20
+                }%}
+            {% endif %}
+        </td>
+        <td>
+            {% if item.svid_icon %} <img style="max-width:50px;" src="{{ item.sprav_icon_url }}">{% endif %}
+            {{ item.svid_title }}
+            {% if item.svid_syn_data %}
+                ({% for c_info in item.svid_syn_data %}{% if loop.index>1 %}, {% endif %}{{ c_info }}{% endfor %})
+            {% endif %}
+        </td>
+        <td>
+            {% if '#' in item.svid_value %}
+                <div style="background-color: {{ item.svid_value }} " class="colorpicker-box"></div>
+            {% else %}
+                {{ item.svid_value }}
+            {% endif %}
+        </td>
+        <td>{{ item.svid_eng }}</td>
+        <td>
+            <a target="_blank" href="{{ global.base_url }}/manager/sprav/{{ item.sprav_id  }}/edit/{{ item.svid  }}/" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+            <div data-value="{{ item.svid }}" class="btn btn-danger btn-xs delete"><i class="fa"></i></div>
+        </td>
+    </tr>
+{% endfor %}

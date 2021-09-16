@@ -1,0 +1,14 @@
+{% for item in list %}
+  <tr>
+    <td class="data_id">{{ item.seo_id }}</td>
+    <td><img src="{{ item.seo_photo_url }}" style="height: 50px;"> </td>
+    <td>{{ item.seo_url }}</td>
+    <td>{{ item.seo_title }}</td>
+    <td>{{ item.seo_keywords }}</td>
+    <td>{{ item.seo_desc }}</td>
+    <td>
+      <a href="{{ global.base_url }}/manager/seo/edit/{{ item.seo_id  }}/" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+      <div data-value="{{ item.seo_id }}" class="btn btn-danger btn-xs delete"><i class="fa"></i></div>
+    </td>
+  </tr>
+{% endfor %}

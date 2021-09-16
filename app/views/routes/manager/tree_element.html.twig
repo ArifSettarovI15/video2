@@ -1,0 +1,28 @@
+{% set current_level=level %}
+{% set current_parent=parent %}
+{% if level>0 %}
+    <ol>
+{% endif %}
+    {% for item in routes_list.levels[level][parent] %}
+        <li data-id="{{ item.id }}" data-level="{{ level }}" id="sort_id_{{ item.id }}">
+            <div>
+                <div class="toggle"><i class="fa fa-caret-right" aria-hidden="true"></i><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                <div class="handle"><i class="fa fa-arrows" aria-hidden="true"></i></div>
+                <div class="regexp">/{{ item.value }}</div>
+                <div class="module">{{ item.module }}</div>
+                <div class="action"><a href="{{ global.base_url }}/manager/routes/edit/{{ item.id }}/"><i class="fa fa-pencil"></i></a></div>
+                <div data-value="{{ item.id }}" class="action delete"><a href="#" ><i class="fa fa-times delete_icon"></i></a></div>
+            </div>
+            {% set level=level+1 %}
+            {% set parent=item.id %}
+            {% if  routes_list.levels[level][parent]%}
+                {% include 'routes/manager/tree_element.html.twig' %}
+            {% endif %}
+            {% set level=current_level %}
+            {% set parent=current_parent %}
+        </li>
+    {% endfor %}
+
+{% if level>0 %}
+    </ol>
+{% endif %}

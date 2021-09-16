@@ -1,0 +1,42 @@
+<div class="main-content-area__row5 service_how">
+    <span class="new-arrivals__title" data-class-text="group2_bold size20">
+    Как мы работаем
+    </span>
+
+    <div class="list">
+        {% set a={
+            '1':{
+                'icon':'fa-search',
+                'title':'В первую очередь диагностика и выявление дефекта'
+            },
+            '2':{
+            'icon':'fa-calculator',
+            'title':'Утверждение стоимости'
+            },
+            '3':{
+            'icon':' fa-wrench',
+            'title':'Устранение проблемы нашими специалистами'
+            },
+            '4':{
+            'icon':' fa-laptop',
+            'title':'Проверка устройства (тестирование)'
+            },
+            '5':{
+            'icon':'fa-check-circle',
+            'title':'Возврат заказа и оплата работы'
+            }
+        } %}
+        {% for i in a %}
+        <div>
+            <div class="icon_wrap">
+                <div class="icon">
+                    <i class="fa {{ i.icon }}"></i>
+                </div>
+            </div>
+            <div class="title">
+                {{i.title}}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

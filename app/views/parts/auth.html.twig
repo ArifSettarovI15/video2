@@ -1,0 +1,71 @@
+{% if global.user_info.user_id %}
+    {% if global.user_info.user_role_id==2 %}
+    <!--tab 1-->
+    <li class="view-header-nav2__item1" data-class-unit="item_type1">
+        <div class="view-header-nav2-item__container" data-class-unit="item-container_type1">
+            <a href="{{ global.base_url }}/manager/" class="view-header-nav2-item__link" data-class-unit="item-title_type1 link_type1">
+                Панель управления
+            </a>
+        </div>
+    </li>
+    {% endif %}
+
+
+    <!--tab 1-->
+    <li class="view-header-nav2__item1" data-class-unit="item_type1">
+        <div class="view-header-nav2-item__container" data-class-unit="item-container_type1">
+            <a href="{{ global.base_url }}/orders/" class="view-header-nav2-item__link" data-class-unit="item-title_type1 link_type1">
+                Мои заказы
+            </a>
+        </div>
+    </li>
+    <!--tab 3-->
+    <li class="view-header-nav2__item3" data-class-unit="item_type1 brdr_solid_l-r">
+        <a href="{{ global.settings.links.profile }}" class="view-header-nav2-item__container view-header-nav2-item__link" data-class-unit="item-container_type1 item-title_type1 link_type1">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="view-header-nav1-item__icon" data-class-unit="item-icon_type1">
+                <use xlink:href="#uEA0F-7"></use>
+            </svg>
+            <span data-class-unit="item-title_type1">
+                {{ global.user_profile.profile_name }}
+              </span>
+        </a>
+    </li>
+    <!--tab 4-->
+    <li class="view-header-nav2__item4" data-class-unit="item_type1">
+        <div class="view-header-nav2-item__container" data-class-unit="item-container_type1">
+            <a href="#" data-url="{{ global.settings.links.logout }}" data-insert="auth_block" class="logout_button view-header-nav2-item__link" data-class-unit="item-title_type1 link_type1">
+                Выйти
+            </a>
+        </div>
+    </li>
+{% else %}
+    <!--tab 2-->
+    <li class="view-header-nav2__item2" data-class-unit="item_type1">
+        <div class="view-header-nav2-item__container" data-class-unit="item-container_type1">
+            <a href="{{ global.settings.links.register }}" class="view-header-nav2-item__link" data-class-unit="item-title_type1 link_type1">
+                Регистрация
+            </a>
+        </div>
+    </li>
+    <!--tab 3-->
+    <li class="view-header-nav2__item3" data-class-unit="item_type1">
+        <a  data-id="modal_login" href="#" class="modal_form_open view-header-nav2-item__container view-header-nav2-item__link" data-class-unit="item-container_type1 item-title_type1 link_type1">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="view-header-nav1-item__icon" data-class-unit="item-icon_type1">
+                <use xlink:href="#uEA0F-7"></use>
+            </svg>
+            <span data-class-unit="item-title_type1">
+                Войти
+              </span>
+        </a>
+        {% set show_in_modal=1 %}
+        <div class="modal-form modal_form" data-value="modal_login" data-class-unit="modal_visible overlay_type1" data-class-space="flex" >
+            <div data-class-space="flex max206 p-l3 p-r3 justify-center">
+        {% include 'users/auth/login_form.html.twig'%}
+            </div>
+        </div>
+        {% set show_in_modal=0 %}
+        {% include 'users/auth/forgot_modal.html.twig'%}
+
+    </li>
+
+{% endif %}

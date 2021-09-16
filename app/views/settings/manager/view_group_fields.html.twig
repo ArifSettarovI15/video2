@@ -1,0 +1,11 @@
+{% extends "manager/global.html.twig" %}
+{% block content %}
+  <div class="actions">
+    <a class="btn btn-primary" href="{{ global.base_url }}/manager/settings/{{ group_info.cs_group_id }}/fields/add/">Добавить поле</a>
+  </div>
+  <div class="settings_sort">
+    <ol class="sortable">
+      {{ fields|raw }}
+    </ol>
+  </div>
+{% endblock %}

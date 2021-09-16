@@ -1,0 +1,153 @@
+@import "../../../../../../source/src/css/frontend/helpers/helpers";
+@import "variables";
+@import "mixins/colors";
+@import "mixins/forms";
+@import "mixins/sizes";
+@import "mixins/status";
+@import "mixins/typography";
+
+.btn {
+  $root: &;
+
+  cursor: pointer;
+  transition: background 0.5s;
+  overflow: hidden;
+
+  @include flex-center-inline;
+
+  svg * {
+    fill: #364052;
+  }
+
+  .svg-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+
+  &__text {
+    margin: 0 20px;
+
+    @include text-overflow;
+  }
+  &__icon {
+
+    @include flex-width($btn-icon-width);
+  }
+
+  &_preset_submit {
+
+    @include btn-size-large;
+    @include btn-form-round;
+    @include btn-color-red;
+  }
+
+  &_preset_icon {
+
+    @include btn-size-large;
+    @include btn-form-round;
+    @include btn-color-red;
+  }
+
+  &_preset_default {
+
+    @include btn-size-large;
+    @include btn-form-round;
+    @include btn-color-grey;
+  }
+
+  &_preset_default-red {
+
+    @include btn-size-large;
+    @include btn-form-round;
+    @include btn-color-red-solid;
+  }
+
+  &_preset_default-red-solid {
+
+    @include btn-size-large;
+    @include btn-form-round;
+    @include btn-color-red-solid2;
+  }
+
+  &_preset_default-white {
+
+    @include btn-size-large;
+    @include btn-form-round;
+    @include btn-color-white-solid;
+  }
+
+  &_preset_fill-white {
+
+    @include btn-size-large;
+    @include btn-form-round;
+    @include btn-color-white-fill;
+  }
+
+  &_preset_li {
+
+    @include btn-form-li;
+    @include btn-size-li;
+    @include btn-color-grey-link;
+  }
+
+  &_color {
+    &_red {
+
+      @include btn-color-red;
+    }
+    &_red-solid {
+
+      @include btn-color-red-solid;
+    }
+
+    &_grey {
+
+      @include btn-color-grey;
+    }
+
+    &_grey-link {
+
+      @include btn-color-grey-link;
+    }
+
+    &_white {
+
+      @include btn-color-white-solid;
+    }
+  }
+
+  &_status {
+    &_disabled {
+      pointer-events: none;
+      -webkit-user-select: none;
+      cursor: not-allowed;
+
+      &#{$root}_preset_submit,
+      &#{$root}_preset_default {
+
+        @include btn-status-disabled;
+      }
+
+      &#{$root}_preset_default-red,
+      &#{$root}_preset_li {
+
+        @include btn-status-disabled-opacity;
+      }
+    }
+    &_active {
+      &#{$root}_preset_default {
+        background: $btn-bg-grey;
+      }
+    }
+  }
+
+  &_size {
+    &_full {
+      @include btn-width-full;
+    }
+    &_auto {
+      @include btn-width-content;
+    }
+  }
+}

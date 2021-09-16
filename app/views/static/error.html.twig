@@ -1,0 +1,40 @@
+{% extends "global.html.twig" %}
+{% import 'frontend/elements/svg/svg_macros.twig' as Svg %}
+{% import 'frontend/elements/input/input_macro.twig' as Input %}
+{% block header_title %}{{ page_name }}{% endblock %}
+    {% block content %}
+      <div class="error404">
+        <div class="error404__wrapper">
+          <div class="modal white-popup">
+            <div class="modal__wrapper">
+              <div class="modal__head">
+                <div class="modal__title">Авторизация</div>
+              </div>
+              <div class="modal__body">
+                <div class="modal__form form" data-url="{{ global.base_url }}/login/">
+                  <input type="hidden" value="process_login" name="action" class="element ">
+                  <div class="modal__form-item">
+                    {{ Input.field('login', {
+                      required: 1,
+                      label: 'E-mail'
+                    }) }}
+                  </div>
+                  <div class="modal__form-item">
+                    {{ Input.field('password', {
+                      required: 1,
+                      label: 'Password',
+                      type: 'password'
+                    }) }}
+                  </div>
+                  <div class="modal__form-item">
+                    <div class="button button_md button_secondary submit">
+                      <div class="button__text">Войти</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endblock %}

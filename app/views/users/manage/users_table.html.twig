@@ -1,0 +1,11 @@
+{% for user in list %}
+  <tr {% if user.user_deleted==1 %}class="deleted"{% endif %}>
+    <td class="data_id">{{ user.user_id }}</td>
+    <td>{% if user.user_active!=1%}<span class="badge badge-danger">нет</span>{% else %}<span class="badge badge-success">да</span>{% endif %}</td>
+    <td> {{ user.profile_lastname }} {{ user.profile_name }}</td>
+    <td> {{ user.profile_phone }}</td>
+    <td> {{ user.user_email }}</td>
+    <td> {{ user.profile_city }}</td>
+    <td>{{ user.user_regtime|date('d.m.y') }}</td>
+  </tr>
+{% endfor %}

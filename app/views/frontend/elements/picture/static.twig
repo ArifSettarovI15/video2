@@ -1,0 +1,11 @@
+<picture>
+    {% if lazy %}
+        <source data-srcset="{{ global.base_url }}/assets/images/static/{{ file_name(name) }}.webp" type="image/webp" >
+        <source data-srcset="{{ global.base_url }}/assets/images/static/{{ name }}" type="{{ file_type(name) }}">
+        <img class="{{ class }} lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ global.base_url }}/assets/images/static/{{ name }}" alt="{{ alt }}" {{ dop_html }} />
+    {% else %}
+        <source srcset="{{ global.base_url }}/assets/images/static/{{ file_name(name) }}.webp" type="image/webp">
+        <source srcset="{{ global.base_url }}/assets/images/static/{{ name }}" type="{{ file_type(name) }}">
+        <img class="{{ class }}" src="{{ global.base_url }}/assets/images/static/{{ name }}" alt="{{ alt }}" title="{{ alt }}" {{ dop_html }} />
+    {% endif %}
+</picture>

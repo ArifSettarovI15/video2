@@ -1,0 +1,170 @@
+.mce-content-body,
+.text {
+  color: $color__dark;
+  table, tr,td {
+    height: auto !important;
+  }
+
+  img {
+  }
+
+  td {
+
+  }
+
+  ul {
+    li {
+      font-size: 16px;
+      line-height: 1.4;
+      margin-bottom: 14px;
+      padding-left: 24px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:before {
+        content: '';
+        left: 0;
+        top: 7px;
+        position: absolute;
+        @include size(16px, 12px);
+        background-image: url('/assets/images/static/pattern_02.png');
+        @extend %background__contain;
+      }
+    }
+  }
+
+  ol {
+    li {
+    }
+  }
+  a {
+
+  }
+
+  b,
+  strong {
+
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.45;
+    margin-bottom: 24px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.4;
+    & + ul {
+      margin-top: 24px;
+    }
+  }
+
+  br {
+
+  }
+
+  h1 {
+    font-weight: bold;
+    font-size: 52px;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 42px;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  h3 {
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+
+  h4 {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+
+  // Mods
+  &_article {
+    * + h4 {
+      margin-top: 40px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+
+    ul {
+      margin: 40px 0;
+    }
+
+    h4 + p + ul {
+      margin-top: 24px;
+    }
+  }
+
+  &_text2 {
+    p {
+      font-size: 16px;
+    }
+  }
+
+  @include media('<md') {
+    h1 {
+      font-size: 42px;
+      line-height: 1.10;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-size: 32px;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 24px;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    h4 {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 1.4;
+      margin-bottom: 14px;
+    }
+
+    p {
+      margin-bottom: 14px;
+    }
+
+    strong {
+      font-size: 18px;
+      & + ul {
+        margin-top: 14px;
+      }
+    }
+
+    &_text2 {
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+}

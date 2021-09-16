@@ -1,0 +1,79 @@
+{% if sales or global.fields.promo.banners %}
+    <div class="main-content-carousel-wrapper">
+      <!-- data-flickity -->
+        {% if sales %}
+      <a href="{{ global.base_url }}/news/sale/" class="main-content-carousel-title">
+        Все акции
+      </a>
+            {% endif %}
+      <div class="main-content-carousel">
+          {% for item in global.fields.promo.promo_top_items %}
+              <div class="main-content-carousel__cell">
+                  <a href="{{ item.info.item_full_url }}">
+                      <div class="img_d promo_top_item" style="background-image: url('{{global.base_url }}/assets/images/slider_bg.jpg');">
+                          <div class="title_block">
+                              <div class="row">
+                                  <div class="promo_top_img1">
+
+                                  </div>
+                                  <div class="title_block2">
+                                      <div class="promo_top_item_sub_title">{{ item['tip-tovara'] }}</div>
+                                      <div class="promo_top_item_title">{{ item['nazvanie-tovara'] }}</div>
+                                  </div>
+                              </div>
+                              <div class="promo_params">
+                                  {% for i in 1..6 %}
+                                      {% if item['parametr-'~i]  %}
+                                        <div class="promo_param">
+                                            <div class="promo_param_value">
+                                                {{ item['parametr-'~i]  }}
+                                            </div>
+                                            <div class="promo_param_label">
+                                                {{ item['parametr-'~i~'-edinica']  }}
+                                            </div>
+                                        </div>
+                                      {% endif %}
+                                  {% endfor %}
+                              </div>
+                          </div>
+                            <div class="promo_top_item_info">
+                                {% if item.info.vendor_icon_url %}
+                                    <div class="promo_top_vendor" style="background-image: url('{{ item.info.vendor_icon_url }}')">
+                                    </div>
+                                {% endif %}
+                                <div class="promo_top_item_badge">
+                                    <span>{{ item['birka-tovara'] }}</span>
+                                </div>
+                                <div class="promo_top_image_bg">
+                                    <div class="promo_top_image_block">
+                                        <img src="{{ item.info.item_icon_url }}" alt="{{ item['nazvanie-tovara'] }}">
+                                    </div>
+                                </div>
+                                <div class="promo_top_price" data-class-unit="icon-currency_rub">{{ item.info.formatted_price }}</div>
+                            </div>
+
+                      </div>
+                  </a>
+              </div>
+          {% endfor %}
+          {% for item in global.fields.promo.banners %}
+              <div class="main-content-carousel__cell">
+                  <a href="{{ item.link }}">
+                      <div class="img_d" style="background-image: url('{{item.banner_photo['sizes_url']['original'] }}');">
+
+                      </div>
+                  </a>
+              </div>
+          {% endfor %}
+        {% for item in sales %}
+          <div class="main-content-carousel__cell">
+            <a href="{{ item.content_full_url }}">
+                <div class="img_d" style="background-image: url('{{item.sizes_url['original'] }}');">
+
+                </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+{% endif %}

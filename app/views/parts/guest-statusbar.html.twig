@@ -1,0 +1,27 @@
+<div class="guest-statusbar" data-class-space="min35 m-l2 m-r3">
+  <a href="{{ global.base_url }}/fav/" class="guest-statusbar__button1" data-class-unit="button_type3_favorites{% if global.fav.count>0 %}_active{% endif %}" data-count="{{ global.fav.count }}" title="Избранное">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" data-class-unit="button-icon_type3">
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#uEA0C-4"></use>
+    </svg>
+  </a>
+  <!---->
+  <a href="{{ global.base_url }}/compare/" class="guest-statusbar__button2" data-class-unit="button_type3_compare{% if global.compare.count>0 %}_active{% endif %}" data-count="{{ global.compare.count }}" title="В сравнении">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" data-class-unit="button-icon_type3">
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#uEA0D-5"></use>
+    </svg>
+  </a>
+  <!---->
+  <a href="{{ global.base_url }}/basket/" class="guest-statusbar__button3" data-class-unit="button_type3_cart{% if global.basket.count>0 %}_active{% endif %}" data-count="{{ global.basket.count }}" title="В корзине">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" data-class-unit="button-icon_type3">
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#uEA01-1-cart"></use>
+    </svg>
+  </a>
+  <div class="trade-bill" {% if global.basket.total==0 %} style="display: none" {% endif %}>
+    <small class="trade-bill__text">
+      На сумму:
+    </small>
+    <span class="price_type1_size3 trade-bill__count" data-class-unit="icon-currency_rub">
+      {{ global.basket.total_formatted }}
+    </span>
+  </div>
+</div>

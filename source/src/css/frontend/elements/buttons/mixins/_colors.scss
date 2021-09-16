@@ -1,0 +1,100 @@
+@import "../../../../../../../source/src/css/frontend/helpers/helpers";
+@import "../variables";
+
+/**
+  1. Red
+  2. Red solid
+  3. Grey
+  4. Grey link
+ */
+
+// Colors
+@mixin btn-color-red() {
+  color: $btn-color-white;
+  background: $btn-bg-red;
+  svg * {
+    fill: $btn-color-white;
+  }
+
+  &:hover {
+    background: $btn-bg-red-dark;
+    svg * {
+      fill: $btn-color-white;
+    }
+  }
+}
+
+@mixin btn-color-red-solid() {
+  color: $btn-color-black;
+  border: 2px solid $btn-bg-red;
+
+  &:hover {
+    color: $btn-color-white;
+    background: $btn-bg-red-dark;
+    border-color: $btn-bg-red-dark;
+  }
+}
+
+
+@mixin btn-color-red-solid2() {
+  color: $btn-color-white;
+  border: 2px solid $btn-bg-red;
+
+  &:hover {
+    color: $btn-color-white;
+    background: $btn-bg-red-dark;
+    border-color: $btn-bg-red-dark;
+  }
+}
+
+@mixin btn-color-white-solid() {
+  color: $btn-color-white;
+  border: 2px solid $btn-color-white;
+
+  &:hover {
+    color: #d9332b;
+    background: $btn-color-white;
+    border-color: $btn-color-white;
+  }
+}
+@mixin btn-color-white-fill() {
+  color: $btn-color-white;
+  border: 2px solid $btn-color-white;
+
+  &:hover {
+    color: #fff;
+    background: #dd3830;
+    border-color: #dd3830;
+  }
+}
+@mixin btn-color-grey() {
+  color: $btn-color-black;
+  background: $btn-color-white;
+  border: 2px solid $btn-bg-grey;
+
+  &:hover {
+    background: $btn-bg-grey;
+  }
+}
+
+@mixin btn-color-grey-link() {
+  color: $btn-color-black;
+  border-radius: 18px;
+
+  &::before {
+    content: "";
+    height: 2px;
+    width: 18px;
+    background: $btn-bg-red;
+    margin-right: 11px;
+    transition: all 0.5s;
+  }
+
+  &:hover {
+    background: $btn-bg-grey-light;
+
+    &::before {
+      width: 8px;
+    }
+  }
+}

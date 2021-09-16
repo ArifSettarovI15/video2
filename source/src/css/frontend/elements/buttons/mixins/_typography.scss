@@ -1,0 +1,19 @@
+@import "../../../../../../../source/src/css/frontend/helpers/helpers";
+@import "../variables";
+
+/*
+1. Small
+2. Large
+ */
+
+@mixin typo-button-small {
+  font-size: 14px;
+
+  @include font-main-medium;
+}
+
+@mixin typo-button-large {
+  font-size: 16px;
+
+  @include font-main-medium;
+}

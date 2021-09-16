@@ -1,0 +1,49 @@
+<div class="line">
+    <div class="label required">
+        {{ input_info.cs_title }}:
+    </div>
+    <div class="value">
+        <a class="btn btn-primary" href="{{ global.base_url }}/manager/settings/values/{{ input_info.cs_id }}/add/">Добавить</a>
+        {% if values[input_info.cs_key] %}
+            <table class="repeater_table table_data">
+                <thead>
+                <tr>
+                    <th style="width: 50px">
+
+                    </th>
+                    {% for fi in fields %}
+                        {% if fi.cs_visible %}
+                            <th>{{ fi.cs_title }}</th>
+                        {% endif %}
+                    {% endfor %}
+                    <th style="width:100px;"></th>
+                </tr>
+                </thead>
+                <tbody class="table_content sortable" data-id="{{ input_info.cs_id }}">
+           {% for key,item in  values[input_info.cs_key] %}
+               <tr data-sort="" data-id="{{ key }}">
+                   <td>
+                       <div class="handle ui-sortable-handle"><i class="fa fa-arrows" aria-hidden="true"></i></div>
+                   </td>
+                   {% for fi in fields %}
+                       {% set cs_parent_id=fi.cs_parent_id %}
+                        {% if fi.cs_visible %}
+                            <td>{% if fi.cs_type=='image' %}
+                                    <img class="repeater_thumb" src="{{ item[fi.cs_key]['thumb'] }}">
+                                {% else %}
+                                    {{ item[fi.cs_key]|raw }}
+                                {% endif %}
+                            </td>
+                        {% endif %}
+                   {% endfor %}
+                   <td>
+                       <a href="{{ global.base_url }}/manager/settings/values/{{ input_info.cs_id  }}/edit/{{ key }}/" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                       <div data-value="{{ key }}" class="btn btn-danger btn-xs delete"><i class="fa"></i></div>
+                   </td>
+               </tr>
+            {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+</div>

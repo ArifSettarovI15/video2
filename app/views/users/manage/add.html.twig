@@ -1,0 +1,49 @@
+{% extends "manager/global.html.twig" %}
+{% block content %}
+    <div class="form">
+        <div class="fields">
+
+            <div class="line">
+                <div class="label required">
+                    Логин/Email:
+                </div>
+                <div class="value">
+                    {% if edit==0 %}
+                        <input name="user_email" class="element required" type="text"  maxlength="250"  value="">
+                    {% else %}
+                        {{ info.user_email }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    Пароль:
+                </div>
+                <div class="value">
+                    <input name="user_password" class="element" type="text"  maxlength="250"  value="">
+                </div>
+            </div>
+            <div class="line">
+                <div class="label">
+                    Пароль повторно:
+                </div>
+                <div class="value">
+                    <input name="user_password2" class="element " type="text"  maxlength="250"  value="">
+                </div>
+            </div>
+            {% if edit==1 %}
+                <input type="hidden" class="element" name="action" value="process_edit">
+                <input type="hidden" class="element" name="user_id" value="{{ info.user_id }}">
+            {% else %}
+                <input type="hidden" class="element" name="action" value="process_add">
+            {% endif %}
+        </div>
+        <div class="submit btn btn-primary">
+            {% if edit==1 %}
+                Сохранить
+            {% else %}
+                Добавить
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+// Breakpoints
+$breakpoints: (
+    'xs': 320px,
+    'sm': 480px,
+    'md': 768px,
+    'lg': 1024px,
+    'xl': 1366px
+) !default;
+
+$media-expressions: (
+    'screen': 'screen',
+    'print': 'print'
+) !default;
+
+$unit-intervals: (
+    'px': 1,
+    'em': 0.01,
+    'rem': 0.1
+) !default;
+
+// Grid VARS
+// desktop grid
+$grid-desktop__columns: 12;
+$grid-desktop__gutter: 32px;
+
+// tablet grid
+$grid-tablet__columns: 6;
+$grid-tablet__gutter: 16px;
+
+// mobile grid
+$grid-mobile__columns: 6;
+$grid-mobile__gutter: 8px;

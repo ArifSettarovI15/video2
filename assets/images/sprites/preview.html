@@ -1,0 +1,147 @@
+<!doctype HTML>
+<html>
+	<head>
+		<title>Icons Preview!</title>
+		<meta charset="utf-8">
+		<style>
+			body {
+				background-image: linear-gradient(#eee 25%, transparent 25%, transparent), linear-gradient(#eee 25%, transparent 25%, transparent), linear-gradient(transparent 75%, #eee 75%), linear-gradient(transparent 75%, #eee 75%);
+				width: auto;
+				background-size: 10px 10px;
+			}
+		</style>
+		<script>
+			/*! grunt-grunticon Stylesheet Loader - v2.1.6 | https://github.com/filamentgroup/grunticon | (c) 2015 Scott Jehl, Filament Group, Inc. | MIT license. */
+
+!function(){function e(e,t){function n(){!o&&t&&(o=!0,t.call(e))}var o;e.addEventListener&&e.addEventListener("load",n),e.attachEvent&&e.attachEvent("onload",n),"isApplicationInstalled"in navigator&&"onloadcssdefined"in e&&e.onloadcssdefined(n)}!function(e){"use strict";var t=function(t,n,o){function r(e){if(c.body)return e();setTimeout(function(){r(e)})}function a(){d.addEventListener&&d.removeEventListener("load",a),d.media=o||"all"}var i,c=e.document,d=c.createElement("link");if(n)i=n;else{var l=(c.body||c.getElementsByTagName("head")[0]).childNodes;i=l[l.length-1]}var s=c.styleSheets;d.rel="stylesheet",d.href=t,d.media="only x",r(function(){i.parentNode.insertBefore(d,n?i:i.nextSibling)});var u=function(e){for(var t=d.href,n=s.length;n--;)if(s[n].href===t)return e();setTimeout(function(){u(e)})};return d.addEventListener&&d.addEventListener("load",a),d.onloadcssdefined=u,u(a),d};"undefined"!=typeof exports?exports.loadCSS=t:e.loadCSS=t}("undefined"!=typeof global?global:this),function(t){var n=function(o,r){"use strict";if(o&&3===o.length){var a=t.navigator,i=t.document,c=t.Image,d=!(!i.createElementNS||!i.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!i.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||t.opera&&-1===a.userAgent.indexOf("Chrome")||-1!==a.userAgent.indexOf("Series40")),l=new c;l.onerror=function(){n.method="png",n.href=o[2],loadCSS(o[2])},l.onload=function(){var t=1===l.width&&1===l.height,a=o[t&&d?0:t?1:2];n.method=t&&d?"svg":t?"datapng":"png",n.href=a,e(loadCSS(a),r)},l.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==",i.documentElement.className+=" grunticon"}};n.loadCSS=loadCSS,n.onloadCSS=e,t.grunticon=n}(this),function(e,t){"use strict";var n,o=t.document,r=function(e){if(o.attachEvent?"complete"===o.readyState:"loading"!==o.readyState)e();else{var t=!1;o.addEventListener("readystatechange",function(){t||(t=!0,e())},!1)}},a=function(e){return t.document.querySelector('link[href$="'+e+'"]')},i=function(e,t){if(n&&!t)return n;n={};var o,r,a,i,c,d;if(!(o=e.sheet))return n;r=o.cssRules?o.cssRules:o.rules;for(var l=0;l<r.length;l++)a=r[l].cssText,i="grunticon:"+r[l].selectorText,(c=a.split(");")[0].match(/US\-ASCII\,([^"']+)/))&&c[1]&&(d=decodeURIComponent(c[1]),n[i]=d);return n},c=function(e,t){var n,r,a,i,c;t?n=e:(t=e,n=o),i="data-grunticon-embed";for(var d in t){c=d.slice("grunticon:".length);try{r=n.querySelectorAll(c)}catch(e){continue}a=[];for(var l=0;l<r.length;l++)null!==r[l].getAttribute(i)&&a.push(r[l]);if(a.length)for(l=0;l<a.length;l++)a[l].innerHTML=t[d],a[l].style.backgroundImage="none",a[l].removeAttribute(i)}return a},d=function(t,n){"svg"===e.method&&r(function(){var o=i(a(e.href));"function"==typeof n?(c(t,o),n()):c(o),"function"==typeof t&&t()})};e.embedIcons=c,e.getCSS=a,e.getIcons=i,e.ready=r,e.svgLoadedCallback=d,e.embedSVG=d}(grunticon,this)}();
+			
+			grunticon(["icons.data.svg.css", "icons.data.png.css", "icons.fallback.css"], grunticon.svgLoadedCallback);
+		</script>
+		<noscript><link href="icons.fallback.css" rel="stylesheet"></noscript>
+	</head>
+	<body>
+
+		<h1>CUSTOM PREVIEW - you can change this in the previewTemplate option</h1>
+			<pre><code>.icon-arrow-left:</code></pre><div class="icon-arrow-left" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-arrow-right:</code></pre><div class="icon-arrow-right" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-badge-icon:</code></pre><div class="icon-badge-icon" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-basket-icon:</code></pre><div class="icon-basket-icon" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-briefcase:</code></pre><div class="icon-briefcase" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-burger:</code></pre><div class="icon-burger" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-business:</code></pre><div class="icon-business" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-camera-off:</code></pre><div class="icon-camera-off" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-card-icon:</code></pre><div class="icon-card-icon" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-caret-left:</code></pre><div class="icon-caret-left" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-caret-right:</code></pre><div class="icon-caret-right" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-check-icon2:</code></pre><div class="icon-check-icon2" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-check:</code></pre><div class="icon-check" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-chevron-down-default:</code></pre><div class="icon-chevron-down-default" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-chevron-down-disable:</code></pre><div class="icon-chevron-down-disable" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-chevron-down:</code></pre><div class="icon-chevron-down" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-chevrons-down:</code></pre><div class="icon-chevrons-down" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-close:</code></pre><div class="icon-close" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-comfort-car:</code></pre><div class="icon-comfort-car" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-comfort-pl:</code></pre><div class="icon-comfort-pl" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-comfort:</code></pre><div class="icon-comfort" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-crosshair:</code></pre><div class="icon-crosshair" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-dialog:</code></pre><div class="icon-dialog" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-econom:</code></pre><div class="icon-econom" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-eye-close-icon:</code></pre><div class="icon-eye-close-icon" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-eye:</code></pre><div class="icon-eye" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-filter:</code></pre><div class="icon-filter" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-gift:</code></pre><div class="icon-gift" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-globus:</code></pre><div class="icon-globus" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-header_phone:</code></pre><div class="icon-header_phone" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-home:</code></pre><div class="icon-home" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-hpower:</code></pre><div class="icon-hpower" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-icon-cont-02:</code></pre><div class="icon-icon-cont-02" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-info:</code></pre><div class="icon-info" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-inst:</code></pre><div class="icon-inst" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-iptv:</code></pre><div class="icon-iptv" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-laptop:</code></pre><div class="icon-laptop" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-like:</code></pre><div class="icon-like" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-link:</code></pre><div class="icon-link" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-list-decor:</code></pre><div class="icon-list-decor" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-list:</code></pre><div class="icon-list" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-log-in:</code></pre><div class="icon-log-in" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-logo:</code></pre><div class="icon-logo" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-logout-icon:</code></pre><div class="icon-logout-icon" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-loupe:</code></pre><div class="icon-loupe" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-m-1:</code></pre><div class="icon-m-1" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-m-2:</code></pre><div class="icon-m-2" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-m-3:</code></pre><div class="icon-m-3" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-mail:</code></pre><div class="icon-mail" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-map-pin:</code></pre><div class="icon-map-pin" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-map:</code></pre><div class="icon-map" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-microbus:</code></pre><div class="icon-microbus" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-minivan:</code></pre><div class="icon-minivan" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-minus-icon:</code></pre><div class="icon-minus-icon" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-order-icon:</code></pre><div class="icon-order-icon" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-pen:</code></pre><div class="icon-pen" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-phone:</code></pre><div class="icon-phone" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-piggybank:</code></pre><div class="icon-piggybank" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-plus-icon:</code></pre><div class="icon-plus-icon" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-plus-icon2:</code></pre><div class="icon-plus-icon2" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-pointer:</code></pre><div class="icon-pointer" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-rouble:</code></pre><div class="icon-rouble" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-round_1:</code></pre><div class="icon-round_1" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-round_2:</code></pre><div class="icon-round_2" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-round_3:</code></pre><div class="icon-round_3" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-rss:</code></pre><div class="icon-rss" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-save-icon:</code></pre><div class="icon-save-icon" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-search:</code></pre><div class="icon-search" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-service:</code></pre><div class="icon-service" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-skill-1:</code></pre><div class="icon-skill-1" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-skill-2:</code></pre><div class="icon-skill-2" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-skill-3:</code></pre><div class="icon-skill-3" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-skill-4:</code></pre><div class="icon-skill-4" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-skill-5:</code></pre><div class="icon-skill-5" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-skill-6:</code></pre><div class="icon-skill-6" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-smartphone-vibe:</code></pre><div class="icon-smartphone-vibe" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-speed:</code></pre><div class="icon-speed" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-standart:</code></pre><div class="icon-standart" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-star-fill:</code></pre><div class="icon-star-fill" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-star-i:</code></pre><div class="icon-star-i" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-telegram:</code></pre><div class="icon-telegram" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-tools:</code></pre><div class="icon-tools" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-tv-console:</code></pre><div class="icon-tv-console" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-upload-icon:</code></pre><div class="icon-upload-icon" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-user:</code></pre><div class="icon-user" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-vk:</code></pre><div class="icon-vk" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-way-icon:</code></pre><div class="icon-way-icon" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-whatsapp:</code></pre><div class="icon-whatsapp" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-wifi-router:</code></pre><div class="icon-wifi-router" style="width: 180px; height: 180px;" ></div><hr/>
+			<pre><code>.icon-wifi:</code></pre><div class="icon-wifi" style="width: 180px; height: 180px;" ></div><hr/>
+
+		<h2 id="embedded-svg-option">Embedded SVG option</h2>
+		<p>(The <code>data-grunticon-embed</code> attribute tells grunticon to inject SVG inline):</p>
+
+		<pre><code>icon-burger:</code></pre><div class="icon-burger" data-grunticon-embed style="width: px; height: px;" ></div><hr/>
+
+		<style>
+			.icon-burger {
+				width: 32px;
+				height: 30px;
+				display: inline-block;
+			}
+			  .icon-burger.alt .cheese {
+		                fill: red;
+		            }
+				 .icon-burger.alt .buns {
+		                fill: orange;
+		            }
+				  .icon-burger.alt .burger {
+		                fill: yellow;
+		            }
+		 		 .icon-burger.alt .lettuce {
+		                fill: green;
+		            }
+
+		</style>
+
+		<pre><code>icon-burger (styled variation):</code></pre><div class="icon-burger alt" data-grunticon-embed></div><hr/>
+
+
+
+</body>
+</html>

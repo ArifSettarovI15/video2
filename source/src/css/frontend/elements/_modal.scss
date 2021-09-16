@@ -1,0 +1,32 @@
+.mfp-container{
+  padding: 0 !important;
+}
+.mfp-content {
+  margin: 10px auto;
+  @media(max-width: 768px){
+    margin: 0 auto;
+  }
+}
+
+.mfp-wrap {
+  @media(max-width: 468px){
+    height: 100% !important;
+  }
+
+}
+
+/* overlay at start */
+.my-popup.mfp-bg {
+  opacity: 0;
+  background: #000000;
+  transition: all 0.35s ease-out;
+}
+/* overlay animate in */
+.my-popup.mfp-bg.mfp-ready {
+
+  opacity: 0.5;
+}
+/* overlay animate out */
+.my-popup.mfp-bg.mfp-removing {
+  opacity: 0;
+}

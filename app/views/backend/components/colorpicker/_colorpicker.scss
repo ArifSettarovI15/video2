@@ -1,0 +1,18 @@
+.ui-colorpicker table{
+    width: inherit !important;
+}
+.colorpicker-box {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #eeeeee;
+}
+
+.fields .colorpicker-box {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.sprav_colors .colorpicker-box{
+    display: block;
+}

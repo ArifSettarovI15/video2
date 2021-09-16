@@ -1,0 +1,53 @@
+.first_screen {
+  h1 {
+    //font-weight: bold;
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 60px;
+    color: #FFFFFF;
+    text-align: center;
+    width: 100%;
+    font-weight: 700;
+    font-family: $font-family__secondary;
+  }
+
+  p {
+    font-family: $font-family__main;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-align: center;
+    width: 100%;
+  }
+
+  padding: 100px;
+  padding-bottom: 300px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  text-align: center;
+  height: 820px;
+
+
+
+&_button {
+  width: 170px;
+  /* height: 45px; */
+    background: linear-gradient(
+                    90deg,#f28402 0,#f3ac6a 100%);
+    border-radius: 40px;
+    color: #fff;
+    margin: 0 auto;
+    border: none;
+    font-family: $font-family__main;
+    font-size: 16px;
+    font-weight: 400;
+    /* display: flex; */
+    padding: 15px 0;
+    text-align: center;
+  }
+}

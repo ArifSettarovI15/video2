@@ -1,0 +1,147 @@
+.wrapper {
+    display: flex;
+
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    &__top, &__bottom {
+        flex: 0 1 auto;
+        width: 100%;
+    }
+
+    &__top__main
+    {
+        position: absolute;
+        z-index: 100;
+    }
+
+
+    &__main {
+
+        width: 100%;
+    }
+}
+
+.main {
+    width: 100%;
+}
+
+.container {
+    margin: 0 auto;
+    padding-left: $gutter;
+    padding-right: $gutter;
+    width: $container__width--lg;
+
+    @include media('<lg') {
+        padding-left: $gutter/2;
+        padding-right: $gutter/2;
+    }
+}
+
+.ptb {
+    padding: 80px 0;
+
+    @include media('<=1200px') {
+        padding: 60px 0;
+    }
+
+    @include media('<md') {
+        padding: 56px 0;
+    }
+}
+
+.pb {
+    padding-bottom: 80px;
+
+    @include media('<=1200px') {
+        padding-bottom: 60px;
+    }
+
+    @include media('<md') {
+        padding-bottom: 56px;
+    }
+}
+
+.pt {
+    padding-top: 80px;
+
+    @include media('<=1200px') {
+        padding-top: 60px;
+    }
+
+    @include media('<md') {
+        padding-top: 56px;
+    }
+}
+
+
+.mtb {
+    margin: 80px 0;
+
+    @include media('<=1200px') {
+        margin: 60px 0;
+    }
+
+    @include media('<md') {
+        margin: 56px 0;
+
+        &_2 {
+            margin-top: 32px;
+        }
+    }
+}
+
+.mb {
+    margin-bottom: 80px;
+
+    @include media('<=1200px') {
+        margin-bottom: 60px;
+    }
+
+    @include media('<md') {
+        margin-bottom: 56px;
+    }
+}
+
+.mt {
+    margin-top: 80px;
+
+    @include media('<=1200px') {
+        margin-top: 60px;
+    }
+
+    @include media('<md') {
+        margin-top: 56px;
+    }
+}
+
+.screen-md-hide {
+    @include media('<md') {
+        display: none;
+    }
+}
+
+.page {
+    &__tabs-wrapper {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    &__filters {
+        margin-bottom: 40px;
+    }
+
+    @include media('<=1200px') {
+        &__filters,
+        &__tabs-wrapper {
+            margin-bottom: 32px;
+        }
+    }
+
+    @include media('<md') {
+        &__filters,
+        &__tabs-wrapper {
+            margin-bottom: 24px;
+        }
+    }
+}

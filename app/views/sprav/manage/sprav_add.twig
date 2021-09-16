@@ -1,0 +1,85 @@
+{% extends "manager/global.html.twig" %}
+{% block content %}
+    <div class="form">
+        <div class="fields">
+
+            <div class="line">
+                <div class="label required">
+                    Название:
+                </div>
+                <div class="value">
+                    <input name="sprav_title" class="element required translit_from" type="text"  maxlength="250"  value="{{ info.sprav_title }}">
+                </div>
+            </div>
+            <div class="line">
+                <div class="label">
+                    Лейбл:
+                </div>
+                <div class="value">
+                    <input name="sprav_label" class="element" type="text"  maxlength="250"  value="{{ info.sprav_label }}">
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    Селектор:
+                </div>
+                <div class="value">
+                    <input name="sprav_name" class="element required translit_to" type="text"  maxlength="50"  value="{{ info.sprav_name }}">
+                    <div class="caption">Англ символы без пробелов</div>
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    Стиль:
+                </div>
+                <div class="value">
+                    <select name="sprav_style" class="element">
+                        <option value="checks" {% if info.sprav_style=='checks' %}selected="selected"{% endif %}>Список (много значений)</option>
+                        <option value="radios" {% if info.sprav_style=='radios' %}selected="selected"{% endif %}>Список (одно значение)</option>
+                        <option value="v-checks" {% if info.sprav_style=='v-checks' %}selected="selected"{% endif %}>Визуальные чекбоксы (много значений)</option>
+                        <option value="v-radios" {% if info.sprav_style=='v-radios' %}selected="selected"{% endif %}>Визуальные чекбоксы (одно значений)</option>
+                        <option value="s-checks" {% if info.sprav_style=='s-checks' %}selected="selected"{% endif %}>Чекбоксы</option>
+                        <option value="s-radios" {% if info.sprav_style=='s-radios' %}selected="selected"{% endif %}>Радио</option>
+                        <option value="colors" {% if info.sprav_style=='colors' %}selected="selected"{% endif %}>Цвет</option>
+                        <option value="sizes" {% if info.sprav_style=='sizes' %}selected="selected"{% endif %}>Размер</option>
+                        <option value="text" {% if info.sprav_text=='text' %}selected="selected"{% endif %}>Текст</option>
+                    </select>
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    Тип данных:
+                </div>
+                <div class="value">
+                    <select name="sprav_data_type" class="element">
+                        <option value="string" {% if info.sprav_data_type=='string' %}selected="selected"{% endif %}>Строка</option>
+                        <option value="num" {% if info.sprav_data_type=='num' %}selected="selected"{% endif %}>Число</option>
+                    </select>
+                </div>
+            </div>
+            <div class="line">
+                <div class="label">
+                    Подсказка:
+                </div>
+                <div class="value">
+                    <input name="sprav_desc" class="element" type="text"  maxlength="250"  value="{{ info.sprav_desc }}">
+                </div>
+            </div>
+
+
+            {% if edit==1 %}
+                <input type="hidden" class="element" name="action" value="process_edit">
+                <input type="hidden" class="element" name="position_id" value="{{ info.sprav_id }}">
+            {% else %}
+                <input type="hidden" class="element" name="action" value="process_add">
+            {% endif %}
+        </div>
+        <div class="submit btn btn-primary">
+            {% if edit==1 %}
+                Сохранить
+            {% else %}
+                Добавить
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

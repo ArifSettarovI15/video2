@@ -1,0 +1,73 @@
+{% set first = 1 %}
+
+<div class="items-filter cat_filters">
+    <input type="hidden" data-name="order" data-type="filter_value" value="{{ global.cat_sort.key }}">
+    <input type="hidden" data-name="q" data-type="filter_value" value="{{ variables.q }}">
+    <input type="hidden" data-name="make_filter" data-type="filter_value" value="1">
+    <input type="hidden" data-name="last_filtered" data-type="filter_value" value="0">
+    {% if variables.child_cats %}
+        <ul class="items-filter__links" data-class-unit="list_type2">
+        {% for cat in variables.child_cats %}
+        <li class="items-filter__item{{ loop.index }}">
+          <a href="{{cat.full_cat_url}}" class="items-filter__link" data-class-unit="button_type2_theme2 link_type1">
+              {{cat.cat_short_title}}
+           {% if cat.cat_count>0 %} <small class="items-count">({{cat.cat_count}})</small>{% endif %}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+  <div class="items-filter__options" data-class-unit="list_type2">
+    <!-- 1 -->
+    <div class="filter_types">
+        {% include 'shop/catalog/filter_types.html.twig' %}
+    </div>
+    <div class="items-filter__item1" data-class-unit="list-item_type2">
+      <fildset class="options-set">
+        <legend class="options-set__name" data-class-unit="dropdown_active">
+          Цена
+        </legend>
+        <ol class="options-set__list">
+          <li class="options-set__row1 price-range">
+            <div class="price-range_item">
+                <div class="price-range__input1" data-class-unit="input_type1 icon-currency_rub">
+
+                  <input data-type="filter_value"  data-name="item_price_min" id="price-range__input1" type="text" data-class-unit="input-field_type1" value="{{ variables.t_data.min_price|round(0, 'floor') }}">
+                    <input id="price-range__input_min1" type="hidden" value="{{ variables.t_data.min_price|round(0, 'floor') }}">
+                </div>
+
+                <i class="price-range__seporator"></i>
+            </div>
+              <div class="price-range_item">
+                <div class="price-range__input2" data-class-unit="input_type1 icon-currency_rub">
+
+                  <input data-type="filter_value" data-name="item_price_max" id="price-range__input2" type="text" data-class-unit="input-field_type1" value="{{ variables.t_data.max_price|round(0, 'ceil') }}">
+                    <input id="price-range__input_max1" type="hidden" value="{{ variables.t_data.max_price|round(0, 'ceil') }}">
+                </div>
+              </div>
+
+            
+          </li>
+          <li class="options-set__row2">
+
+            <div class="price-range__slider"></div>
+          
+          </li>          
+        </ol>       
+      </fildset>      
+    </div>
+      <div class="filter_vendors">
+          {% include 'shop/catalog/filter_vendors.html.twig' %}
+      </div>
+      <div class="filter_fields">
+          {% include 'shop/catalog/filter_fields.html.twig' %}
+      </div>
+  </div>
+    <span class="items-filter__restart2 filter_all fixed hide" data-class-unit="button_type1_theme1_bottom">
+    Фильтровать
+  </span>
+  <span class="items-filter__restart o_del_all" data-class-unit="button_type2_theme2_bottom">
+    Сбросить параметры
+  </span>
+</div>

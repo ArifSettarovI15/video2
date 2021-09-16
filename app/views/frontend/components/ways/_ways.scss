@@ -1,0 +1,24 @@
+.way_item{
+  width: 300px;
+  height: 450px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(39, 41, 49, 0.9) 67.28%, #272931 100%), url('/assets/images/static/way1.jpg');
+  background-size: cover;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 150%;
+  color: #fff;
+  display: flex;
+  align-items: flex-end;
+  padding: 32px 28px;
+  text-align: center;
+  &:hover{
+    filter: drop-shadow(0px 0px 50px rgba(242, 132, 2, 0.5));
+  }
+}
+.ways_list{
+  display: flex;
+  justify-content: space-between;
+}

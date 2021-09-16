@@ -1,0 +1,32 @@
+<div class="upload_container">
+    <div class="images_list sortable_items" data-list="{{ image_data.input_name }}" data-sort-name="{{ image_data.sort_name }}">
+        {% for image_info in image_data.files %}
+            {% if image_info.file_id %}
+                {% include 'files/upload_image_part.html.twig' %}
+            {% endif %}
+        {% endfor %}
+
+    </div>
+    <div data-key="{{ image_data.upload_key }}" class="upload_buttons">
+        <span class="fileinput-button">
+              <span class=" btn btn-primary {% if image_data.upload_disabled==1 %}disabled {% endif %}">Загрузить...</span>
+                <input {% if image_data.upload_disabled==1 %}disabled="disabled"{% endif %} class=" upload_image_button" {% if image_data.multiple %}multiple{% endif %} type="file"
+{#                <input {% if image_data.upload_disabled==1 %}disabled="disabled"{% endif %} class="upload-image__upload element js-upload" {% if image_data.multiple %}multiple{% endif %} type="file"#}
+                 name="{{ image_data.input_name }}"
+                 data-url="{{ global.base_url }}/files/upload/"
+                 data-form-data='{
+                 "action": "upload_image",
+                 "input_name":"{{ image_data.input_name }}",
+                 "folder":"{{ image_data.folder }}{{ sub_folder1 }}",
+                 "sub_folder":"{{ image_data.sub_folder }}",
+                 "module":"{{ image_data.module }}",
+                 "filename":"{{ image_data.file_name }}",
+                 "multiple":"{{ image_data.multiple }}",
+                 "invert":"{{ image_data.invert }}"
+                }'>
+        </span>
+        {% if image_data.show_select_image %}
+        <a   href="{{ global.base_url }}/files/list/?module={{ image_data.module }}&folder_name={{ image_data.folder }}{{ sub_folder1 }}&input_name={{ image_data.input_name }}&sub_folder={{ image_data.sub_folder }}{% if image_data.multiple %}&multiple=1{% endif %} " class="fancybox select_file open_fancy"><span class=" btn btn-primary">Выбрать...</span></a>
+        {% endif %}
+    </div>
+</div>

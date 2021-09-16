@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>{% block title %}ТрансЮгКрым{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" name="viewport"/>
+</head>
+<body style="padding: 0;margin:0;">
+<table width="100%" border="0" bgcolor="#fafcfc" cellpadding="0" cellspacing="0" align="center" style="padding: 50px 0">
+    <div style="display:none;font-size:1px;color:#ffffff;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide: all;">
+        {% block text_preview %}{% endblock %}
+    </div>
+    <tbody>
+    <tr>
+        <td width="100%" valign="top"  style="font-family: Arial, Helvetica, sans-serif;font-size: 14px;color:#2d231a;">
+            <table width="800" border="0" cellpadding="0" cellspacing="0" align="center">
+                <tbody>
+                <tr>
+                    <td width="100%" valign="top">
+                        <table style="padding-bottom: 50px" width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
+                            <tbody>
+                            <tr>
+                                <td valign="top">
+                                    <a href="{{ global.base_url }}"  target="_blank">
+                                        <img width="240" src="{{ global.base_url }}/assets/images/static/logo-main.png" alt="ТрансЮгКрым">
+                                    </a>
+                                </td>
+                                <td valign="top" align="right">
+
+                                </td>
+                                <td valign="top" width="160" align="right">
+                                    <div style="font-size: 18px;line-height: 24px;"><a style="color:#000000;text-decoration: none;" href="tel:{{global.fields.about.about_phone|replace({'(':'',')':'',' ':'','-':''})}}">{{global.fields.about.about_phone|replace({'+':''})}}</a></div>
+                                    <div style="font-size: 18px;line-height: 24px;"><a style="color:#000000;text-decoration: none;" href="tel:{{global.fields.about.about_phone2|replace({'(':'',')':'',' ':'','-':''})}}">{{global.fields.about.about_phone2|replace({'+':''})}}</a></div>
+                                    <div style="font-size: 14px;line-height: 24px;"><a href="{{ global.base_url }}" target="_blank" style="color:#000000;border-bottom: 1px dotted; text-decoration: none">Перейти на сайт</a></div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" bgcolor="#ffffff" style="border-top: 2px solid #244984;border-bottom: 2px solid #244984;padding: 30px">
+                        {% block content %}{% endblock %}
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100%" valign="top" style="color: #cccccc;font-size: 12px;padding: 20px">
+                        © 2020{% if "now"|date("Y")!=2020 %}-{{ "now"|date("Y") }}{% endif %} ТрансЮгКрым. Все права защищены.
+                        </table>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% for item in items %}
+<!--item {{loop.index}}-->
+<li class="items-col-list__item{{loop.index}}" data-class-unit="list-item_type2">
+  <figure class="item-content">
+    <a href="{{ item.item_full_url }}" class="img-wrapper">
+      <img class="img" src="{{ item.item_icon_url }}" alt="{{ item.item_title }}">
+    </a>
+    <figcaption class="item-info">
+      <a href="{{ item.item_full_url }}" class="item-title-wrapper" data-class-unit="link_type4">
+        <h3 class="item-info__row1 item-title" data-class-unit="link-text_type4">
+          {{ item.item_title }}
+        </h3>
+      </a>
+
+      <div class="item-info__row2">
+        <strong class="price_type1_size2 item-price" data-class-unit="icon-currency_rub">{{ item.formatted_price }}</strong>
+      </div>
+    </figcaption>
+  </figure>
+</li>
+{% endfor %}

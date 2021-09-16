@@ -1,0 +1,64 @@
+<div class="callback_form form" data-url="{{ global.base_url }}/callback/" data-callback="HideAllModalForm">
+  <div class="fields">
+    <div class="line">
+      <div class="label required">
+        Товар:
+      </div>
+      <div class="value">
+        {{ item_info.item_promo_title }}
+        <input type="hidden" class="element" name="product_id" value="{{ item_info.item_id }}">
+        <input type="hidden" class="element" name="product_name" value="{{ item_info.item_promo_title }}">
+      </div>
+    </div>
+
+    <div class="line">
+      <div class="label required">
+        Имя:
+      </div>
+      <div class="value">
+        <input name="name" class="element required" type="text" maxlength="100">
+      </div>
+    </div>
+    {% if parent_cats[0]['cat_id']==2 %}
+    <div class="line">
+      <div class="label required">
+        Email:
+      </div>
+      <div class="value">
+        <input name="email" class="element required" type="text">
+      </div>
+    </div>
+    {% endif %}
+    <div class="line">
+      <div class="label required">
+        Телефон:
+      </div>
+      <div class="value">
+        <input name="phone" class="element required" type="text">
+      </div>
+    </div>
+
+    {% if parent_cats[0]['cat_id']==2 %}
+      <div class="line">
+        <div class="label required">
+          Город:
+        </div>
+        <div class="value">
+          <input name="city" class="element required" type="text">
+        </div>
+      </div>
+      <div class="line">
+        <div class="label required">
+          Вопросы и комментарии:
+        </div>
+        <div class="value">
+          <textarea name="comment" class="js-auto-size element"></textarea>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="form_under">
+    <div class="submit button_1">Отправить</div>
+  </div>
+</div>

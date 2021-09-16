@@ -1,0 +1,40 @@
+// Shadows
+@mixin shadow-1 {
+  box-shadow: 0 3px 4.7px 0.3px rgba(24, 28, 36, 0.24), 0 2px 5.88px 0.12px rgba(24, 28, 36, 0.16);
+}
+
+@mixin shadow-2 {
+  box-shadow: 0 3px 4.7px 0.3px rgba(24, 28, 36, 0.24), 0 1px 6.86px 0.14px rgba(24, 28, 36, 0.16);
+}
+
+@mixin shadow-3 {
+  box-shadow: 0 5px 6.58px 0.42px rgba(24, 28, 36, 0.24), 0 2px 9.8px 0.2px rgba(24, 28, 36, 0.16);
+}
+
+@mixin shadow-4 {
+  box-shadow: 0 7px 9.4px 0.6px rgba(24, 28, 36, 0.24), 0 3px 12.74px 0.26px rgba(24, 28, 36, 0.16);
+}
+
+@mixin shadow-6 {
+  box-shadow: 0 10px 14.1px 0.9px rgba(24, 28, 36, 0.24), 0 4px 19.6px 0.4px rgba(24, 28, 36, 0.16);
+}
+
+@mixin shadow-8 {
+  box-shadow: 0 13px 18.8px 1.2px rgba(24, 28, 36, 0.24), 0 5px 26.46px 0.54px rgba(24, 28, 36, 0.16);
+}
+
+@mixin shadow-9 {
+  box-shadow: 0 18px 25.38px 1.62px rgba(24, 28, 36, 0.24), 0 9px 35.28px 0.72px rgba(24, 28, 36, 0.16);
+}
+
+@mixin shadow-12 {
+  box-shadow: 0 20px 28.2px 1.8px rgba(24, 28, 36, 0.24), 0 8px 40.18px 0.82px rgba(24, 28, 36, 0.16);
+}
+
+@mixin shadow-16 {
+  box-shadow: 0 28px 37.6px 2.4px rgba(24, 28, 36, 0.24), 0 11px 51.94px 1.06px rgba(24, 28, 36, 0.16);
+}
+
+@mixin shadow-24 {
+  box-shadow: 0 39px 56.4px 3.6px rgba(24, 28, 36, 0.24), 0 15px 79.38px 1.62px rgba(24, 28, 36, 0.16);
+}

@@ -1,0 +1,22 @@
+{% set items=last_p_items %}
+<div class="block-specific-items">
+  <span class="block-specific-items__title">
+    {% if block_title %}{{ block_title }}{% else %}Популярные бренды{% endif %}
+  </span>
+    <ul>
+        {% for item in items %}
+            <!--item {{loop.index}}-->
+            <li>
+                <figure class="item-content">
+                    <div class="img-wrapper">
+                        <img class="img" src="{{ item.item_icon_url }}" alt="{{ item.item_title }}">
+                    </div>
+                    </figcation>
+                </figure>
+            </li>
+        {% endfor %}
+
+    </ul>
+</div>
+
+

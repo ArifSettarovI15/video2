@@ -1,0 +1,11 @@
+<div {% if '.png' in image_info.icon_url %}style="background-color:#cccccc;" {% endif %} class="uploaded_image_block file_type_{{ image_info.file_type }}" data-value="{{ image_data.input_name }}" data-id="{{ image_info.file_id }}">
+        {% if image_info.file_id %}
+              <div class="remove" data-file_id="{{ image_info.file_id }}">
+                  <i title="Удалить" class="fa fa-remove"></i>
+              </div>
+              <img src="{{ image_info.icon_url }}" {% if image_info.file_url %}data-url="{{ image_info.file_url }}"{% endif %}>
+
+                <input type="hidden" class="element{% if image_data.multiple %} element_array{% endif %}" name="{{ image_data.input_name }}" value="{{ image_info.file_id }}">
+
+        {% endif %}
+</div>

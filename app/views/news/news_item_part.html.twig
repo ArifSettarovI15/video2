@@ -1,0 +1,29 @@
+<div class="news_item">
+  <div class="part1">
+    <div class="img">
+      <a href="{{ global.base_url }}/news/{{ item.id }}/"><img src="{{ global.base_url }}/{{ item.icon_url }}"></a>
+    </div>
+    <div class="add_info">
+      <div class="date">{{ item.time|date("d.m.Y H:i") }}</div>
+      <div class="attachments">
+        {% if item.photos>0 %}<div class="photos"><i class="fa fa-camera"></i> {{ item.photos }}</div>{% endif %}
+        {% if item.videos>0 %}<div class="videos"><i class="fa fa-youtube-play"></i>  {{ item.videos }}</div>{% endif %}
+        <div class="views">{{ item.views }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="part2">
+    <div class="title news_link_style_1">
+      <a href="{{ global.base_url }}/news/{{ item.id }}/">{{ item.title }}</a>
+    </div>
+    <div class="news_short_desc">
+      {{ item.short_text|raw }}
+    </div>
+      <div class="tags">
+          <i class="fa fa-tag"></i>
+            {% for i in item.cats_array %}
+                <a href="{{ global.base_url }}/news/cats/{{ i }}/">{{ news_cats[i]['title'] }}</a>
+            {% endfor %}
+      </div>
+  </div>
+</div>
