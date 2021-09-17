@@ -17,6 +17,7 @@ require_once 'stem.php';
 require_once 'class_sprav.php';
 require_once 'Speed.php';
 
+
 class MainClass
 {
 
@@ -71,9 +72,9 @@ class MainClass
 	var $seo;
 
 	/**
-	 * @var Taxi
+	 * @var Courses
 	 */
-	var $taxi;
+	var $courses;
 
 
     function __construct()

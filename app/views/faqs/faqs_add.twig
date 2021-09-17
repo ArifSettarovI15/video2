@@ -1,0 +1,29 @@
+{% extends "manager/global.html.twig" %}
+{% block content %}
+    <div class="form">
+        <div class="fields">
+            <div class="line">
+                <div class="label required">
+                    Название:
+                </div>
+                <div class="value">
+                    <input name="faqs_title" class="element required" type="text"  maxlength="75"  value="{{ info.faqs_title }}">
+                </div>
+            </div>
+
+            {% if edit==1 %}
+                <input type="hidden" class="element" name="action" value="process_edit">
+                <input type="hidden" class="element" name="faqs_id" value="{{ info.faqs_id }}">
+            {% else %}
+                <input type="hidden" class="element" name="action" value="process_add">
+            {% endif %}
+        </div>
+        <div class="submit btn btn-primary">
+            {% if edit==1 %}
+                Сохранить
+            {% else %}
+                Добавить
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

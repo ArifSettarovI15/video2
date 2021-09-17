@@ -144,13 +144,16 @@ if ($Main->GPC['action'] == 'process_login') {
         $error = $Main->lang->data['users']['strike_error'];
     }
     else {
+
         if ($Main->GPC['phone'] != '') {
             $user_info = $Main->user->GetUserByLogin($Main->GPC["phone"], false);
             $redirect_url = '/cabinet/';
         } elseif ($Main->GPC['login'] != '') {
-            $redirect_url = '/site_admin/';
+            $redirect_url = '/manager/';
             $user_info = $Main->user->GetUserByLogin($Main->GPC["login"], false);
+
         }
+
         if ($user_info['user_active'] and $error == '') {
             if (intval($user_info['user_id']) == 0) {
                 $Main->user->LogStrike($Main->GPC['phone']);

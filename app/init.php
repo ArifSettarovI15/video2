@@ -52,6 +52,8 @@ require_once ROOT_DIR . '/app/modules/content/init.php';
 require_once ROOT_DIR . '/app/modules/settings/init.php';
 require_once ROOT_DIR . '/app/modules/routes/init.php';
 
+require_once ROOT_DIR . '/app/modules/faqs/init.php';
+require_once ROOT_DIR . '/app/modules/courses/init.php';
 require_once ROOT_DIR . '/app/modules/seo/init.php';
 
 $Main->input->clean_array_gpc('r', array(

@@ -1,7 +1,5 @@
 <?php
-if($Main->GPC['do'] == 'manager'){
-    $Main->error->PageNotFound();
-}
+
 $Main->user->PagePrivacy('admin');
 
 

@@ -4,31 +4,22 @@
         <div class="container">
             <div class="header_links_wrapper">
                 <div class="header_links__socials">
-                    <a href="{{ global.base_url }}" class="header_links__item">
-                        {{ Svg.icon('vk',1) }}
-                    </a>
-                    <a href="{{ global.base_url }}" class="header_links__item">
-                        {{ Svg.icon('inst',1) }}
-                    </a>
+                    {% for social in global.socials %}
 
-                    <a href="{{ global.base_url }}" class="header_links__item">
-                        {{ Svg.icon('whatsapp',1) }}
-                    </a>
-                    <a href="{{ global.base_url }}" class="header_links__item">
-                        {{ Svg.icon('telegram',1) }}
-                    </a>
-                    <a href="{{ global.base_url }}" class="header_links__item">
-                        {{ Svg.icon('mail',1) }}
-                    </a>
+                        <a href="{{ social.social_url }}" class="header_links__item" title="{{ social.social_title }}">
+                            {{ Svg.icon(social.social_icon,1) }}
+                        </a>
+                    {% endfor %}
                 </div>
 
                 <div class="header_links__phone">
-
-                    <a href="{{ global.base_url }}" class="header_links__item">
+                    <a href="tel:{{ global.fields.about.about_phone|replace({'(':'',')':'',' ':'','-':''}) }}"
+                       class="header_links__item">
                         {{ Svg.icon('header_phone',1) }}
                     </a>
-                    <a href="{{ global.base_url }}" class="header_links__item_phone ">
-                        +7 (991) 114-48-78
+                    <a href="tel:{{ global.fields.about.about_phone|replace({'(':'',')':'',' ':'','-':''}) }}"
+                       class="header_links__item_phone ">
+                        {{ global.fields.about.about_phone }}
                     </a>
                 </div>
             </div>
@@ -40,7 +31,6 @@
                 <a href="/">
                     {{ Svg.icon('logo',1, 105,60) }}
                 </a>
-
 
                 <a href="/about" class="main_menu_link">
                     Кто мы
@@ -64,16 +54,19 @@
             </div>
         </div>
     </div>
-    <div class="first_screen">
+    {% if is_home %}
+        <div class="first_screen">
 
-        <h1>ВИДЕОТЕКА ИНТЕРЬЕРНОГО ТЮНИНГА</h1>
-        <p>
-            Каталог видеознаний от мастеров тюнинг-ателье с десятилетним опытом.
-        </p>
-
-        <a class="first_screen_button">
-            Тарифы
-        </a>
-    </div>
+            <h1>{{ mainpage.main_text }}</h1>
+            <p>
+                {{ mainpage.main_desc }}
+            </p>
+            {% if not mainpage.main_button_url %}
+                <a href="{{ mainpage.main_button_url }}" class="first_screen_button">
+                    {{ mainpage.main_button_title }}
+                </a>
+            {% endif %}
+        </div>
+    {% endif %}
 
 </div>

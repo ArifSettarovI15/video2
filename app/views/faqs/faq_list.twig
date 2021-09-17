@@ -1,0 +1,44 @@
+{% extends "manager/global.html.twig" %}
+{% block content %}
+
+    <div class="actions">
+        <a class="btn btn-primary" href="{{ global.base_url }}/manager/faqs/view/{{ faqs_info.faqs_id }}/add/">Добавить элемент</a>
+    </div>
+
+    <div class="table_data">
+        <div class="table_data_navigation">
+            {% include 'parts/paging.html.twig' %}
+        </div>
+        <table class="table_bordered table_striped">
+            <thead>
+            <tr>
+                <th style="width: 50px">ID</th>
+                <th style="width: 75px">Статус</th>
+                <th>Название</th>
+                <th class="action_button_3"></th>
+            </tr>
+            </thead>
+            <tbody class="table_content sortable">
+            {% for item in list %}
+                <tr data-id="{{ item.fitem_id }}">
+                    <td class="data_id">{{ item.fitem_id }}</td>
+                    <td>
+                        <div class="object_status  {% if item.fitem_status!=1%}no{% else %}yes{% endif %}" data-value="{{ item.fitem_id }}">
+                            <span class="badge badge-danger">нет</span>
+                            <span class="badge badge-success">да</span>
+                        </div>
+                    </td>
+                    <td>
+                        {{ item.fitem_ask }}
+                    </td>
+                    <td>
+                        <a href="{{ global.base_url }}/manager/faqs/view/{{ faqs_info.faqs_id }}/edit/{{ item.fitem_id  }}/" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                        <div data-value="{{ item.fitem_id }}" class="btn btn-danger btn-xs delete"><i class="fa"></i></div>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

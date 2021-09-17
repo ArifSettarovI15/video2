@@ -74,36 +74,36 @@
           <textarea class="rich element" name="text">{{ info.content_text }}</textarea>
         </div>
       </div>
-      <div class="line">
-        <div class="label">
-         Откуда:
-        </div>
-        <div class="value">
-          <select name="city_mention" class="element" id="">
-            <option></option>
-              {% for city in global.cities %}
-                  {% if city.city_status==1 or city.city_status=="1" %}
-                    <option value="{{ city.city_id }}" {% if info.content_city_id==city.city_id %}selected{% endif %}>{{ city.city_title }}</option>
-                  {% endif %}
-              {% endfor %}
-          </select>
-        </div>
-      </div>
-      <div class="line">
-        <div class="label">
-          Куда:
-        </div>
-        <div class="value">
-          <select name="city_mention2" class="element" id="">
-            <option></option>
-            {% for city in global.cities %}
-              {% if city.city_status==1 or city.city_status=="1" %}
-                <option value="{{ city.city_id }}" {% if info.content_city_id2==city.city_id %}selected{% endif %}>{{ city.city_title }}</option>
-              {% endif %}
-            {% endfor %}
-          </select>
-        </div>
-      </div>
+{#      <div class="line">#}
+{#        <div class="label">#}
+{#         Откуда:#}
+{#        </div>#}
+{#        <div class="value">#}
+{#          <select name="city_mention" class="element" id="">#}
+{#            <option></option>#}
+{#              {% for city in global.cities %}#}
+{#                  {% if city.city_status==1 or city.city_status=="1" %}#}
+{#                    <option value="{{ city.city_id }}" {% if info.content_city_id==city.city_id %}selected{% endif %}>{{ city.city_title }}</option>#}
+{#                  {% endif %}#}
+{#              {% endfor %}#}
+{#          </select>#}
+{#        </div>#}
+{#      </div>#}
+{#      <div class="line">#}
+{#        <div class="label">#}
+{#          Куда:#}
+{#        </div>#}
+{#        <div class="value">#}
+{#          <select name="city_mention2" class="element" id="">#}
+{#            <option></option>#}
+{#            {% for city in global.cities %}#}
+{#              {% if city.city_status==1 or city.city_status=="1" %}#}
+{#                <option value="{{ city.city_id }}" {% if info.content_city_id2==city.city_id %}selected{% endif %}>{{ city.city_title }}</option>#}
+{#              {% endif %}#}
+{#            {% endfor %}#}
+{#          </select>#}
+{#        </div>#}
+{#      </div>#}
       <div class="line">
         <div class="label">
           Meta title:

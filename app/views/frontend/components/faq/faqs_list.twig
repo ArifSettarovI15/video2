@@ -1,0 +1,17 @@
+<div class="faqs_list">
+    {% for faq in faqs %}
+        <div class="faqs_item">
+            <div class="faqs_item_control">
+                <div class="faqs_item_control_text">
+                    {{ faq.fitem_ask }}
+                </div>
+                <div class="faqs_item_control_icon"><i class="fas fa-chevron-left"></i></div>
+            </div>
+            <div class="faqs_item_content">
+                <div class="faqs_item_content_text">
+                    {{ faq.fitem_answer|raw }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

@@ -1,6 +1,10 @@
-<a href="#" class="material_item">
+<a href="{{ item.content_full_url }}" class="material_item">
     <div class="material_item_top">
-        <img src="/assets/images/static/way2.jpg" alt="">
+        <img src="{{ item.big_thumb }}" alt="">
     </div>
-    <div class="material_item_bottom">Перетяжка элементов салона</div>
+    <div class="material_item_bottom">
+        <div class="material_item_title">
+            {{ item.content_title }}
+        </div>
+    </div>
 </a>

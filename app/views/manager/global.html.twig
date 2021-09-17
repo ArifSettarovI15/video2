@@ -1,9 +1,9 @@
 {% extends "manager/global_raw.html.twig" %}
 {% block global_content %}
     <div class="app">
-        <header>
+        {# <header> #}
 
-        </header>
+        {# </header> #}
         <aside>
             <div class="logo_block">
                 Админ. панель
@@ -11,85 +11,44 @@
             <div class="navigation-title">
                 Меню
             </div>
-            <ul class="navigation" >
-
-                <li >
-                    <a style="background-color: #0b58a2;" href="{{ global.base_url }}/manager/taxi/callbacks/"><b>Заявки</b></a>
-                </li>
-                <li>
-                    <a style="background-color: #BC6060;" href="{{ global.base_url }}/manager/taxi/orders/"><b>Заказы</b></a>
-                </li>
-                <li>
-                    <a href="{{ global.base_url }}/manager/taxi/prices/113/">Тарифы Аэропорт</a>
-                </li>
-{#                <li>#}
-{#                    <a href="{{ global.base_url }}/manager/taxi/prices/114/">Тарифы ЖД</a>#}
-{#                </li>#}
-                <li>
-                    <a href="{{ global.base_url }}/manager/taxi/prices/cities/">Тарифы города</a>
-                </li>
-                <li>
-                    <a href="{{ global.base_url }}/manager/taxi/routes/">Маршруты</a>
-                </li>
-                <li>
-                <a href="{{ global.base_url }}/manager/taxi/classes/">Классы</a>
-                </li>
-                <li>
-                <a href="{{ global.base_url }}/manager/taxi/cars/">Автомобили</a>
-                </li>
-                <li>
-                <a href="{{ global.base_url }}/manager/taxi/rent_cars/">Аренда авто</a>
-                </li>
-                <li>
-                    <a href="{{ global.base_url }}/manager/taxi/rent_requests/">Заявки на аренду</a>
-                </li>
-{#                <li>#}
-{#                    <a href="{{ global.base_url }}/manager/taxi/drivers/">Водители</a>#}
-{#                </li>#}
-{#                <li>#}
-{#                <a href="{{ global.base_url }}/manager/taxi/reviews/">Отзывы</a>#}
-{#                </li>#}
-                <li>
-                <a href="{{ global.base_url }}/manager/taxi/partners/">Сотрудничество</a>
-                </li>
-                <li>
-                <a href="{{ global.base_url }}/manager/taxi/clients/">Клиенты</a>
-                </li>
+            <ul class="navigation">
 
                 <li>
-                    <a href="{{ global.base_url }}/manager/taxi/cities/">Города</a>
+                    <a href="{{ global.base_url }}/manager/courses/catalog/">Направления</a>
                 </li>
                 <li class="list">
                     <a href="{{ global.base_url }}/manager/content/">Блог/Контент</a>
                     <ul class="navigation child">
-{#                        <li>#}
-{#                            <a href="{{ global.base_url }}/manager/content/pages/">Страницы</a>#}
-{#                        </li>#}
+                         <li>
+                         <a href="{{ global.base_url }}/manager/content/pages/">Страницы</a>
+                         </li>
 
                         <li>
-                            <a href="{{ global.base_url }}/manager/content/news/">Новости</a>
+                            <a href="{{ global.base_url }}/manager/content/articles/">Статьи</a>
                         </li>
-{#                        <li>#}
-{#                            <a href="{{ global.base_url }}/manager/content/routes/">Маршруты</a>#}
-{#                        </li>#}
-{#                        <li>#}
-{#                            <a href="{{ global.base_url }}/manager/content/hotels/">Гостиницы</a>#}
-{#                        </li>#}
-{#                        <li>#}
-{#                            <a href="{{ global.base_url }}/manager/content/places/">Места</a>#}
-{#                        </li>#}
-{#                        <li>#}
-{#                            <a href="{{ global.base_url }}/manager/taxi/categories/">Категории</a>#}
-{#                        </li>#}
+                        {# <li> #}
+                        {# <a href="{{ global.base_url }}/manager/content/routes/">Маршруты</a> #}
+                        {# </li> #}
+                        {# <li> #}
+                        {# <a href="{{ global.base_url }}/manager/content/hotels/">Гостиницы</a> #}
+                        {# </li> #}
+                        {# <li> #}
+                        {# <a href="{{ global.base_url }}/manager/content/places/">Места</a> #}
+                        {# </li> #}
+                        {# <li> #}
+                        {# <a href="{{ global.base_url }}/manager/taxi/categories/">Категории</a> #}
+                        {# </li> #}
+
                     </ul>
                 </li>
                 <li>
                     <a href="{{ global.base_url }}/manager/settings/">Группы полей</a>
                 </li>
                 <li>
+                    <a href="{{ global.base_url }}/manager/faqs/">FAQ</a>
                     <a href="{{ global.base_url }}/manager/seo/">SEO</a>
                 </li>
-                <li >
+                <li>
                     <a style="background-color: #bd2c00;" href="{{ global.base_url }}/logout">Выйти</a>
                 </li>
             </ul>
@@ -118,7 +77,7 @@
             2021 © ARIF
         </footer>
     </div>
-    <div class="notify-admin">
+    {# <div class="notify-admin"> #}
 
-    </div>
+    {# </div> #}
 {% endblock %}

@@ -1,4 +1,10 @@
-<a href="#" class="way_item">
-    <span>Перетяжка елементов салона</span>
+<a href="{{global.base_url}}/videocatalog/{{ item.catalog_url }}/" class="way_item" style="
+        /*background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(39, 41, 49, 0.9) 67.28%, #272931 100%),*/
+        {#url({{ item.catalog_icon_normal_url }})#}
+        ">
+    <div class="way_item_image">
+        <img src="{{ item.catalog_icon_normal_url }}" alt="">
+    </div>
+    <div>{{item.catalog_title}}</div>
 </a>
 

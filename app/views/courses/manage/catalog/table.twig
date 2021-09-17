@@ -1,0 +1,12 @@
+{% for item in list %}
+    <tr data-id="{{ item.catalog_id }}">
+        <td class="data_id">{{ item.catalog_id }}</td>
+        <td style="text-align: center">{{ item.catalog_title }}</td>
+        <td><img src="{{ item.catalog_icon_url }}" alt=""></td>
+
+        <td>
+            <a target="_blank" href="{{ global.base_url }}/manager/courses/catalog/edit/{{ item.catalog_id  }}/" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+            <div data-value="{{ item.catalog_id }}" class="btn btn-danger btn-xs delete"><i class="fa"></i></div>
+        </td>
+    </tr>
+{% endfor %}

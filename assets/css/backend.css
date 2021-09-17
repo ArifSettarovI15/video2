@@ -6188,6 +6188,7 @@ template {
       justify-content: space-between; }
 
 #notification {
+  height: 50px;
   position: fixed;
   top: 10px;
   right: 10px;
@@ -6539,7 +6540,6 @@ html, body,
 div, li,
 header, main, section {
   position: relative;
-  width: 100%;
   height: 100%; }
 
 hr {

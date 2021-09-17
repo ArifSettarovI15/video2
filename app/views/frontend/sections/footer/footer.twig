@@ -3,9 +3,9 @@
     <div class="container">
         <div class="footer_row1">
             <div class="footer_col">
-                <div class="footer_item footer_item__logo">
+                <a href="{{ global.base_url }}" class="footer_item footer_item__logo">
                     {{ Svg.icon('logo', 1, 105,53) }}
-                </div>
+                </a>
                 <div class="footer_item footer_item__title">
                     Видеотека интерьерного тюнинга
                 </div>
@@ -51,27 +51,17 @@
         <div class="footer_row2">
 
             <div class="footer_links__copyright">
-                © 2021 Видеотека интерьерного тюнинга <br> ИП Сухарев Никита Геннадьевич | ОГРНИП 321392600035921
+                {{ global.fields.about.about_copy }} <br> {{ global.fields.about.about_org }} |
+                ОГРНИП {{ global.fields.about.about_ogrn }}
             </div>
             <div class="footer_links__socials">
-                <a href="{{ global.base_url }}" class="footer_links__item">
-                    {{ Svg.icon('vk',1) }}
-                </a>
-                <a href="{{ global.base_url }}" class="footer_links__item">
-                    {{ Svg.icon('inst',1) }}
-                </a>
-
-                <a href="{{ global.base_url }}" class="footer_links__item">
-                    {{ Svg.icon('whatsapp',1) }}
-                </a>
-                <a href="{{ global.base_url }}" class="footer_links__item">
-                    {{ Svg.icon('telegram',1) }}
-                </a>
-                <a href="{{ global.base_url }}" class="footer_links__item">
-                    {{ Svg.icon('mail',1) }}
-                </a>
+                {% for social in global.socials %}
+                    <a href="{{ social.social_url }}" class="footer_links__item" title="{{ social.social_title }}">
+                        {{ Svg.icon(social.social_icon,1) }}
+                    </a>
+                {% endfor %}
             </div>
-        
+
         </div>
     </div>
 </footer>

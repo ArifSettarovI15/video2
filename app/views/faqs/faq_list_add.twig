@@ -1,0 +1,38 @@
+{% extends "manager/global.html.twig" %}
+{% block content %}
+    <div class="form">
+        <div class="fields">
+            <div class="line">
+                <div class="label required">
+                    Вопрос:
+                </div>
+                <div class="value">
+                    <input name="fitem_ask" class="element required" type="text"  maxlength="75"  value="{{ info.fitem_ask }}">
+                </div>
+            </div>
+            <div class="line">
+                <div class="label ">
+                    Описание:
+                </div>
+                <div class="value">
+                    <textarea name="fitem_answer" class="element rich" maxlength="2000">{{ info.fitem_answer }}</textarea>
+                </div>
+            </div>
+
+
+            {% if edit==1 %}
+                <input type="hidden" class="element" name="action" value="process_edit">
+                <input type="hidden" class="element" name="fitem_id" value="{{ info.fitem_id }}">
+            {% else %}
+                <input type="hidden" class="element" name="action" value="process_add">
+            {% endif %}
+        </div>
+        <div class="submit btn btn-primary">
+            {% if edit==1 %}
+                Сохранить
+            {% else %}
+                Добавить
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

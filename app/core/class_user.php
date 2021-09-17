@@ -1392,12 +1392,8 @@ function GetUsersTotal ($filter_options=array()) {
      * @return mixed
      */
     function GetUserProfileFromDb ($user_id){
-        return $this->db->query_first("SELECT `users_profile`.*, taxi_classes.*, taxi_orders.*,
-       (SELECT COUNT(*)  FROM taxi_orders
-        WHERE order_status=4 ORDER BY order_time DESC)as order_count
-FROM users_profile LEFT JOIN taxi_classes ON users_profile.profile_car_class=taxi_classes.class_id
-LEFT JOIN taxi_orders ON taxi_orders.order_user_id=users_profile.profile_user_id AND taxi_orders.order_status=4
-WHERE `users_profile`.`profile_user_id`=".$this->db->sql_prepare($user_id));
+        return $this->db->query_first("SELECT `users_profile`.* FROM users_profile
+        WHERE `users_profile`.`profile_user_id`=".$this->db->sql_prepare($user_id));
     }
 
     /**

@@ -4237,6 +4237,7 @@ img.mfp-img {
   bottom: 0; }
 
 #notification {
+  height: 50px;
   position: fixed;
   top: 10px;
   right: 10px;
@@ -5875,6 +5876,57 @@ select.required ~ .select__label {
       .block_item__content__text p:last-child {
         margin: 0; }
 
+a {
+  color: #f28402; }
+  a:hover {
+    color: #c46e05; }
+  a:active {
+    color: #b16204; }
+
+.faqs_item {
+  border-bottom: 1px solid #686666; }
+  .faqs_item_control {
+    padding: 30px 0;
+    width: 100%;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 150%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center;
+    -ms-flex-pack: center;
+        justify-content: center;
+    color: #FFFFFF;
+    transition: all .2s;
+    cursor: pointer; }
+    .faqs_item_control:hover {
+      color: #F28402; }
+    .faqs_item_control_icon {
+      position: absolute;
+      right: 10px;
+      color: #F28402;
+      transition: all .6s;
+      transform: rotate(0); }
+    .faqs_item_control_active {
+      color: #F28402; }
+      .faqs_item_control_active .faqs_item_control_icon {
+        transform: rotate(-90deg); }
+  .faqs_item_content {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    overflow: hidden;
+    max-height: 0;
+    color: #CCCCCC;
+    transition: all .6s; }
+    .faqs_item_content_active {
+      max-height: 400px;
+      transition: max-height .6s; }
+    .faqs_item_content_text {
+      padding-bottom: 40px; }
+
 .header:after {
   content: '';
   position: absolute;
@@ -6063,16 +6115,24 @@ select.required ~ .select__label {
 .materials_list {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: justify;
-      justify-content: space-between; }
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+  .materials_list__item {
+    padding: 31px;
+    width: 362px;
+    height: 512px; }
 
 .material_item {
+  display: block;
   background-color: #1F2128;
   width: 300px;
   height: 450px;
   border-radius: 20px;
   overflow: hidden; }
   .material_item_top {
+    height: 70%;
     padding: 0;
     margin: 0; }
     .material_item_top img {
@@ -6084,8 +6144,15 @@ select.required ~ .select__label {
     font-size: 20px;
     line-height: 150%;
     color: #fff;
-    padding: 32px 28px;
-    text-align: center; }
+    text-align: center;
+    display: -ms-flexbox;
+    display: flex;
+    height: 30%;
+    position: relative;
+    -ms-flex-align: center;
+        align-items: center;
+    -ms-flex-pack: center;
+        justify-content: center; }
     .material_item_bottom:before {
       content: '';
       position: absolute;
@@ -6100,10 +6167,6 @@ select.required ~ .select__label {
 .way_item {
   width: 300px;
   height: 450px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(39, 41, 49, 0.9) 67.28%, #272931 100%), url("/assets/images/static/way1.jpg");
-  background-size: cover;
-  background-position-x: center;
-  background-repeat: no-repeat;
   border-radius: 20px;
   font-weight: 500;
   font-size: 20px;
@@ -6113,16 +6176,44 @@ select.required ~ .select__label {
   display: flex;
   -ms-flex-align: end;
       align-items: flex-end;
+  position: relative;
   padding: 32px 28px;
-  text-align: center; }
+  text-align: center;
+  overflow: hidden; }
+  .way_item_image {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; }
+    .way_item_image img {
+      object-fit: cover;
+      display: -ms-flexbox;
+      display: flex;
+      width: 100%;
+      height: 100%; }
+    .way_item_image:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(39, 41, 49, 0.9) 67.28%, #272931 100%); }
   .way_item:hover {
     filter: drop-shadow(0px 0px 50px rgba(242, 132, 2, 0.5)); }
 
 .ways_list {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: justify;
-      justify-content: space-between; }
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+  .ways_list__item {
+    padding: 31px;
+    width: 362px;
+    height: 512px; }
 
 /* generated with grunt-sass-globbing */
 footer {
