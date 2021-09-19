@@ -6,6 +6,7 @@ class CatalogColumns extends DbDataColumns
     private $title;
     private $url;
     private $icon;
+    private $icon_bg;
     private $status;
     private $sort;
 
@@ -26,6 +27,10 @@ class CatalogColumns extends DbDataColumns
         $this->setIcon();
         $this->getIcon()->setName('icon');
         $this->getIcon()->setType(TYPE_UINT);
+
+        $this->setIconBg();
+        $this->getIconBg()->setName('icon_bg');
+        $this->getIconBg()->setType(TYPE_UINT);
 
         $this->setStatus();
         $this->getStatus()->setName('status');
@@ -72,6 +77,15 @@ class CatalogColumns extends DbDataColumns
     }
     public function setIcon(){
         $this->icon = new DbColumn();
+    }
+    /**
+     * @return DbColumn
+     */
+    public function getIconBg(){
+        return $this->icon_bg;
+    }
+    public function setIconBg(){
+        $this->icon_bg = new DbColumn();
     }
     /**
      * @return DbColumn
@@ -135,17 +149,30 @@ class Catalog extends DbData
     {
         $this->CreateModel();
         $this->model->setSelectField($this->model->getTableName() . '.*');
+        $this->model->SetJoinImage('icon',$this->model->GetTableItemName('icon'));
         $this->model->columns_where->getId()->setValue($id);
 
         return $this->GetItem();
     }
 
+    public function GetItemByUrl($url)
+    {
+        $this->CreateModel();
+        $this->model->setSelectField($this->model->getTableName() . '.*');
+        $this->model->SetJoinImage('icon',$this->model->GetTableItemName('icon'));
+        $this->model->SetJoinImage('icon_bg',$this->model->GetTableItemName('icon_bg'));
+        $this->model->columns_where->getUrl()->setValue($url);
+
+        return $this->GetItem();
+    }
     public function PrepareData($result_item, $full = 0)
     {
         $result_item = $this->registry->files->FilePrepare($result_item, 'icon_', 0);
+        $result_item2 = $this->registry->files->FilePrepare($result_item, 'icon_bg_', 0);
         $result_item['catalog_icon_url'] = $this->registry->files->GetImageUrl($result_item, 'medium', 0, 'icon_');
         $result_item['catalog_icon_normal_url'] = $this->registry->files->GetImageUrl($result_item, 'normal', 0, 'icon_');
 
+        $result_item['catalog_icon_bg_url'] = $this->registry->files->GetImageUrl($result_item2, 'original', 0, 'icon_bg_');
         return $result_item;
     }
 }

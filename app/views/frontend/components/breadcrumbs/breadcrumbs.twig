@@ -1,0 +1,32 @@
+{% if global.page.breadcrumbs %}
+    {% import 'frontend/elements/svg/svg_macros.twig' as Svg %}
+    <section class="breadcrumbs container">
+        <ul class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a class="breadcrumbs__link" itemprop="item" href="{{ global.base_url }}/">
+                    <span itemprop="name">Главная</span>
+                    <meta itemprop="position" content="1">
+                </a>
+                <div class="breadcrumbs__line"><i class="fas fa-chevron-right"></i></div>
+            </li>
+            {% set b_pos=2 %}
+            {% for item in global.page.breadcrumbs %}
+
+                <li class="breadcrumbs__item " itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    {% if item.link %}
+                        <a class="breadcrumbs__link" itemscope itemtype="https://schema.org/WebPage"
+                           itemprop="item" href="{{ item.link }}" itemid="{{ item.link }}">
+                            <span itemprop="name">{{ item.title }}</span>
+                        </a>
+                        <div class="breadcrumbs__line"><i class="fas fa-chevron-right"></i></div>
+                    {% else %}
+                        <span class="breadcrumbs__link {% if b_pos==global.page.breadcrumbs|length+1 %}breadcrumbs__link_active{% endif %} " itemprop="name">{{ item.title }}</span>
+                    {% endif %}
+
+                    <meta itemprop="position" content="{{ b_pos }}">
+                    {% set b_pos=b_pos+1 %}
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endif %}

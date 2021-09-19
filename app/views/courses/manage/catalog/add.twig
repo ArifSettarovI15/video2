@@ -27,6 +27,15 @@
                     {% include 'files/upload_image.html.twig' %}
                 </div>
             </div>
+            <div class="line">
+                <div class="label required">
+                    Фоновая фотография:
+                </div>
+                <div class="value">
+                    {% set image_data = image_data2 %}
+                    {% include 'files/upload_image.html.twig' %}
+                </div>
+            </div>
 
             {% if edit==1 %}
                 <input type="hidden" class="element" name="action" value="process_edit">

@@ -2,6 +2,7 @@
 $Main->user->PagePrivacy('admin');
 
 $photo_input = 'catalog_icon';
+$photo_input2 = 'catalog_icon2';
 if ($Main->GPC['do'] === 'edit' or $Main->GPC['action'] === 'process_edit') {
     $edit = 1;
 
@@ -18,6 +19,7 @@ if ($Main->GPC['action'] === 'process_add' or $Main->GPC['action'] === 'process_
         'r',
         [
             $photo_input => TYPE_UINT,
+            $photo_input2 => TYPE_UINT,
             'catalog_title' => TYPE_STR,
             'catalog_url' => TYPE_STR,
         ]
@@ -34,11 +36,12 @@ if ($Main->GPC['action'] === 'process_add' or $Main->GPC['action'] === 'process_
     if (!$Main->GPC[$photo_input]) {
         $error = 'Выберите фото';
     } elseif ($check['catalog_id']) {
-        $error = 'Выберите фото';
+        $error = 'Уже есть направление с таким URL';
     } else {
 
         $Courses->catalog->CreateModel();
         $Courses->catalog->model->columns_update->getIcon()->setValue($Main->GPC[$photo_input]);
+        $Courses->catalog->model->columns_update->getIconBg()->setValue($Main->GPC[$photo_input2]);
         $Courses->catalog->model->columns_update->getTitle()->setValue($Main->GPC['catalog_title']);
         $Courses->catalog->model->columns_update->getUrl()->setValue($Main->GPC['catalog_url']);
 
@@ -110,9 +113,26 @@ $image_data1 = array(
     'title' => 'Фото',
     'folder' => 'catalog'
 );
+$image_data2 = array(
+    'input_name' => $photo_input2,
+    'files' => array(
+        array(
+            'file_id' => $data_info['theme_icon_bg'],
+            'icon_url' => $data_info['theme_icon_bg_url']
+        )
+    ),
+    'module' => 'courses',
+    'show_select_image' => true,
+    'multiple' => false,
+    'title' => 'Фото',
+    'folder' => 'themes'
+);
 
 $Main->template->Display([
     'info' => $data_info,
     'image_data1' => $image_data1,
+    'image_data2' => $image_data2,
     'edit' => $edit,
 ]);
+
+

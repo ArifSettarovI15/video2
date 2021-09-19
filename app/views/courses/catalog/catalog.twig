@@ -1,0 +1,20 @@
+{% extends 'global.html.twig' %}
+{% block content %}
+
+    <div class="block_item bg_dark1">
+
+        <div class="block_item__content">
+            <div class="container">
+                <div class="ways_list ways_list_space">
+                    {% for item in catalog %}
+                        <div class="ways_list_space_item">
+                            {% include 'frontend/components/ways/way_item.twig' with {dop_class:'way_item_darker'} %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

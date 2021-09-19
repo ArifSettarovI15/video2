@@ -6,12 +6,18 @@
       {% include 'frontend/components/header/header.twig' %}
       {% if global.error404 or global.error401 or is_home %}
       {% else %}
-{#        <div class="wrapper__top-sub">#}
-{#          {% include 'frontend/components/category-head/category-head.twig' %}#}
-{#        </div>#}
+        <div class="wrapper__top-sub">
+          {% include 'frontend/components/category-head/category-head.twig' %}
+        </div>
       {% endif %}
     </div>
     <div class="wrapper__main">
+        {% if global.error404 or global.error401 or is_home %}
+        {% else %}
+            <div class="wrapper__main_breadcrumbs">
+                {% include 'frontend/components/breadcrumbs/breadcrumbs.twig' %}
+            </div>
+        {% endif %}
       <main class="main">
         {% block content %}{% endblock %}
         {% if global.seo_text %}

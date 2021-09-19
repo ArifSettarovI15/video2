@@ -1,0 +1,101 @@
+{% extends "manager/global.html.twig" %}
+{% block content %}
+    <div class="form">
+        <div class="fields">
+            <div class="line">
+                <div class="label required">
+                    Заголовок:
+                </div>
+                <div class="value">
+                    <input type="text" class="element translit_from required" name="theme_title" value="{{ info.theme_title }}">
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    URL:
+                </div>
+                <div class="value">
+                    <input type="text" class="element translit_to required" name="theme_url" value="{{ info.theme_url }}">
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    Направление:
+                </div>
+                <div class="value">
+                    <select name="theme_catalog_id" class="element required">
+                        <option value="">Выберите</option>
+                        {% for cat_item in catalog %}
+                            <option value="{{ cat_item.catalog_id }}" {% if info.theme_catalog_id == cat_item.catalog_id %} selected {% endif %}>{{cat_item.catalog_title}}</option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    Фотография:
+                </div>
+                <div class="value">
+                    {% set image_data = image_data1 %}
+                    {% include 'files/upload_image.html.twig' %}
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    Фоновая фотография:
+                </div>
+                <div class="value">
+                    {% set image_data = image_data2 %}
+                    {% include 'files/upload_image.html.twig' %}
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    Базовая цена за видео:
+                </div>
+                <div class="value">
+                    <input type="number" class="element required" name="theme_video_price" value="{{ info.theme_video_price }}">
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    Цена за весь курс:
+                </div>
+                <div class="value">
+                    <input type="number" class="element required" name="theme_all_price" value="{{ info.theme_all_price }}">
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    Кол-во дней на которые выдается курс:
+                </div>
+                <div class="value">
+                    <input type="number" class="element required" name="theme_days" value="{{ info.theme_days }}">
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    Описание курса:
+                </div>
+                <div class="value">
+                    <textarea class="element rich">{{ info.theme_desc }}</textarea>
+                </div>
+            </div>
+
+            {% if edit==1 %}
+                <input type="hidden" class="element" name="action" value="process_edit">
+                <input type="hidden" class="element" name="cat_group_id" value="{{ info.catalog_id }}">
+            {% else %}
+                <input type="hidden" class="element" name="action" value="process_add">
+            {% endif %}
+        </div>
+        <div class="submit btn btn-primary">
+            {% if edit==1 %}
+                Сохранить
+            {% else %}
+                Добавить
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

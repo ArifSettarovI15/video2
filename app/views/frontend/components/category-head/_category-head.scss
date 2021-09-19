@@ -1,0 +1,15 @@
+.category_head{
+  padding: 120px 0 150px;
+  &_page_title{
+    font-family: $font-family__secondary;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 60px;
+    line-height: 100%;
+    /* or 60px */
+
+    text-align: center;
+
+    color: #FFFFFF;
+  }
+}

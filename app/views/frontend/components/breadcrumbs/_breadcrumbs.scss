@@ -1,0 +1,39 @@
+.breadcrumbs{
+  &__list{
+    padding-left: 20px;
+    display: flex;
+    position: absolute;
+    top: 71px;
+    left: 0;
+    height: 15px;
+    width: 100%;
+    z-index: 1;
+
+  }
+  &__item{
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+
+  }
+  &__line{
+  margin: 0 10px;
+  color: rgba(242, 132, 2, 0.5);
+  }
+
+  &__link{
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 150%;
+    color: #888888;
+    &_active{
+      color: #FFF;
+    }
+  }
+}
+a.breadcrumbs__link {
+
+}
+span.breadcrumbs__link {
+  //color: #FFF;
+}

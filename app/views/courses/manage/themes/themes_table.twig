@@ -1,0 +1,15 @@
+{% for item in list %}
+    <tr data-id="{{ item.theme_id }}">
+        <td class="data_id">{{ item.theme_id }}</td>
+        <td style="text-align: center">{{ item.theme_title }}</td>
+        <td><img src="{{ item.theme_icon_url }}" alt=""></td>
+        <td>{{ item.theme_video_price }} руб. </td>
+        <td>{{ item.theme_all_price }} руб. </td>
+        <td>{{ item.theme_days }} д. </td>
+
+        <td>
+            <a target="_blank" href="{{ global.base_url }}/manager/courses/themes/edit/{{ item.theme_id  }}/" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+            <div data-value="{{ item.theme_id }}" class="btn btn-danger btn-xs delete"><i class="fa"></i></div>
+        </td>
+    </tr>
+{% endfor %}

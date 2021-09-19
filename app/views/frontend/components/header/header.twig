@@ -1,4 +1,5 @@
 {% import 'frontend/elements/svg/svg_macros.twig' as Svg %}
+<div class="header_background" style="background-image: url('{{ global.page.background }}');"></div>
 <div class="header">
     <div class="header_links">
         <div class="container">
@@ -35,7 +36,7 @@
                 <a href="/about" class="main_menu_link">
                     Кто мы
                 </a>
-                <a href="/video" class="main_menu_link">
+                <a href="{{ global.base_url }}/videocatalog/" class="main_menu_link">
                     Видеокаталог
                 </a>
                 <a href="/blog" class="main_menu_link">
@@ -54,19 +55,10 @@
             </div>
         </div>
     </div>
-    {% if is_home %}
-        <div class="first_screen">
 
-            <h1>{{ mainpage.main_text }}</h1>
-            <p>
-                {{ mainpage.main_desc }}
-            </p>
-            {% if not mainpage.main_button_url %}
-                <a href="{{ mainpage.main_button_url }}" class="first_screen_button">
-                    {{ mainpage.main_button_title }}
-                </a>
-            {% endif %}
-        </div>
-    {% endif %}
 
 </div>
+
+{% if is_home %}
+    {% include 'frontend/components/hero/hero.twig' %}
+{% endif %}

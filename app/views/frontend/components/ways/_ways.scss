@@ -13,7 +13,11 @@
   text-align: center;
   overflow: hidden;
 
+
+
   &_image{
+
+    $root: &;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -35,6 +39,8 @@
       bottom: 0;
       background:linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(39, 41, 49, 0.9) 67.28%, #272931 100%);
     }
+
+
   }
   &:hover{
     filter: drop-shadow(0px 0px 50px rgba(242, 132, 2, 0.5));
@@ -49,13 +55,32 @@
   //  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(39, 41, 49, 0.9) 67.28%, #272931 100%);
   //}
 }
+.way_item_darker{
+  .way_item_image:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(39, 41, 49, 0.9) 67.28%, #1F2128 100%);
+  }
+}
+
 .ways_list{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+
   &__item{
     padding: 31px;
     width: 362px;
     height: 512px;
+  }
+  &_space{
+    margin: 15px -55px 0;
+    &_item{
+      padding: 15px 55px 35px;
+    }
   }
 }

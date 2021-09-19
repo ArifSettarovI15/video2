@@ -9,7 +9,10 @@ $Main->user->PagePrivacy();
 
 $Main->template->SetPageAttributes(
     array(
-        'title' => 'SNG2'
+        'title' => 'SNG2',
+    ),
+    array(
+        'background'=>BASE_URL.'/assets/images/static/mainpage_bg.jpg',
     )
 );
 

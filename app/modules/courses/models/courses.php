@@ -17,6 +17,10 @@ class Courses
      * @var Catalog
      */
     public $catalog;
+    /**
+     * @var Themes
+     */
+    public $themes;
 
     public function __construct(&$registry)
     {
@@ -26,8 +30,10 @@ class Courses
 
 
         require_once 'catalog.php';
+        require_once 'themes.php';
 
         $this->catalog = new Catalog($this->registry);
+        $this->themes = new Themes($this->registry);
     }
 
 }

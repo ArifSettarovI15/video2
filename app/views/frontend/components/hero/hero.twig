@@ -1,11 +1,12 @@
 <div class="first_screen">
 
-    <h1>ВИДЕОТЕКА ИНТЕРЬЕРНОГО ТЮНИНГА</h1>
-    <p>
-        Каталог видеознаний от мастеров тюнинг-ателье с десятилетним опытом.
+    <h1>{{ mainpage.main_text }}</h1>
+    <p style="margin-top: 100px;">
+        {{ mainpage.main_desc }}
     </p>
-
-    <a class="first_screen_button">
-        Тарифы
-    </a>
+    {% if not mainpage.main_button_url %}
+        <a href="{{ mainpage.main_button_url }}" class="first_screen_button">
+            {{ mainpage.main_button_title }}
+        </a>
+    {% endif %}
 </div>
