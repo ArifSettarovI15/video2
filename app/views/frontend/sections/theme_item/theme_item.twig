@@ -1,0 +1,98 @@
+{% import 'frontend/elements/svg/svg_macros.twig' as Svg %}
+<div class="block_item bg_dark1">
+    <div class="block_item__content">
+        <div class="container">
+            <div class="theme_wrapper">
+                <div class="theme_wrapper_videos">
+                    <div class="theme_title"><h3>Перетяжка рулей</h3></div>
+                    <div class="theme_desc">
+                        <p>Данный курс содержит общее видео и пошло поехало описание Данный курс содержит общее видео и
+                            пошло поехало описание Данный курс содержит общее видео и пошло поехало описание Данный курс
+                            содержит общее видео и пошло поехало описание Данный курс содержит общее видео и пошло
+                            поехало описание</p>
+                    </div>
+                    <div class="theme_videos_wrapper">
+                        {% include 'frontend/components/video_thumb/video_thumb_main.twig' %}
+                        <div class="theme_videos_block">
+                            <div class="theme_videos_block_title">Тестовый блок</div>
+                            <div class="theme_videos">
+                                {% for i in 1..3 %}
+                                    {% include 'frontend/components/video_thumb/video_thumb.twig' %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="theme_wrapper_sidebar">
+                    <div class="cart_info">
+                        <div class="cart_info_title">
+                            Информация о покупке:
+                        </div>
+                        <div class="cart_info_desc">
+                            <div class="cart_info_desc_item cart_info_desc_item_inline">
+                                <div class="cart_info_desc_text">Распространяется разовая скидка при покупке более 10
+                                    видео.
+                                </div>
+                                <div class="cart_info_testimonial">
+                                    <div class="cart_info_testimonial_icon"><i class="fas fa-exclamation"></i></div>
+                                    <div class="cart_info_testimonial_content"></div>
+                                </div>
+                            </div>
+                            <div class="cart_info_desc_item">
+                                <div class="cart_info_desc_item_dark">Время действия подписки</div>
+                                <div class="cart_info_desc_item_light">30 дней</div>
+                            </div>
+                            <div class="cart_info_desc_item">
+                                <div class="cart_info_desc_item_dark">Стоимость покупки</div>
+                                <div class="cart_info_desc_item_light">5000 руб.</div>
+                            </div>
+
+                            <div class="cart_info_desc_item">
+                                <div class="cart_info_desc_item_dark">Вы выбрали</div>
+                                <div class="cart_info_desc_item_light">5 видео</div>
+                            </div>
+
+                        </div>
+                        <ul class="cart_info_videos">
+                            <li><span class="cart_info_videos_line"></span> Ролик 1</li>
+                            <li><span class="cart_info_videos_line"></span> Ролик 2</li>
+                            <li><span class="cart_info_videos_line"></span> Ролик 3</li>
+                            <li><span class="cart_info_videos_line"></span> Ролик 4</li>
+                            <li><span class="cart_info_videos_line"></span> Ролик 5</li>
+                        </ul>
+                        <div class="cart_info_button">
+                            <div class="cart_info_button_title">Купить подписку</div>
+                            {{ Svg.icon('cart', 1, 20,20) }}
+                        </div>
+                        <div class="cart_info_line"></div>
+                    </div>
+                    <div class="cart_info">
+                        <div class="cart_info_title cart_info_title_pad ">
+                            Премиум подписка:
+                        </div>
+                        <div class="cart_info_desc">
+
+                            <div class="cart_info_desc_item">
+                                <div class="cart_info_desc_item_dark">Стоимость</div>
+                                <div class="cart_info_desc_item_light">20000 руб.</div>
+                            </div>
+
+                            <div class="cart_info_desc_item">
+                                <div class="cart_info_desc_item_full">Полный доступ ко всем урокам, без ограничений по
+                                    времени. Вам также будут доступны последующие обновления категории “Перетяжка
+                                    салона”.
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="cart_info_button cart_info_button_green">
+                            <div class="cart_info_button_title">Купить премиум аккаунт</div>
+                            {{ Svg.icon('cart', 1, 20,20) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

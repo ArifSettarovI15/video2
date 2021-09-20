@@ -1,9 +1,10 @@
 <div class="container">
-<div class="ways_list">
+    <div class="ways_list">
 
-    {% for item in catalog %}
-        <div class="ways_list__item ">
-        {% include 'frontend/components/ways/way_item.twig'%}</div>
-    {% endfor %}
-</div>
+        {% for item in catalog %}
+            <div class="ways_list__item ways_list_space_item">
+                {% include 'frontend/components/ways/way_item.twig' %}
+            </div>
+        {% endfor %}
+    </div>
 </div>

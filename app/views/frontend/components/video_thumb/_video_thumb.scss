@@ -1,74 +1,207 @@
-.theme_title{
+.theme_title {
   font-family: $font-family__secondary;
   font-style: normal;
   font-weight: bold;
   font-size: 45px;
   line-height: 100%;
   color: #FFFFFF;
-  h3{
+
+  h3 {
     font-weight: bold;
   }
 
 
-}.theme_desc{
-   font-style: normal;
-   font-weight: 300;
-   font-size: 16px;
-   line-height: 150%;
-   color: #FFFFFF;
-   padding: 40px 0;
+}
+
+.theme_desc {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 150%;
+  color: #FFFFFF;
+  padding: 40px 0;
 
 }
 
- .theme_main_video{
-   width: 610px;
-   overflow: hidden;
-   height: 450px;
-   border: 2px solid #F28402;
-   background: #1F2128;
-   border-radius: 10px;
-   display: flex;
-   flex-direction: column;
-   &_top{
-     overflow: hidden;
-     flex: 75%;
-     &_image{
-       height: 100%;
-       img{
-         width: 100%;
-         height: 100%;
-         object-fit: cover;
-       }
-     }
-   }
-   &_bottom{
-     padding: 15px;
-     display: flex;
-     flex: 25%;
-     flex-direction: column;
-     justify-content: space-between;
-     &_title{
-       font-family: $font-family__secondary;
-       font-style: normal;
-       font-weight: bold;
-       font-size: 18px;
-       line-height: 130%;
-     }
-     &_desc{
-       font-size: 12px;
-       line-height: 150%;
-       color: #FFFFFF;
-       //padding: 7px 0;
-     }
-     &_price{
-       font-weight: bold;
-       font-size: 16px;
-       line-height: 130%;
-       /* or 13px */
+.theme_main_video {
+  $root: &;
+  width: 690px;
+  overflow: hidden;
+  height: 480px;
+  background: #1F2128;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    box-shadow: 0 0 20px rgba(242, 132, 2, 0.5);
+  }
+
+  &_checkbox {
+    position: absolute;
+    opacity: 0;
+    z-index: 0;
+
+    &:checked {
+      & + #{$root}  {
+        border: 2px solid #F28402;
+        #{$root}_check{
+          display: block;
+        }
+      }
+    }
+
+  }
+  &_check{
+    position: absolute;
+    right: 15px;
+    width: 20px;
+    display: none;
+    height: 20px;
+    bottom: 15px;
+  }
+  &_top {
+    overflow: hidden;
+    flex: 75%;
+
+    &_image {
+      height: 100%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &_bottom {
+    padding: 15px;
+    display: flex;
+    flex: 25%;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &_title {
+      font-family: $font-family__secondary;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 130%;
+    }
+
+    &_desc {
+      font-size: 12px;
+      line-height: 150%;
+      color: #FFFFFF;
+      //padding: 7px 0;
+    }
+
+    &_price {
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 130%;
+      /* or 13px */
 
 
-       color: #F28402;
+      color: #F28402;
 
-     }
-   }
- }
+    }
+  }
+}
+
+.theme_videos {
+  padding: 50px 0;
+  margin: -15px -30px;
+
+  &_block {
+    &_title {
+      font-weight: bold;
+      font-size: 45px;
+      line-height: 100%;
+      font-family: $font-family__secondary;
+      color: #FFFFFF;
+      padding-top: 60px;
+    }
+  }
+}
+
+.video_item {
+  $root: &;
+  cursor: pointer;
+  width: 190px;
+  height: 270px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #1F2128;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    box-shadow: 0px 0px 20px rgba(242, 132, 2, 0.5);
+  }
+
+  &_checkbox {
+    position: absolute;
+    opacity: 0;
+
+    &:checked {
+      & + #{$root} {
+        border: 2px solid #F28402;
+        #{$root}_check{
+          display: block;
+        }
+      }
+
+    }
+  }
+  &_check{
+    position: absolute;
+    right: 15px;
+    width: 20px;
+    display: none;
+    height: 20px;
+    bottom: 15px;
+  }
+
+  &_top {
+    flex: 45%;
+    overflow: hidden;
+  }
+
+  &_bottom {
+    flex: 55%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &_title {
+    font-family: $font-family__secondary;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 130%;
+    color: #FFFFFF;
+  }
+
+  &_desc {
+    padding-top: 5px;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 150%;
+    color: #FFFFFF;
+  }
+
+  &_price {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 130%;
+    color: #F28402;
+  }
+
+  &_space {
+    padding: 15px 30px;
+  }
+}

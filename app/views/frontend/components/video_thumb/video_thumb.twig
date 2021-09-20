@@ -1,15 +1,22 @@
-<div class="theme_videos_item">
-    <div class="theme_videos_item_top">
-        <div class="theme_videos_item_top_image">
-            <img src="/assets/images/static/way2.jpg" alt="">
+{% import 'frontend/elements/svg/svg_macros.twig' as Svg %}
+<div class="video_item_space js_select_video">
+    <input type="checkbox" class="video_item_checkbox js_select_video_checkbox">
+    <div class="video_item ">
+        <div class="video_item_top">
+            <div class="video_item_top_image">
+                <img src="/assets/images/static/way2.jpg" alt="">
+            </div>
         </div>
-    </div>
-    <div class="theme_videos_item_bottom">
-        <h4 class="theme_videos_item_title">Название видео</h4>
-        <div class="theme_videos_item_desc">Описание видеоролика про то, как перетягивали
-            салон в автомобиле
-        </div>
-        <div class="theme_videos_item_price">500 рублей
+        <div class="video_item_bottom">
+            <div class="video_item_bottom_heads">
+                <h4 class="video_item_title">Название видео</h4>
+                <div class="video_item_desc">Описание видеоролика про то, как перетягивали
+                    салон в автомобиле
+                </div>
+            </div>
+            <div class="video_item_price">500 рублей
+            </div>
+            <div class="video_item_check">{{ Svg.icon('check', 1, 20,20) }}</div>
         </div>
     </div>
 </div>
