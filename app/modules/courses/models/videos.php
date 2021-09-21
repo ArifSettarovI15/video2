@@ -7,7 +7,7 @@ class VideosColumns extends DbDataColumns
     private $desc;
     private $embed_link;
     private $price;
-    private $use_sail;
+    private $use_sale;
     private $main;
     private $theme;
     private $icon;
@@ -45,7 +45,7 @@ class VideosColumns extends DbDataColumns
         $this->getPrice()->setType(TYPE_UINT);
 
         $this->setUseSail();
-        $this->getUseSail()->setName('use_sail');
+        $this->getUseSail()->setName('use_sale');
         $this->getUseSail()->setType(TYPE_BOOL);
 
         $this->setMain();
@@ -131,10 +131,10 @@ class VideosColumns extends DbDataColumns
      * @return DbColumn
      */
     public function getUseSail(){
-        return $this->use_sail;
+        return $this->use_sale;
     }
     public function setUseSail(){
-        $this->use_sail = new DbColumn();
+        $this->use_sale = new DbColumn();
     }
     /**
      * @return DbColumn
@@ -188,8 +188,8 @@ class VideosModel extends DbDataModel
 
     public function InitDop()
     {
-        $this->setTableName('courses_video');
-        $this->setTableItemPrefix('videos_');
+        $this->setTableName('courses_videos');
+        $this->setTableItemPrefix('video_');
         $this->setTablePrimaryKey($this->GetTableItemNameSimple('id'));
         $this->columns_where=new VideosColumns();
         $this->columns_update=new VideosColumns();
@@ -225,7 +225,7 @@ class Videos extends DbData
     public function PrepareData($result_item, $full = 0)
     {
         $result_item = $this->registry->files->FilePrepare($result_item, 'icon_', 0);
-        $result_item['theme_icon_url'] = $this->registry->files->GetImageUrl($result_item, 'medium', 0, 'icon_');
+        $result_item['video_icon_url'] = $this->registry->files->GetImageUrl($result_item, 'medium', 0, 'icon_');
 
         return $result_item;
     }

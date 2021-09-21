@@ -1,0 +1,14 @@
+{% for item in list %}
+    <tr data-id="{{ item.video_id }}">
+        <td class="data_id">{{ item.video_id }}</td>
+        <td style="text-align: center">{{ item.video_title }}</td>
+        <td style=""><img src="{{ item.video_icon_url }}" alt=""></td>
+        <td style="text-align: center">{{ item.block_title }}</td>
+        <td style="text-align: center">{{ item.video_price }}</td>
+        <td style="text-align: center">{{ item.use_sale }}</td>
+        <td>
+            <a target="_blank" href="{{ global.base_url }}/manager/courses/themes/{{ variables.theme.theme_id }}/videos/edit/{{ item.video_id }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+            <div data-value="{{ item.video_id }}" class="btn btn-danger btn-xs delete"><i class="fa"></i></div>
+        </td>
+    </tr>
+{% endfor %}

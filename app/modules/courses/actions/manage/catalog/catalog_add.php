@@ -33,9 +33,9 @@ if ($Main->GPC['action'] === 'process_add' or $Main->GPC['action'] === 'process_
     $Courses->catalog->model->columns_where->getUrl()->setValue(serialize($Main->GPC['catalog_url']));
     $check = $Courses->catalog->GetItem();
 
-    if (!$Main->GPC[$photo_input]) {
+    if (!$Main->GPC[$photo_input] and !$edit) {
         $error = 'Выберите фото';
-    } elseif ($check['catalog_id']) {
+    } elseif ($check['catalog_id'] and !$edit) {
         $error = 'Уже есть направление с таким URL';
     } else {
 

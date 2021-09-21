@@ -1,0 +1,108 @@
+{% extends "manager/global.html.twig" %}
+{% block content %}
+    <div class="form">
+        <div class="fields">
+            <div class="line">
+                <div class="label required">
+                    Заголовок:
+                </div>
+                <div class="value">
+                    <input type="text" class="element translit_from required" name="video_title" value="{{ info.video_title }}">
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    Описание:
+                </div>
+                <div class="value">
+                    <textarea name="video_desc" class="element" id="" cols="30" rows="10">{{ info.video_desc }}</textarea>
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    Фотография:
+                </div>
+                <div class="value">
+                    {% set image_data = image_data1 %}
+                    {% include 'files/upload_image.html.twig' %}
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    Ссылка на урок:
+                </div>
+                <div class="value">
+                    <input name="video_embed_link" class="element" value="{{ info.video_embed_link }}">
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    Блок:
+                </div>
+                <div class="value">
+                    <select name="video_block" class="element" id="">
+                        <option value="0">Без блока</option>
+                        {% for block in blocks %}
+                            <option value="{{ block.block_id }}" {% if info.video_block == block.block_id %} selected{% endif %}>{{ block.block_title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="line">
+                <div class="label required">
+                    Курс:
+                </div>
+                <div class="value">
+                    <input name="video_theme" class="element" disabled value="{{ theme.theme_title }}">
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    Цена:
+                </div>
+                <div class="value">
+                    {% if info.video_price%}
+                        {% set price = info.video_price %}
+                    {% else %}
+                        {% set price = theme.theme_video_price %}
+                    {% endif %}
+                    <input name="video_price" class="element" value="{{ price }}">
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    Скидка применяется к этому видео:
+                </div>
+                <div class="value">
+                    {% set checked = true %}
+                    {% if info.video_id %}
+                        {% set checked = info.video_use_sale %}
+                    {% endif %}
+                    <input type="checkbox" name="video_use_sale" class="element" {% if checked %} checked {% endif %}" >
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    Большая тумба для этого видео:
+                </div>
+                <div class="value">
+                    <input type="checkbox" name="video_main" class="element" {% if info.video_main %} checked {% endif %}">
+                </div>
+            </div>
+            {% if edit==1 %}
+                <input type="hidden" class="element" name="action" value="process_edit">
+                <input type="hidden" class="element" name="cat_group_id" value="{{ info.block_id }}">
+            {% else %}
+                <input type="hidden" class="element" name="action" value="process_add">
+            {% endif %}
+        </div>
+        <div class="submit btn btn-primary">
+            {% if edit==1 %}
+                Сохранить
+            {% else %}
+                Добавить
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

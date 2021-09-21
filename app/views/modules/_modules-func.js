@@ -707,6 +707,7 @@ function beforeConfirmOrderForm(response, ajax_config, textStatus, jqXHR) {
                 $('#modal_confirm .form').find('.element[name="' + ajaxConfigKey + '"]').val(ajax_config.data[ajaxConfigKey]);
             }
         }
+        $("#video_frame").attr('src','https://player.vimeo.com/video/610967549')
         openInlineModal('#modal_confirm')
     }
 }
