@@ -1,0 +1,25 @@
+{% extends 'manager/global.html.twig' %}
+
+{% block content %}
+    <div class="actions">
+        <a class="btn btn-primary" href="{{ global.base_url }}/manager/courses/themes/{{ variables.theme.theme_id }}/blocks/add/">Добавить</a>
+    </div>
+
+    <div class="table_data">
+        <div class="table_data_navigation">
+            {% include 'parts/paging.html.twig' %}
+        </div>
+        <table class="table_bordered table_striped" style="text-align: center">
+            <thead>
+            <tr>
+                <th style="width: 50px">ID</th>
+                <th>Заголовок</th>
+                <th class="action_button_3"></th>
+            </tr>
+            </thead>
+            <tbody class="table_content sortable">
+            {% include 'courses/manage/blocks/block_table.twig' %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -25,11 +25,13 @@
 
 .theme_main_video {
   $root: &;
+  cursor: pointer;
   width: 690px;
   overflow: hidden;
   height: 480px;
   background: #1F2128;
   border-radius: 10px;
+
   display: flex;
   flex-direction: column;
 
@@ -44,7 +46,7 @@
 
     &:checked {
       & + #{$root}  {
-        border: 2px solid #F28402;
+        box-shadow: 0 0 0 2px #F28402;
         #{$root}_check{
           display: block;
         }
@@ -66,6 +68,8 @@
 
     &_image {
       height: 100%;
+
+      overflow: hidden;
 
       img {
         width: 100%;
@@ -133,12 +137,13 @@
   height: 270px;
   border-radius: 10px;
   overflow: hidden;
+
   background: #1F2128;
   display: flex;
   flex-direction: column;
 
   &:hover {
-    box-shadow: 0px 0px 20px rgba(242, 132, 2, 0.5);
+    box-shadow: 0 0 20px rgba(242, 132, 2, 0.5);
   }
 
   &_checkbox {
@@ -147,7 +152,7 @@
 
     &:checked {
       & + #{$root} {
-        border: 2px solid #F28402;
+        box-shadow: 0 0 0 2px #F28402;
         #{$root}_check{
           display: block;
         }

@@ -6,6 +6,10 @@
         <td>{{ item.theme_video_price }} руб. </td>
         <td>{{ item.theme_all_price }} руб. </td>
         <td>{{ item.theme_days }} д. </td>
+        <td>
+            <a href="{{ global.base_url }}/manager/courses/themes/{{ item.theme_id }}/blocks/">Блоки</a><br>
+            <a href="{{ global.base_url }}/manager/courses/themes/{{ item.theme_id }}/videos/">Видео</a>
+        </td>
 
         <td>
             <a target="_blank" href="{{ global.base_url }}/manager/courses/themes/edit/{{ item.theme_id  }}/" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>

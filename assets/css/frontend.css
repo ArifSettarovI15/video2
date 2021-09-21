@@ -2943,7 +2943,7 @@ img.mfp-img {
 .select2-container--classic.select2-container--open .select2-dropdown {
   border-color: #5897fb; }
 
-/*! nouislider - 14.6.4 - 3/18/2021 */
+/*! nouislider - 14.7.0 - 4/6/2021 */
 /* Functional styling;
  * These styles are required for noUiSlider to function.
  * You don't need to change these rules to apply your design.
@@ -6073,6 +6073,7 @@ a {
     position: relative;
     font-family: "Manrope", Helvetica, sans-serif; }
     .main_menu_link_cabinet {
+      cursor: pointer;
       color: #F28402;
       border: 1px solid #F28402;
       border-radius: 40px;
@@ -6231,6 +6232,7 @@ a {
   padding: 40px 0; }
 
 .theme_main_video {
+  cursor: pointer;
   width: 690px;
   overflow: hidden;
   height: 480px;
@@ -6247,7 +6249,7 @@ a {
     opacity: 0;
     z-index: 0; }
     .theme_main_video_checkbox:checked + .theme_main_video {
-      border: 2px solid #F28402; }
+      box-shadow: 0 0 0 2px #F28402; }
       .theme_main_video_checkbox:checked + .theme_main_video .theme_main_video_check {
         display: block; }
   .theme_main_video_check {
@@ -6262,7 +6264,8 @@ a {
     -ms-flex: 75%;
         flex: 75%; }
     .theme_main_video_top_image {
-      height: 100%; }
+      height: 100%;
+      overflow: hidden; }
       .theme_main_video_top_image img {
         width: 100%;
         height: 100%;
@@ -6317,12 +6320,12 @@ a {
   -ms-flex-direction: column;
       flex-direction: column; }
   .video_item:hover {
-    box-shadow: 0px 0px 20px rgba(242, 132, 2, 0.5); }
+    box-shadow: 0 0 20px rgba(242, 132, 2, 0.5); }
   .video_item_checkbox {
     position: absolute;
     opacity: 0; }
     .video_item_checkbox:checked + .video_item {
-      border: 2px solid #F28402; }
+      box-shadow: 0 0 0 2px #F28402; }
       .video_item_checkbox:checked + .video_item .video_item_check {
         display: block; }
   .video_item_check {

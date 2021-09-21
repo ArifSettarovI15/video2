@@ -1,0 +1,36 @@
+{% extends "manager/global.html.twig" %}
+{% block content %}
+    <div class="form">
+        <div class="fields">
+            <div class="line">
+                <div class="label required">
+                    Заголовок:
+                </div>
+                <div class="value">
+                    <input type="text" class="element translit_from required" name="block_title" value="{{ info.block_title }}">
+                </div>
+            </div>
+            <div class="line">
+                <div class="label required">
+                    Курс:
+                </div>
+                <div class="value">
+                    <input type="text" disabled class="element" value="{{ theme.theme_title }}">
+                </div>
+            </div>
+            {% if edit==1 %}
+                <input type="hidden" class="element" name="action" value="process_edit">
+                <input type="hidden" class="element" name="cat_group_id" value="{{ info.block_id }}">
+            {% else %}
+                <input type="hidden" class="element" name="action" value="process_add">
+            {% endif %}
+        </div>
+        <div class="submit btn btn-primary">
+            {% if edit==1 %}
+                Сохранить
+            {% else %}
+                Добавить
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
