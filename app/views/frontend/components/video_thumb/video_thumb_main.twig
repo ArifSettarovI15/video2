@@ -1,6 +1,8 @@
 {% import 'frontend/elements/svg/svg_macros.twig' as Svg %}
 <div class="theme_main_video_wr js_select_video">
-    <input type="checkbox" class="theme_main_video_checkbox js_select_video_checkbox">
+    <input type="checkbox" class="theme_main_video_checkbox js_select_video_checkbox"
+        data-video_id="{{ main_video.video_id }}" data-video_price="{{ main_video.video_price }}"
+           data-video_sale="{{ main_video.video_use_sale }}" data-video_title="{{ main_video.video_title }}">
     <div class="theme_main_video ">
         <div class="theme_main_video_top">
             <div class="theme_main_video_top_image">

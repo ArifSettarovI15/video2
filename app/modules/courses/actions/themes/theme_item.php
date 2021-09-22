@@ -8,12 +8,17 @@ $Main->user->PagePrivacy();
 $course = $Courses->catalog->GetItemByUrl($Main->GPC['catalog']);
 $theme = $Courses->themes->GetItemByUrl($Main->GPC['theme']);
 
+
 if (!$course['catalog_id'] or !$theme['theme_id']) {
     $Main->error->PageNotFound();
 }
 
 
 
+if($Main->GPC['action'] === 'buy_videos'){
+    $Main->input->clean_array_gpc('r',['ids'=>TYPE_ARRAY]);
+    print_r($Main->GPC['ids']);exit;
+}
 
 $page_name = $theme['theme_title'];
 

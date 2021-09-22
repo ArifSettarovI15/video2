@@ -49,32 +49,34 @@
                                 </div>
                                 <div class="cart_info_testimonial">
                                     <div class="cart_info_testimonial_icon"><i class="fas fa-exclamation"></i></div>
-                                    <div class="cart_info_testimonial_content"></div>
+                                    <div class="cart_info_testimonial_content">
+                                        c 11 по 20 видео - скидка 7% <br>
+                                        c 21 по 30 видео - скидка 14% <br>
+                                        c 31 по 40 видео - скидка 21% <br>
+                                        c 41 по 50 видео - скидка 28% <br>
+                                        c 51 видео - скидка 35%
+                                    </div>
                                 </div>
                             </div>
                             <div class="cart_info_desc_item">
                                 <div class="cart_info_desc_item_dark">Время действия подписки</div>
-                                <div class="cart_info_desc_item_light">30 дней</div>
+                                <div class="cart_info_desc_item_light">{{ theme.theme_days }} дней</div>
                             </div>
                             <div class="cart_info_desc_item">
                                 <div class="cart_info_desc_item_dark">Стоимость покупки</div>
-                                <div class="cart_info_desc_item_light">5000 руб.</div>
+                                <div class="cart_info_desc_item_light"><span class="selected_videos_price">0</span> руб.</div>
                             </div>
 
                             <div class="cart_info_desc_item">
                                 <div class="cart_info_desc_item_dark">Вы выбрали</div>
-                                <div class="cart_info_desc_item_light">5 видео</div>
+                                <div class="cart_info_desc_item_light"><span class="selected_videos_count">0</span> видео</div>
                             </div>
 
                         </div>
                         <ul class="cart_info_videos">
-                            <li><span class="cart_info_videos_line"></span> Ролик 1</li>
-                            <li><span class="cart_info_videos_line"></span> Ролик 2</li>
-                            <li><span class="cart_info_videos_line"></span> Ролик 3</li>
-                            <li><span class="cart_info_videos_line"></span> Ролик 4</li>
-                            <li><span class="cart_info_videos_line"></span> Ролик 5</li>
+
                         </ul>
-                        <div class="cart_info_button">
+                        <div class="cart_info_button cart_info_button_videos cart_info_button_disabled">
                             <div class="cart_info_button_title">Купить подписку</div>
                             {{ Svg.icon('cart', 1, 20,20) }}
                         </div>
@@ -85,21 +87,18 @@
                             Премиум подписка:
                         </div>
                         <div class="cart_info_desc">
-
                             <div class="cart_info_desc_item">
                                 <div class="cart_info_desc_item_dark">Стоимость</div>
-                                <div class="cart_info_desc_item_light">20000 руб.</div>
+                                <div class="cart_info_desc_item_light">{{ theme.theme_all_price }} руб.</div>
                             </div>
-
                             <div class="cart_info_desc_item">
                                 <div class="cart_info_desc_item_full">Полный доступ ко всем урокам, без ограничений по
                                     времени. Вам также будут доступны последующие обновления категории “Перетяжка
                                     салона”.
                                 </div>
                             </div>
-
                         </div>
-                        <div class="cart_info_button cart_info_button_green">
+                        <div class="cart_info_button cart_info_button_green js_buy_premium">
                             <div class="cart_info_button_title">Купить премиум аккаунт</div>
                             {{ Svg.icon('cart', 1, 20,20) }}
                         </div>
@@ -109,10 +108,4 @@
 
         </div>
     </div>
-</div>
-
-
-
-<div id="modal_tarif" class="modal modal_tarif mfp-hide white-popup animated fast" style="min-width: 800px;">
-    <div id="iframe_here"></div>
 </div>
