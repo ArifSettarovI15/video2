@@ -19288,6 +19288,7 @@ $(function() {
 
 
 
+
 });
 
 
@@ -19302,6 +19303,11 @@ $(document).on('click', '.faqs_item_control', function(){
     }
 })
 
+
+$(document).on('click', '.login_modal_open', function(){
+    openInlineModal("#modal_login")
+    console.log(123)
+})
 
 
 $(document).on('click','.js_select_video', function (){

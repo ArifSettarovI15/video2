@@ -38,7 +38,7 @@ input.input-style {
     }
 
     &_ok {
-        border: 1px solid $color__primary;
+        border: 1px solid #f28402;
         & ~ .field__status {
             opacity: 1;
 
@@ -63,14 +63,14 @@ input[type="checkbox"] {
         width: 100%;
         font-family: $font-family__main;
         height: $inputs__height;
-        border: 1px solid $color__primary--lightest;
+        border: 1px solid #373942;
         border-radius: $inputs__border-radius;
         padding: 24px 14px 6px;
-
+        background-color: #1D1F26;
+        color: whitesmoke;
         font-size: 14px;
         line-height: 1.15;
-        color: $color__dark;
-        @include transitions(box-shadow, background-color);
+        @include transitions(box-shadow);
 
         &_icon {
             padding-left: 38px;
@@ -107,20 +107,20 @@ input[type="checkbox"] {
 
         &:not(.disabled):not(:disabled):focus,
         &:not(.disabled):not(:disabled):not(.input-style_error):not(.input-style_ok):hover {
-            background-color: $color__light;
-            border-color: transparent;
-            box-shadow: 0 0 0 4px $color__primary--lightest;
+
+            border: 1px solid #f28402;
+            box-shadow: 0 0 20px rgba(242, 132, 2, 0.25);
 
             & ~ #{$root}__icon {
                 svg * {
-                    fill: $color__primary;
+                    fill: #f28402;
                 }
             }
         }
 
         &.disabled,
         &:disabled {
-            background-color: $color__gray--3;
+            background-color: #92896e;
             border: 0;
             color: $color__gray--darkest;
 
