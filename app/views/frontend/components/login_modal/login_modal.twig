@@ -1,0 +1,46 @@
+{% import 'frontend/elements/svg/svg_macros.twig' as Svg %}
+{% import 'frontend/elements/input/input_macro.twig' as Input %}
+<div id="modal_login" class="modal {%  if register!='1' %}mfp-hide {% endif %} white-popup animated fast">
+    <div class="modal__wrapper">
+        <div class="modal__head">
+            <div class="modal__title">Войти в кабинет</div>
+            <div class="modal__close">
+                <div class="btn btn_md js-modal-close">
+                    <div class="btn__icon">{{ Svg.icon('close', 1) }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="modal__body">
+            <div class="modal__form form" data-url="{{ global.base_url }}/login/" data-callback="ShowThx">
+                <input type="hidden" class="element" name="action" value="process_login">
+                <div class="modal__form-item">
+                    {{ Input.field('login', {
+                        label: 'Ваш логин',
+                        required: 1,
+                        type: 'text'
+                    }) }}
+                </div>
+                <div class="modal__form-item">
+                    {{ Input.field('password', {
+                        label: 'Ваш пароль',
+                        required: 1,
+                        type: 'password'
+                    }) }}
+                </div>
+                <div class="modal__form-inline">
+                <div class="modal__form-item">
+                    <div class="button button_md_long button_primary submit">
+                        <div class="button__text">ВОЙТИ</div>
+                    </div>
+                </div>
+                <div class="modal__form-item">
+                    <div class="button button_md_long button_outline_1 popup-open" data-mfp-src="#modal_reg">
+                        <div class="button__text">РЕГИСТРАЦИЯ</div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        {#        {% include 'frontend/components/modal-login/modal-login_step1.twig' %}#}
+    </div>
+</div>

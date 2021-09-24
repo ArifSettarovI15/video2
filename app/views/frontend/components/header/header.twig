@@ -45,20 +45,30 @@
                 <a href="/contact" class="main_menu_link">
                     Контакты
                 </a>
-                <div class="main_menu_link_cabinet">
-                    <a href="/login"></a>
+                {% if global.user_info.user_id %}
+                    <a href="/cabinet" class="main_menu_link_cabinet" >
+                        {{ Svg.icon('user',1, 15, 18) }}
+                        <span>
+                        Личный кабинет
+                    </span>
+                    </a>
+                    {% else %}
+                <div class="main_menu_link_cabinet login_modal_open" >
                     {{ Svg.icon('user',1, 15, 18) }}
                     <span>
                         Личный кабинет
                     </span>
                 </div>
+
+                {% endif %}
             </div>
         </div>
     </div>
-
-
 </div>
 
 {% if is_home %}
     {% include 'frontend/components/hero/hero.twig' %}
 {% endif %}
+
+{% include 'frontend/components/login_modal/login_modal.twig' %}
+{% include 'frontend/components/register_modal/register_modal.twig' %}

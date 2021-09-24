@@ -1,5 +1,6 @@
 <?php
 
+
 $Main->user->PagePrivacy('guest');
 $error = '';
 $error_desc = '';
@@ -121,14 +122,10 @@ if($Main->GPC['action'] == 'process_confirm'){
 if ($Main->GPC['action'] == 'process_login') {
 
     $Main->input->clean_array_gpc('r', array(
-        'phone' => TYPE_STR,
         'login' => TYPE_STR,
         'password' => TYPE_NOTRIM
     ));
-    $Main->GPC['phone'] = $res = preg_replace("/[^0-9]/", "", $Main->GPC["phone"] );
-    if ($Main->GPC['phone']) {
-        $Main->db->query_write('DELETE FROM users_codes WHERE code_user_phone=' . $Main->db->sql_prepare($Main->GPC['phone']));
-    }
+
     $error = '';
     $error_desc = '';
     $mes = '';
@@ -145,13 +142,9 @@ if ($Main->GPC['action'] == 'process_login') {
     }
     else {
 
-        if ($Main->GPC['phone'] != '') {
-            $user_info = $Main->user->GetUserByLogin($Main->GPC["phone"], false);
-            $redirect_url = '/cabinet/';
-        } elseif ($Main->GPC['login'] != '') {
-            $redirect_url = '/manager/';
+        if ($Main->GPC['login'] != '') {
             $user_info = $Main->user->GetUserByLogin($Main->GPC["login"], false);
-
+            $redirect_url = '/cabinet/';
         }
 
         if ($user_info['user_active'] and $error == '') {
@@ -210,7 +203,7 @@ VALUES(
             if ($user_info) {
                 $error = 'Ваш аккаунт еще не активирован';
             } else {
-                $error = 'Нет пользователя с таким номером!';
+                $error = 'Нет пользователя с таким логином!';
             }
         }
     }
@@ -255,36 +248,42 @@ VALUES(
 
 if ($Main->GPC['action'] == 'process_register') {
     $Main->input->clean_array_gpc('r', array(
-        'type' => TYPE_STR,
-        'name' => TYPE_STR,
-        'phone' => TYPE_STR,
-        'policies' => TYPE_BOOL
+        'login' => TYPE_STR,
+        'email' => TYPE_STR,
+        'password' => TYPE_STR,
+        'password_confirm' => TYPE_STR
     ));
-    $Main->GPC['phone'] = preg_replace("/[^0-9]/", "", $Main->GPC["phone"] );
-    if (!$Main->GPC['policies']){
-        $Main->template->DisplayJson(array('status'=>false, "text"=>"Вы не приняли условия политики конфеденциальности!"));
-    }
-    if ($Main->GPC['name'] == '') {
+
+    if ($Main->GPC['login'] == '') {
         $Main->template->DisplayJson(array('status' => false,
-            'error' => 'Введите ваше имя'));
-    } elseif ($Main->GPC['phone'] == '') {
-        $Main->template->DisplayJson(array('status' => false,
-            'error' => 'Введите ваш номер телефона'));
+            'error' => 'Введите логин'));
     } else {
-        $check = $Main->user->GetUserByLogin($Main->GPC['phone']);
+        $check = $Main->user->GetUserByLogin($Main->GPC['login']);
+        $check2 = $Main->user->GetUserByEmail($Main->GPC['email']);
         if ($check)
         {
             $array['status'] = false;
-            $array['text'] = 'Указанный телефон уже зарегистрирован в системе!';
+            $array['text'] = 'Указанный логин уже зарегистрирован в системе!';
+            $Main->template->DisplayJson($array);
+        }
+        elseif ($check2)
+        {
+            $array['status'] = false;
+            $array['text'] = 'Указанный email уже зарегистрирован в системе!';
+            $Main->template->DisplayJson($array);
+        }
+        elseif ($Main->GPC['password'] != $Main->GPC['password_confirm'])
+        {
+            $array['status'] = false;
+            $array['text'] = 'Указанный email уже зарегистрирован в системе!';
             $Main->template->DisplayJson($array);
         }
         else{
-        $login = $Main->GPC['phone'];
-        $active = 1;
+        $login = $Main->GPC['login'];
+        $active = 0;
         $role_id = 1;
-        $password = $Main->user->generateRandomString(8);
-        $code = rand(1000,9999);
-        $email = "";
+        $password = $Main->GPC['password'];
+        $email = $Main->GPC['email'];
         $user = $Main->user->CreateUser($login, $password, $email, $active, $role_id);
         if ($Main->GPC['name']){
             $fio_data = $Main->user->userNameExplode($Main->GPC['name']);
@@ -299,13 +298,32 @@ if ($Main->GPC['action'] == 'process_register') {
             'profile_lastname' => $lastname,
         );
         $user_profile = $Main->user->AddProfileData($user, $data);
-        $Main->db->query_write("INSERT INTO users_codes (code_user_phone, code_user_code) VALUES (".$Main->db->sql_prepare($login).", ".$Main->db->sql_prepare($code).")");
+            $user = $Main->user->GetUserById($user);
+            $title   = 'Регистраиця на сайте SNGTraining';
+            $mail_to = $user['user_email'];
+            $body = $Main->template->Render( 'static/email_register.twig',
+                array(
+                    'link'     => BASE_URL.'/confirmation/'.'?user='.$user['user_login'].'&confirm='.md5($user['user_email'])
+
+                )
+            );
+            $aa = array( $Main->config['system']['email_addr'] => $Main->template->global_vars['fields']['about']['about_title'] );
+
+            $message = ( new Swift_Message( $title ) )
+                ->setFrom( $aa )
+                ->setTo( [ $mail_to ] )
+                ->setBody( $body, 'text/html' );
 
 
-	        $array['phone'] = $Main->GPC['phone'];
-	        $array['result'] = $Main->template->Render('frontend/components/modal-login/modal-login_step1.twig', array('phone' => $array['phone']));
-	        $array['status'] = true;
-	        $Main->template->DisplayJson($array);
+            try {
+                $result = $Main->mailer->send( $message );
+            } catch ( \Swift_TransportException $e ) {
+                $response = $e->getMessage();
+            }
+
+        $array['text'] = 'Вы успешно зарегистрировались';
+        $array['status'] = true;
+        $Main->template->DisplayJson($array);
 
         }
     }

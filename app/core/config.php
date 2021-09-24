@@ -42,8 +42,8 @@ $config["user"]["persistent_session"]=true;
 $config["images"]["path"]=ROOT_DIR.'/uploads/images/';
 $config["images"]["url"]=BASE_URL.'/uploads/images/';
 
-//$config["email"]["smtp"]["server"]='smtp.yandex.ru';
-//$config["email"]["smtp"]["port"]=465;
-//$config["email"]["smtp"]["ssl"]='ssl';
-//$config["email"]["smtp"]["login"]='tigereng@yandex.ru';
-//$config["email"]["smtp"]["password"]='Ctnnfhjdfhba1998';
+$config["email"]["smtp"]["server"]='smtp.yandex.ru';
+$config["email"]["smtp"]["port"]=465;
+$config["email"]["smtp"]["ssl"]='ssl';
+$config["email"]["smtp"]["login"]='tigereng@yandex.ru';
+$config["email"]["smtp"]["password"]='Ctnnfhjdfhba1998';

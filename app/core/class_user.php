@@ -319,6 +319,19 @@ class UserClass
         }
         return $user_info;
     }
+    /**
+     * @param $login string
+     * @param bool $secure
+     * @return mixed
+     */
+    function GetUserByEmail ($email, $secure=true) {
+        $user_info=$this->SelectUserByEmail($email);
+        if ($user_info && $secure==true) {
+            unset($user_info['user_password']);
+            unset($user_info['user_salt']);
+        }
+        return $user_info;
+    }
 
     /**
      * @param $login string
@@ -341,6 +354,14 @@ class UserClass
      */
     function SelectUserByLogin ($login) {
         $user_info=$this->db->query_first("SELECT * FROM `users` WHERE `user_login`=".$this->db->sql_prepare($login));
+        return $user_info;
+    }
+    /**
+     * @param $login string
+     * @return mixed
+     */
+    function SelectUserByEmail ($email) {
+        $user_info=$this->db->query_first("SELECT * FROM `users` WHERE `user_email`=".$this->db->sql_prepare($email));
         return $user_info;
     }
     /**

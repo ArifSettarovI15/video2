@@ -1,0 +1,60 @@
+{% import 'frontend/elements/svg/svg_macros.twig' as Svg %}
+{% import 'frontend/elements/input/input_macro.twig' as Input %}
+<div id="modal_reg" class="modal modal_reg mfp-hide white-popup animated fast">
+    <div class="modal__wrapper">
+        <div class="modal__head">
+            <div class="modal__title">Регистрация</div>
+            <div class="modal__close">
+                <div class="btn btn_xxs js-modal-close">
+                    <div class="btn__icon">{{ Svg.icon('close', 1) }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="modal__body">
+            <div class="modal__form form" data-url="{{ global.base_url }}/login/" data-callback="ShowThx">
+                <input type="hidden" class="element" name="action" value="process_register">
+                <div class="modal__form-item">
+                    {{ Input.field('login', {
+                        label: 'Придумайте логин',
+                        required: 1
+                    }) }}
+                </div>
+                <div class="modal__form-item">
+                    {{ Input.field('email', {
+                        label: 'Ваш E-mail',
+                        required: 1,
+                        type: 'email',
+                    }) }}
+                </div>
+                <div class="modal__form-item">
+                    {{ Input.field('password', {
+                        label: 'Пароль',
+                        required: 1,
+                        type: 'password',
+                    }) }}
+                </div>
+                <div class="modal__form-item">
+                    {{ Input.field('password_confirm', {
+                        label: 'Подтверждение пароля',
+                        required: 1,
+                        type: 'password',
+                    }) }}
+                </div>
+                <div class="modal__bottom">
+                    <div class="modal__form-inline">
+                        <div class="modal__form-item">
+                            <div class="button button_md button_primary submit">
+                                <div class="button__text">регистрирация</div>
+                            </div>
+                        </div>
+                        <div class="modal__form-item">
+                            <div class="button button_md button_outline_1 popup-open" data-mfp-src="#modal_login">
+                                <div class="button__text">войти в кабинет</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

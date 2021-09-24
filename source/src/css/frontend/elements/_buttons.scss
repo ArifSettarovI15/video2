@@ -7,8 +7,11 @@
   justify-content: center;
   border: none;
   vertical-align: middle;
-  border-radius: $buttons__border-radius;
-  background-color: $color__primary;
+  border-radius: 30px;
+  background-color: #f28402;
+  text-align: center;
+
+  color: whitesmoke;
   @include transitions(background-color, box-shadow, border-color);
   user-select: none;
   overflow: hidden;
@@ -16,14 +19,14 @@
   padding: 0 14px;
 
   &__text {
+    color: whitesmoke;
     font-size: 14px;
     font-weight: 700;
     line-height: 1.15;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     white-space: nowrap;
-    margin-right: 8px;
-    color: $color__light;
+    //margin-right: 8px;
     @include transitions(color);
   }
 
@@ -43,7 +46,9 @@
   }
 
   &:hover {
-    background-color: $color__primary--light;
+
+    box-shadow: 0 0 20px rgba(242, 132, 2, 0.5);
+    background-color: #f28402;
   }
 
   &_lg {
@@ -52,6 +57,11 @@
 
   &_md {
     @extend %btn--md;
+  }
+  &_md_long {
+    @extend %btn--md;
+    width: 160px;
+
   }
 
   &_sm {
@@ -63,21 +73,22 @@
   }
 
   &_primary {
-    background: $color__primary--light;
-    box-shadow: 0 4px 8px rgba(57, 85, 254, 0.3);
-    border-radius: 6px;
+
+    color: whitesmoke;
+    background: #f28402;
+    border-radius: 30px;
     @include transitions(background, box-shadow);
 
     &:before {
       content: '';
       @extend %absolute-full;
       @include size(100%);
-      background: linear-gradient(180deg, #218CFE 0%, #3955FE 93.75%);
+      background: linear-gradient(90deg,#f28402 0,#f3ac6a 100%);
       @include transitions(opacity);
     }
 
     &:hover {
-      box-shadow: 0 16px 24px rgba(57, 85, 254, 0.24);
+      box-shadow: 0 0 20px rgba(242, 132, 2, 0.5);
 
       &:before {
         opacity: 0;
@@ -179,23 +190,23 @@
   &_outline {
     &_1,
     &_2 {
-      border: 2px solid $color__primary--lightest;
+      border: 1px solid #f28402;
       background-color: transparent;
       #{$root}__text {
-        color: $color__dark;
+        color: whitesmoke;
       }
 
-      #{$root}__icon {
-        svg * {
-          fill: $color__primary;
-        }
-      }
+      //#{$root}__icon {
+      //  svg * {
+      //    fill: $color__primary;
+      //  }
+      //}
 
       &:hover {
-        background-color: $color__primary;
         border-color: transparent;
-        box-shadow: 0 4px 8px rgba(57, 85, 254, 0.3);
 
+        box-shadow: 0 0 20px rgba(242, 132, 2, 0.5);
+        background-color: #f28402;
         #{$root}__text {
           color: $color__light;
         }
@@ -305,6 +316,9 @@
   &_sm {
     @include size(40px);
   }
+  &_sm2 {
+    @include size(45px);
+  }
 
   &_xs {
     @include size(36px);
@@ -329,17 +343,18 @@
     flex: 0 0 24px;
 
     svg * {
-      fill: $color__primary;
+      fill: #f28402;
       @include transitions(fill);
     }
   }
 
   &:hover {
-    background-color: $color__primary;
-    box-shadow: 0 4px 8px rgba(57, 85, 254, 0.3);
+    background-color: #f28402;
+
+    box-shadow: 0 0 20px rgba(242, 132, 2, 0.5);
     #{$root}__icon {
       svg * {
-        fill: $color__light;
+        fill: whitesmoke;
       }
     }
   }
