@@ -78,10 +78,10 @@
   }
   &_videos{
     padding-left: 25px;
-    min-height: 300px;
+
     max-height: 300px;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: hidden;
     &::-webkit-scrollbar {
       width: 10px;
     }

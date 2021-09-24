@@ -8761,7 +8761,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 }(function ($, undefined) {
 	"use strict";
 /*!
- * jsTree 3.3.11
+ * jsTree 3.3.12
  * http://jstree.com/
  *
  * Copyright (c) 2014 Ivan Bozhanov (http://vakata.com)
@@ -8811,7 +8811,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 * specifies the jstree version in use
 		 * @name $.jstree.version
 		 */
-		version : '3.3.11',
+		version : '3.3.12',
 		/**
 		 * holds all the default options used when creating new instances
 		 * @name $.jstree.defaults
@@ -9022,7 +9022,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 * You can also pass in a HTML string or a JSON array here.
 		 *
 		 * It is possible to pass in a standard jQuery-like AJAX config and jstree will automatically determine if the response is JSON or HTML and use that to populate the tree.
-		 * In addition to the standard jQuery ajax options here you can suppy functions for `data` and `url`, the functions will be run in the current instance's scope and a param will be passed indicating which node is being loaded, the return value of those functions will be used.
+		 * In addition to the standard jQuery ajax options here you can supply functions for `data` and `url`, the functions will be run in the current instance's scope and a param will be passed indicating which node is being loaded, the return value of those functions will be used.
 		 *
 		 * The last option is to specify a function, that function will receive the node being loaded as argument and a second param which is a function which should be called with the result.
 		 *
@@ -9230,31 +9230,31 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 				}
 				else {
 					var o = this.get_parent(e.currentTarget);
-					if(o && o.id !== $.jstree.root) { this.get_node(o, true).children('.jstree-anchor').focus(); }
+					if(o && o.id !== $.jstree.root) { this.get_node(o, true).children('.jstree-anchor').trigger('focus'); }
 				}
 			},
 			'up': function (e) {
 				// up
 				e.preventDefault();
 				var o = this.get_prev_dom(e.currentTarget);
-				if(o && o.length) { o.children('.jstree-anchor').focus(); }
+				if(o && o.length) { o.children('.jstree-anchor').trigger('focus'); }
 			},
 			'right': function (e) {
 				// right
 				e.preventDefault();
 				if(this.is_closed(e.currentTarget)) {
-					this.open_node(e.currentTarget, function (o) { this.get_node(o, true).children('.jstree-anchor').focus(); });
+					this.open_node(e.currentTarget, function (o) { this.get_node(o, true).children('.jstree-anchor').trigger('focus'); });
 				}
 				else if (this.is_open(e.currentTarget)) {
 					var o = this.get_node(e.currentTarget, true).children('.jstree-children')[0];
-					if(o) { $(this._firstChild(o)).children('.jstree-anchor').focus(); }
+					if(o) { $(this._firstChild(o)).children('.jstree-anchor').trigger('focus'); }
 				}
 			},
 			'down': function (e) {
 				// down
 				e.preventDefault();
 				var o = this.get_next_dom(e.currentTarget);
-				if(o && o.length) { o.children('.jstree-anchor').focus(); }
+				if(o && o.length) { o.children('.jstree-anchor').trigger('focus'); }
 			},
 			'*': function (e) {
 				// aria defines * on numpad as open_all - not very common
@@ -9264,12 +9264,12 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 				// home
 				e.preventDefault();
 				var o = this._firstChild(this.get_container_ul()[0]);
-				if(o) { $(o).children('.jstree-anchor').filter(':visible').focus(); }
+				if(o) { $(o).children('.jstree-anchor').filter(':visible').trigger('focus'); }
 			},
 			'end': function (e) {
 				// end
 				e.preventDefault();
-				this.element.find('.jstree-anchor').filter(':visible').last().focus();
+				this.element.find('.jstree-anchor').filter(':visible').last().trigger('focus');
 			},
 			'f2': function (e) {
 				// f2 - safe to include - if check_callback is false it will fail
@@ -9501,30 +9501,30 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 							}
 						}
 					})
-				.on("mousedown.jstree", $.proxy(function (e) {
+				.on("mousedown.jstree", function (e) {
 						if(e.target === this.element[0]) {
 							e.preventDefault(); // prevent losing focus when clicking scroll arrows (FF, Chrome)
 							was_click = +(new Date()); // ie does not allow to prevent losing focus
 						}
-					}, this))
+					}.bind(this))
 				.on("mousedown.jstree", ".jstree-ocl", function (e) {
 						e.preventDefault(); // prevent any node inside from losing focus when clicking the open/close icon
 					})
-				.on("click.jstree", ".jstree-ocl", $.proxy(function (e) {
+				.on("click.jstree", ".jstree-ocl", function (e) {
 						this.toggle_node(e.target);
-					}, this))
-				.on("dblclick.jstree", ".jstree-anchor", $.proxy(function (e) {
+					}.bind(this))
+				.on("dblclick.jstree", ".jstree-anchor", function (e) {
 						if(e.target.tagName && e.target.tagName.toLowerCase() === "input") { return true; }
 						if(this.settings.core.dblclick_toggle) {
 							this.toggle_node(e.target);
 						}
-					}, this))
-				.on("click.jstree", ".jstree-anchor", $.proxy(function (e) {
+					}.bind(this))
+				.on("click.jstree", ".jstree-anchor", function (e) {
 						e.preventDefault();
-						if(e.currentTarget !== document.activeElement) { $(e.currentTarget).focus(); }
+						if(e.currentTarget !== document.activeElement) { $(e.currentTarget).trigger('focus'); }
 						this.activate_node(e.currentTarget, e);
-					}, this))
-				.on('keydown.jstree', '.jstree-anchor', $.proxy(function (e) {
+					}.bind(this))
+				.on('keydown.jstree', '.jstree-anchor', function (e) {
 						if(e.target.tagName && e.target.tagName.toLowerCase() === "input") { return true; }
 						if(this._data.core.rtl) {
 							if(e.which === 37) { e.which = 39; }
@@ -9537,8 +9537,8 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 								return r;
 							}
 						}
-					}, this))
-				.on("load_node.jstree", $.proxy(function (e, data) {
+					}.bind(this))
+				.on("load_node.jstree", function (e, data) {
 						if(data.status) {
 							if(data.node.id === $.jstree.root && !this._data.core.loaded) {
 								this._data.core.loaded = true;
@@ -9553,7 +9553,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 								this.trigger("loaded");
 							}
 							if(!this._data.core.ready) {
-								setTimeout($.proxy(function() {
+								setTimeout(function() {
 									if(this.element && !this.get_container_ul().find('.jstree-loading').length) {
 										this._data.core.ready = true;
 										if(this._data.core.selected.length) {
@@ -9576,12 +9576,12 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 										 */
 										this.trigger("ready");
 									}
-								}, this), 0);
+								}.bind(this), 0);
 							}
 						}
-					}, this))
+					}.bind(this))
 				// quick searching when the tree is focused
-				.on('keypress.jstree', $.proxy(function (e) {
+				.on('keypress.jstree', function (e) {
 						if(e.target.tagName && e.target.tagName.toLowerCase() === "input") { return true; }
 						if(tout) { clearTimeout(tout); }
 						tout = setTimeout(function () {
@@ -9596,50 +9596,50 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 
 						// match for whole word from current node down (including the current node)
 						if(word.length > 1) {
-							col.slice(ind).each($.proxy(function (i, v) {
+							col.slice(ind).each(function (i, v) {
 								if($(v).text().toLowerCase().indexOf(word) === 0) {
-									$(v).focus();
+									$(v).trigger('focus');
 									end = true;
 									return false;
 								}
-							}, this));
+							}.bind(this));
 							if(end) { return; }
 
 							// match for whole word from the beginning of the tree
-							col.slice(0, ind).each($.proxy(function (i, v) {
+							col.slice(0, ind).each(function (i, v) {
 								if($(v).text().toLowerCase().indexOf(word) === 0) {
-									$(v).focus();
+									$(v).trigger('focus');
 									end = true;
 									return false;
 								}
-							}, this));
+							}.bind(this));
 							if(end) { return; }
 						}
 						// list nodes that start with that letter (only if word consists of a single char)
 						if(new RegExp('^' + chr.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&') + '+$').test(word)) {
 							// search for the next node starting with that letter
-							col.slice(ind + 1).each($.proxy(function (i, v) {
+							col.slice(ind + 1).each(function (i, v) {
 								if($(v).text().toLowerCase().charAt(0) === chr) {
-									$(v).focus();
+									$(v).trigger('focus');
 									end = true;
 									return false;
 								}
-							}, this));
+							}.bind(this));
 							if(end) { return; }
 
 							// search from the beginning
-							col.slice(0, ind + 1).each($.proxy(function (i, v) {
+							col.slice(0, ind + 1).each(function (i, v) {
 								if($(v).text().toLowerCase().charAt(0) === chr) {
-									$(v).focus();
+									$(v).trigger('focus');
 									end = true;
 									return false;
 								}
-							}, this));
+							}.bind(this));
 							if(end) { return; }
 						}
-					}, this))
+					}.bind(this))
 				// THEME RELATED
-				.on("init.jstree", $.proxy(function () {
+				.on("init.jstree", function () {
 						var s = this.settings.core.themes;
 						this._data.core.themes.dots			= s.dots;
 						this._data.core.themes.stripes		= s.stripes;
@@ -9647,19 +9647,19 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 						this._data.core.themes.ellipsis		= s.ellipsis;
 						this.set_theme(s.name || "default", s.url);
 						this.set_theme_variant(s.variant);
-					}, this))
-				.on("loading.jstree", $.proxy(function () {
+					}.bind(this))
+				.on("loading.jstree", function () {
 						this[ this._data.core.themes.dots ? "show_dots" : "hide_dots" ]();
 						this[ this._data.core.themes.icons ? "show_icons" : "hide_icons" ]();
 						this[ this._data.core.themes.stripes ? "show_stripes" : "hide_stripes" ]();
 						this[ this._data.core.themes.ellipsis ? "show_ellipsis" : "hide_ellipsis" ]();
-					}, this))
-				.on('blur.jstree', '.jstree-anchor', $.proxy(function (e) {
+					}.bind(this))
+				.on('blur.jstree', '.jstree-anchor', function (e) {
 						this._data.core.focused = null;
 						$(e.currentTarget).filter('.jstree-hovered').trigger('mouseleave');
 						this.element.attr('tabindex', '0');
-					}, this))
-				.on('focus.jstree', '.jstree-anchor', $.proxy(function (e) {
+					}.bind(this))
+				.on('focus.jstree', '.jstree-anchor', function (e) {
 						var tmp = this.get_node(e.currentTarget);
 						if(tmp && tmp.id) {
 							this._data.core.focused = tmp.id;
@@ -9667,22 +9667,22 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 						this.element.find('.jstree-hovered').not(e.currentTarget).trigger('mouseleave');
 						$(e.currentTarget).trigger('mouseenter');
 						this.element.attr('tabindex', '-1');
-					}, this))
-				.on('focus.jstree', $.proxy(function () {
+					}.bind(this))
+				.on('focus.jstree', function () {
 						if(+(new Date()) - was_click > 500 && !this._data.core.focused && this.settings.core.restore_focus) {
 							was_click = 0;
 							var act = this.get_node(this.element.attr('aria-activedescendant'), true);
 							if(act) {
-								act.find('> .jstree-anchor').focus();
+								act.find('> .jstree-anchor').trigger('focus');
 							}
 						}
-					}, this))
-				.on('mouseenter.jstree', '.jstree-anchor', $.proxy(function (e) {
+					}.bind(this))
+				.on('mouseenter.jstree', '.jstree-anchor', function (e) {
 						this.hover_node(e.currentTarget);
-					}, this))
-				.on('mouseleave.jstree', '.jstree-anchor', $.proxy(function (e) {
+					}.bind(this))
+				.on('mouseleave.jstree', '.jstree-anchor', function (e) {
 						this.dehover_node(e.currentTarget);
-					}, this));
+					}.bind(this));
 		},
 		/**
 		 * part of the destroying of an instance. Used internally.
@@ -9733,7 +9733,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		get_string : function (key) {
 			var a = this.settings.core.strings;
-			if($.isFunction(a)) { return a.call(this, key); }
+			if($.vakata.is_function(a)) { return a.call(this, key); }
 			if(a && a[key]) { return a[key]; }
 			return key;
 		},
@@ -10025,7 +10025,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		load_node : function (obj, callback) {
 			var k, l, i, j, c;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				this._load_nodes(obj.slice(), callback);
 				return true;
 			}
@@ -10062,7 +10062,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			obj.state.failed = false;
 			obj.state.loading = true;
 			this.get_node(obj, true).addClass("jstree-loading").attr('aria-busy',true);
-			this._load_node(obj, $.proxy(function (status) {
+			this._load_node(obj, function (status) {
 				obj = this._model.data[obj.id];
 				obj.state.loading = false;
 				obj.state.loaded = status;
@@ -10097,7 +10097,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 				if(callback) {
 					callback.call(this, obj, status);
 				}
-			}, this));
+			}.bind(this));
 			return true;
 		},
 		/**
@@ -10195,8 +10195,8 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 				}
 				// return callback.call(this, obj.id === $.jstree.root ? this._append_html_data(obj, this._data.core.original_container_html.clone(true)) : false);
 			}
-			if($.isFunction(s)) {
-				return s.call(this, obj, $.proxy(function (d) {
+			if($.vakata.is_function(s)) {
+				return s.call(this, obj, function (d) {
 					if(d === false) {
 						callback.call(this, false);
 					}
@@ -10206,19 +10206,19 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 						});
 					}
 					// return d === false ? callback.call(this, false) : callback.call(this, this[typeof d === 'string' ? '_append_html_data' : '_append_json_data'](obj, typeof d === 'string' ? $(d) : d));
-				}, this));
+				}.bind(this));
 			}
 			if(typeof s === 'object') {
 				if(s.url) {
 					s = $.extend(true, {}, s);
-					if($.isFunction(s.url)) {
+					if($.vakata.is_function(s.url)) {
 						s.url = s.url.call(this, obj);
 					}
-					if($.isFunction(s.data)) {
+					if($.vakata.is_function(s.data)) {
 						s.data = s.data.call(this, obj);
 					}
 					return $.ajax(s)
-						.done($.proxy(function (d,t,x) {
+						.done(function (d,t,x) {
 								var type = x.getResponseHeader('Content-Type');
 								if((type && type.indexOf('json') !== -1) || typeof d === "object") {
 									return this._append_json_data(obj, d, function (status) { callback.call(this, status); });
@@ -10231,14 +10231,14 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 								this._data.core.last_error = { 'error' : 'ajax', 'plugin' : 'core', 'id' : 'core_04', 'reason' : 'Could not load node', 'data' : JSON.stringify({ 'id' : obj.id, 'xhr' : x }) };
 								this.settings.core.error.call(this, this._data.core.last_error);
 								return callback.call(this, false);
-							}, this))
-						.fail($.proxy(function (f) {
+							}.bind(this))
+						.fail(function (f) {
 								this._data.core.last_error = { 'error' : 'ajax', 'plugin' : 'core', 'id' : 'core_04', 'reason' : 'Could not load node', 'data' : JSON.stringify({ 'id' : obj.id, 'xhr' : f }) };
 								callback.call(this, false);
 								this.settings.core.error.call(this, this._data.core.last_error);
-							}, this));
+							}.bind(this));
 				}
-				if ($.isArray(s)) {
+				if ($.vakata.is_array(s)) {
 					t = $.extend(true, [], s);
 				} else if ($.isPlainObject(s)) {
 					t = $.extend(true, {}, s);
@@ -10304,7 +10304,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 				p = m[par],
 				s = this._data.core.selected.length,
 				tmp, i, j;
-			dat.each($.proxy(function (i, v) {
+			dat.each(function (i, v) {
 				tmp = this._parse_model_from_html($(v), par, p.parents.concat());
 				if(tmp) {
 					chd.push(tmp);
@@ -10313,7 +10313,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 						dpc = dpc.concat(m[tmp].children_d);
 					}
 				}
-			}, this));
+			}.bind(this));
 			p.children = chd;
 			p.children_d = dpc;
 			for(i = 0, j = p.parents.length; i < j; i++) {
@@ -10361,7 +10361,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 					data = JSON.parse(data);
 				}
 			}
-			if(!$.isArray(data)) { data = [data]; }
+			if(!$.vakata.is_array(data)) { data = [data]; }
 			var w = null,
 				args = {
 					'df'	: this._model.default_state,
@@ -10726,7 +10726,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 					if(!this._data.core.working || force_processing) {
 						this._data.core.working = true;
 						w = new window.Worker(this._wrk);
-						w.onmessage = $.proxy(function (e) {
+						w.onmessage = function (e) {
 							rslt.call(this, e.data, true);
 							try { w.terminate(); w = null; } catch(ignore) { }
 							if(this._data.core.worker_queue.length) {
@@ -10735,7 +10735,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 							else {
 								this._data.core.working = false;
 							}
-						}, this);
+						}.bind(this);
 						if(!args.par) {
 							if(this._data.core.worker_queue.length) {
 								this._append_json_data.apply(this, this._data.core.worker_queue.shift());
@@ -10851,14 +10851,14 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			} while(m[tid]);
 			data.id = data.li_attr.id ? data.li_attr.id.toString() : tid;
 			if(tmp.length) {
-				tmp.each($.proxy(function (i, v) {
+				tmp.each(function (i, v) {
 					c = this._parse_model_from_html($(v), data.id, ps);
 					e = this._model.data[c];
 					data.children.push(c);
 					if(e.children_d.length) {
 						data.children_d = data.children_d.concat(e.children_d);
 					}
-				}, this));
+				}.bind(this));
 				data.children_d = data.children_d.concat(data.children);
 			}
 			else {
@@ -11110,7 +11110,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			if(fe !== null && this.settings.core.restore_focus) {
 				tmp = this.get_node(fe, true);
 				if(tmp && tmp.length && tmp.children('.jstree-anchor')[0] !== document.activeElement) {
-					tmp.children('.jstree-anchor').focus();
+					tmp.children('.jstree-anchor').trigger('focus');
 				}
 				else {
 					this._data.core.focused = null;
@@ -11386,9 +11386,9 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			}
 			if(obj.state.opened && !obj.state.loaded) {
 				obj.state.opened = false;
-				setTimeout($.proxy(function () {
+				setTimeout(function () {
 					this.open_node(obj.id, false, 0);
-				}, this), 0);
+				}.bind(this), 0);
 			}
 			return node;
 		},
@@ -11402,7 +11402,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		open_node : function (obj, callback, animation) {
 			var t1, t2, d, t;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.open_node(obj[t1], callback, animation);
@@ -11422,9 +11422,9 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			}
 			if(!this.is_loaded(obj)) {
 				if(this.is_loading(obj)) {
-					return setTimeout($.proxy(function () {
+					return setTimeout(function () {
 						this.open_node(obj, callback, animation);
-					}, this), 500);
+					}.bind(this), 500);
 				}
 				this.load_node(obj, function (o, ok) {
 					return ok ? this.open_node(o, callback, animation) : (callback ? callback.call(this, o, false) : false);
@@ -11521,7 +11521,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		close_node : function (obj, animation) {
 			var t1, t2, t, d;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.close_node(obj[t1], animation);
@@ -11585,7 +11585,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		toggle_node : function (obj) {
 			var t1, t2;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.toggle_node(obj[t1]);
@@ -11686,7 +11686,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		enable_node : function (obj) {
 			var t1, t2;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.enable_node(obj[t1]);
@@ -11715,7 +11715,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		disable_node : function (obj) {
 			var t1, t2;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.disable_node(obj[t1]);
@@ -11754,7 +11754,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		hide_node : function (obj, skip_redraw) {
 			var t1, t2;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.hide_node(obj[t1], true);
@@ -11792,7 +11792,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		show_node : function (obj, skip_redraw) {
 			var t1, t2;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.show_node(obj[t1], true);
@@ -12004,7 +12004,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		select_node : function (obj, supress_event, prevent_open, e) {
 			var dom, t1, t2, th;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.select_node(obj[t1], supress_event, prevent_open, e);
@@ -12057,7 +12057,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		deselect_node : function (obj, supress_event, e) {
 			var t1, t2, dom;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.deselect_node(obj[t1], supress_event, e);
@@ -12162,7 +12162,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 * @return {Array}
 		 */
 		get_selected : function (full) {
-			return full ? $.map(this._data.core.selected, $.proxy(function (i) { return this.get_node(i); }, this)) : this._data.core.selected.slice();
+			return full ? $.map(this._data.core.selected, function (i) { return this.get_node(i); }.bind(this)) : this._data.core.selected.slice();
 		},
 		/**
 		 * get an array of all top level selected nodes (ignoring children of selected nodes)
@@ -12189,7 +12189,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 					tmp.push(i);
 				}
 			}
-			return full ? $.map(tmp, $.proxy(function (i) { return this.get_node(i); }, this)) : tmp;
+			return full ? $.map(tmp, function (i) { return this.get_node(i); }.bind(this)) : tmp;
 		},
 		/**
 		 * get an array of all bottom level selected nodes (ignoring selected parents)
@@ -12205,7 +12205,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 					obj.push(tmp[i].id);
 				}
 			}
-			return full ? $.map(obj, $.proxy(function (i) { return this.get_node(i); }, this)) : obj;
+			return full ? $.map(obj, function (i) { return this.get_node(i); }.bind(this)) : obj;
 		},
 		/**
 		 * gets the current state of the tree so that it can be restored later with `set_state(state)`. Used internally.
@@ -12265,7 +12265,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 				if(state.core) {
 					var res, n, t, _this, i;
 					if(state.core.loaded) {
-						if(!this.settings.core.loaded_state || !$.isArray(state.core.loaded) || !state.core.loaded.length) {
+						if(!this.settings.core.loaded_state || !$.vakata.is_array(state.core.loaded) || !state.core.loaded.length) {
 							delete state.core.loaded;
 							this.set_state(state, callback);
 						}
@@ -12278,7 +12278,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 						return false;
 					}
 					if(state.core.open) {
-						if(!$.isArray(state.core.open) || !state.core.open.length) {
+						if(!$.vakata.is_array(state.core.open) || !state.core.open.length) {
 							delete state.core.open;
 							this.set_state(state, callback);
 						}
@@ -12352,7 +12352,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		refresh : function (skip_loading, forget_state) {
 			this._data.core.state = forget_state === true ? {} : this.get_state();
-			if(forget_state && $.isFunction(forget_state)) { this._data.core.state = forget_state.call(this, this._data.core.state); }
+			if(forget_state && $.vakata.is_function(forget_state)) { this._data.core.state = forget_state.call(this, this._data.core.state); }
 			this._cnt = 0;
 			this._model.data = {};
 			this._model.data[$.jstree.root] = {
@@ -12403,7 +12403,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			to_load.push(obj.id);
 			if(obj.state.opened === true) { opened.push(obj.id); }
 			this.get_node(obj, true).find('.jstree-open').each(function() { to_load.push(this.id); opened.push(this.id); });
-			this._load_nodes(to_load, $.proxy(function (nodes) {
+			this._load_nodes(to_load, function (nodes) {
 				this.open_node(opened, false, 0);
 				this.select_node(s);
 				/**
@@ -12414,7 +12414,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 				 * @param {Array} nodes - an array of the IDs of the nodes that were reloaded
 				 */
 				this.trigger('refresh_node', { 'node' : obj, 'nodes' : nodes });
-			}, this), false, true);
+			}.bind(this), false, true);
 		},
 		/**
 		 * set (change) the ID of a node
@@ -12486,7 +12486,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		set_text : function (obj, val) {
 			var t1, t2;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.set_text(obj[t1], val);
@@ -12534,7 +12534,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 				'li_attr' : $.extend(true, {}, obj.li_attr),
 				'a_attr' : $.extend(true, {}, obj.a_attr),
 				'state' : {},
-				'data' : options && options.no_data ? false : $.extend(true, $.isArray(obj.data)?[]:{}, obj.data)
+				'data' : options && options.no_data ? false : $.extend(true, $.vakata.is_array(obj.data)?[]:{}, obj.data)
 				//( this.get_node(obj, true).length ? this.get_node(obj, true).data() : obj.data ),
 			}, i, j;
 			if(options && options.flat) {
@@ -12686,7 +12686,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		rename_node : function (obj, val) {
 			var t1, t2, old;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.rename_node(obj[t1], val);
@@ -12721,7 +12721,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		delete_node : function (obj) {
 			var t1, t2, par, pos, tmp, i, j, k, l, c, top, lft;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.delete_node(obj[t1]);
@@ -12778,11 +12778,11 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 				lft = this.element[0].scrollLeft;
 				if(par.id === $.jstree.root) {
 					if (this._model.data[$.jstree.root].children[0]) {
-						this.get_node(this._model.data[$.jstree.root].children[0], true).children('.jstree-anchor').focus();
+						this.get_node(this._model.data[$.jstree.root].children[0], true).children('.jstree-anchor').triger('focus');
 					}
 				}
 				else {
-					this.get_node(par, true).children('.jstree-anchor').focus();
+					this.get_node(par, true).children('.jstree-anchor').trigger('focus');
 				}
 				this.element[0].scrollTop  = top;
 				this.element[0].scrollLeft = lft;
@@ -12823,7 +12823,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 				}
 				return tmp.functions[chk];
 			}
-			if(chc === false || ($.isFunction(chc) && chc.call(this, chk, obj, par, pos, more) === false) || (chc && chc[chk] === false)) {
+			if(chc === false || ($.vakata.is_function(chc) && chc.call(this, chk, obj, par, pos, more) === false) || (chc && chc[chk] === false)) {
 				this._data.core.last_error = { 'error' : 'check', 'plugin' : 'core', 'id' : 'core_03', 'reason' : 'User config for core.check_callback prevents function: ' + chk, 'data' : JSON.stringify({ 'chk' : chk, 'pos' : pos, 'obj' : obj && obj.id ? obj.id : false, 'par' : par && par.id ? par.id : false }) };
 				return false;
 			}
@@ -12859,7 +12859,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 				return this.load_node(par, function () { this.move_node(obj, par, pos, callback, true, false, origin); });
 			}
 
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				if(obj.length === 1) {
 					obj = obj[0];
 				}
@@ -13032,7 +13032,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 				return this.load_node(par, function () { this.copy_node(obj, par, pos, callback, true, false, origin); });
 			}
 
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				if(obj.length === 1) {
 					obj = obj[0];
 				}
@@ -13147,7 +13147,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		cut : function (obj) {
 			if(!obj) { obj = this._data.core.selected.concat(); }
-			if(!$.isArray(obj)) { obj = [obj]; }
+			if(!$.vakata.is_array(obj)) { obj = [obj]; }
 			if(!obj.length) { return false; }
 			var tmp = [], o, t1, t2;
 			for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
@@ -13174,7 +13174,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		copy : function (obj) {
 			if(!obj) { obj = this._data.core.selected.concat(); }
-			if(!$.isArray(obj)) { obj = [obj]; }
+			if(!$.vakata.is_array(obj)) { obj = [obj]; }
 			if(!obj.length) { return false; }
 			var tmp = [], o, t1, t2;
 			for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
@@ -13274,7 +13274,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			rtl = this._data.core.rtl;
 			w  = this.element.width();
 			this._data.core.focused = tmp.id;
-			a  = obj.children('.jstree-anchor').focus();
+			a  = obj.children('.jstree-anchor').trigger('focus');
 			s  = $('<span></span>');
 			/*!
 			oi = obj.children("i:visible"),
@@ -13297,7 +13297,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 							"lineHeight" : (this._data.core.li_height) + "px",
 							"width" : "150px" // will be set a bit further down
 						},
-						"blur" : $.proxy(function (e) {
+						"blur" : function (e) {
 							e.stopImmediatePropagation();
 							e.preventDefault();
 							var i = s.children(".jstree-rename-input"),
@@ -13316,18 +13316,18 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 								this.set_text(obj, t); // move this up? and fix #483
 							}
 							this._data.core.focused = tmp.id;
-							setTimeout($.proxy(function () {
+							setTimeout(function () {
 								var node = this.get_node(tmp.id, true);
 								if(node.length) {
 									this._data.core.focused = tmp.id;
-									node.children('.jstree-anchor').focus();
+									node.children('.jstree-anchor').trigger('focus');
 								}
-							}, this), 0);
+							}.bind(this), 0);
 							if(callback) {
 								callback.call(this, tmp, nv, cancel, v);
 							}
 							h2 = null;
-						}, this),
+						}.bind(this),
 						"keydown" : function (e) {
 							var key = e.which;
 							if(key === 27) {
@@ -13367,7 +13367,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			h2.css(fn).width(Math.min(h1.text("pW" + h2[0].value).width(),w))[0].select();
 			$(document).one('mousedown.jstree touchstart.jstree dnd_start.vakata', function (e) {
 				if (h2 && e.target !== h2) {
-					$(h2).blur();
+					$(h2).trigger('blur');
 				}
 			});
 		},
@@ -13571,7 +13571,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		set_icon : function (obj, icon) {
 			var t1, t2, dom, old;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.set_icon(obj[t1], icon);
@@ -13620,7 +13620,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		hide_icon : function (obj) {
 			var t1, t2;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.hide_icon(obj[t1]);
@@ -13640,7 +13640,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		show_icon : function (obj) {
 			var t1, t2, dom;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.show_icon(obj[t1]);
@@ -13715,6 +13715,29 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			String.prototype.trim.call(text.toString()) :
 			text.toString().replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
 	};
+	$.vakata.is_function = function(obj) {
+		return typeof obj === "function" && typeof obj.nodeType !== "number";
+	};
+	$.vakata.is_array = Array.isArray || function (obj) {
+		return Object.prototype.toString.call(obj) === "[object Array]";
+	};
+
+	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind#polyfill
+	if (!Function.prototype.bind) {
+		Function.prototype.bind = function () {
+			var thatFunc = this, thatArg = arguments[0];
+			var args = Array.prototype.slice.call(arguments, 1);
+			if (typeof thatFunc !== 'function') {
+				// closest thing possible to the ECMAScript 5
+				// internal IsCallable function
+				throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
+			}
+			return function(){
+				var funcArgs = args.concat(Array.prototype.slice.call(arguments));
+				return thatFunc.apply(thatArg, funcArgs);
+			};
+		};
+	}
 
 
 /**
@@ -13848,7 +13871,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 				this.settings.checkbox.cascade = 'up+down+undetermined';
 			}
 			this.element
-				.on("init.jstree", $.proxy(function () {
+				.on("init.jstree", function () {
 						this._data.checkbox.visible = this.settings.checkbox.visible;
 						if(!this.settings.checkbox.keep_selected_style) {
 							this.element.addClass('jstree-checkbox-no-clicked');
@@ -13856,21 +13879,21 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 						if(this.settings.checkbox.tie_selection) {
 							this.element.addClass('jstree-checkbox-selection');
 						}
-					}, this))
-				.on("loading.jstree", $.proxy(function () {
+					}.bind(this))
+				.on("loading.jstree", function () {
 						this[ this._data.checkbox.visible ? 'show_checkboxes' : 'hide_checkboxes' ]();
-					}, this));
+					}.bind(this));
 			if(this.settings.checkbox.cascade.indexOf('undetermined') !== -1) {
 				this.element
-					.on('changed.jstree uncheck_node.jstree check_node.jstree uncheck_all.jstree check_all.jstree move_node.jstree copy_node.jstree redraw.jstree open_node.jstree', $.proxy(function () {
+					.on('changed.jstree uncheck_node.jstree check_node.jstree uncheck_all.jstree check_all.jstree move_node.jstree copy_node.jstree redraw.jstree open_node.jstree', function () {
 							// only if undetermined is in setting
 							if(this._data.checkbox.uto) { clearTimeout(this._data.checkbox.uto); }
-							this._data.checkbox.uto = setTimeout($.proxy(this._undetermined, this), 50);
-						}, this));
+							this._data.checkbox.uto = setTimeout(this._undetermined.bind(this), 50);
+						}.bind(this));
 			}
 			if(!this.settings.checkbox.tie_selection) {
 				this.element
-					.on('model.jstree', $.proxy(function (e, data) {
+					.on('model.jstree', function (e, data) {
 						var m = this._model.data,
 							p = m[data.parent],
 							dpc = data.nodes,
@@ -13881,11 +13904,11 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 								this._data.checkbox.selected.push(dpc[i]);
 							}
 						}
-					}, this));
+					}.bind(this));
 			}
 			if(this.settings.checkbox.cascade.indexOf('up') !== -1 || this.settings.checkbox.cascade.indexOf('down') !== -1) {
 				this.element
-					.on('model.jstree', $.proxy(function (e, data) {
+					.on('model.jstree', function (e, data) {
 							var m = this._model.data,
 								p = m[data.parent],
 								dpc = data.nodes,
@@ -13945,8 +13968,8 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 							}
 
 							this._data[ t ? 'core' : 'checkbox' ].selected = $.vakata.array_unique(this._data[ t ? 'core' : 'checkbox' ].selected);
-						}, this))
-					.on(this.settings.checkbox.tie_selection ? 'select_node.jstree' : 'check_node.jstree', $.proxy(function (e, data) {
+						}.bind(this))
+					.on(this.settings.checkbox.tie_selection ? 'select_node.jstree' : 'check_node.jstree', function (e, data) {
 							var self = this,
 								obj = data.node,
 								m = this._model.data,
@@ -14003,8 +14026,8 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 								}
 							}
 							this._data[ t ? 'core' : 'checkbox' ].selected = cur;
-						}, this))
-					.on(this.settings.checkbox.tie_selection ? 'deselect_all.jstree' : 'uncheck_all.jstree', $.proxy(function (e, data) {
+						}.bind(this))
+					.on(this.settings.checkbox.tie_selection ? 'deselect_all.jstree' : 'uncheck_all.jstree', function (e, data) {
 							var obj = this.get_node($.jstree.root),
 								m = this._model.data,
 								i, j, tmp;
@@ -14014,8 +14037,8 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 									tmp.original.state.undetermined = false;
 								}
 							}
-						}, this))
-					.on(this.settings.checkbox.tie_selection ? 'deselect_node.jstree' : 'uncheck_node.jstree', $.proxy(function (e, data) {
+						}.bind(this))
+					.on(this.settings.checkbox.tie_selection ? 'deselect_node.jstree' : 'uncheck_node.jstree', function (e, data) {
 							var self = this,
 								obj = data.node,
 								dom = this.get_node(obj, true),
@@ -14054,11 +14077,11 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 							}
 
 							this._data[ t ? 'core' : 'checkbox' ].selected = cur;
-						}, this));
+						}.bind(this));
 			}
 			if(this.settings.checkbox.cascade.indexOf('up') !== -1) {
 				this.element
-					.on('delete_node.jstree', $.proxy(function (e, data) {
+					.on('delete_node.jstree', function (e, data) {
 							// apply up (whole handler)
 							var p = this.get_node(data.parent),
 								m = this._model.data,
@@ -14081,8 +14104,8 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 								}
 								p = this.get_node(p.parent);
 							}
-						}, this))
-					.on('move_node.jstree', $.proxy(function (e, data) {
+						}.bind(this))
+					.on('move_node.jstree', function (e, data) {
 							// apply up (whole handler)
 							var is_multi = data.is_multi,
 								old_par = data.old_parent,
@@ -14141,7 +14164,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 								}
 								p = this.get_node(p.parent);
 							}
-						}, this));
+						}.bind(this));
 			}
 		};
 		/**
@@ -14252,7 +14275,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			}
 			if(!is_callback && this.settings.checkbox.cascade.indexOf('undetermined') !== -1) {
 				if(this._data.checkbox.uto) { clearTimeout(this._data.checkbox.uto); }
-				this._data.checkbox.uto = setTimeout($.proxy(this._undetermined, this), 50);
+				this._data.checkbox.uto = setTimeout(this._undetermined.bind(this), 50);
 			}
 			return obj;
 		};
@@ -14305,7 +14328,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		this.disable_checkbox = function (obj) {
 			var t1, t2, dom;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.disable_checkbox(obj[t1]);
@@ -14341,7 +14364,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		this.enable_checkbox = function (obj) {
 			var t1, t2, dom;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.enable_checkbox(obj[t1]);
@@ -14395,6 +14418,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 * Cascades checked state to a node and all its descendants. This function does NOT affect hidden and disabled nodes (or their descendants).
 		 * However if these unaffected nodes are already selected their ids will be included in the returned array.
 		 * @private
+		 * @name _cascade_new_checked_state(id, checkedState)
 		 * @param {string} id the node ID
 		 * @param {bool} checkedState should the nodes be checked or not
 		 * @returns {Array} Array of all node id's (in this tree branch) that are checked.
@@ -14489,7 +14513,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		this.check_node = function (obj, e) {
 			if(this.settings.checkbox.tie_selection) { return this.select_node(obj, false, true, e); }
 			var dom, t1, t2, th;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.check_node(obj[t1], e);
@@ -14529,7 +14553,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		this.uncheck_node = function (obj, e) {
 			if(this.settings.checkbox.tie_selection) { return this.deselect_node(obj, false, e); }
 			var t1, t2, dom;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.uncheck_node(obj[t1], e);
@@ -14633,7 +14657,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		this.get_checked = function (full) {
 			if(this.settings.checkbox.tie_selection) { return this.get_selected(full); }
-			return full ? $.map(this._data.checkbox.selected, $.proxy(function (i) { return this.get_node(i); }, this)) : this._data.checkbox.selected.slice();
+			return full ? $.map(this._data.checkbox.selected, function (i) { return this.get_node(i); }.bind(this)) : this._data.checkbox.selected.slice();
 		};
 		/**
 		 * get an array of all top level checked nodes (ignoring children of checked nodes) (if tie_selection is on in the settings this function will return the same as get_top_selected)
@@ -14662,7 +14686,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 					tmp.push(i);
 				}
 			}
-			return full ? $.map(tmp, $.proxy(function (i) { return this.get_node(i); }, this)) : tmp;
+			return full ? $.map(tmp, function (i) { return this.get_node(i); }.bind(this)) : tmp;
 		};
 		/**
 		 * get an array of all bottom level checked nodes (ignoring selected parents) (if tie_selection is on in the settings this function will return the same as get_bottom_selected)
@@ -14680,11 +14704,11 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 					obj.push(tmp[i].id);
 				}
 			}
-			return full ? $.map(obj, $.proxy(function (i) { return this.get_node(i); }, this)) : obj;
+			return full ? $.map(obj, function (i) { return this.get_node(i); }.bind(this)) : obj;
 		};
 		this.load_node = function (obj, callback) {
 			var k, l, i, j, c, tmp;
-			if(!$.isArray(obj) && !this.settings.checkbox.tie_selection) {
+			if(!$.vakata.is_array(obj) && !this.settings.checkbox.tie_selection) {
 				tmp = this.get_node(obj);
 				if(tmp && tmp.state.loaded) {
 					for(k = 0, l = tmp.children_d.length; k < l; k++) {
@@ -14912,10 +14936,10 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 
 			var last_ts = 0, cto = null, ex, ey;
 			this.element
-				.on("init.jstree loading.jstree ready.jstree", $.proxy(function () {
+				.on("init.jstree loading.jstree ready.jstree", function () {
 						this.get_container_ul().addClass('jstree-contextmenu');
-					}, this))
-				.on("contextmenu.jstree", ".jstree-anchor", $.proxy(function (e, data) {
+					}.bind(this))
+				.on("contextmenu.jstree", ".jstree-anchor", function (e, data) {
 						if (e.target.tagName.toLowerCase() === 'input') {
 							return;
 						}
@@ -14930,13 +14954,13 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 						if(!this.is_loading(e.currentTarget)) {
 							this.show_contextmenu(e.currentTarget, e.pageX, e.pageY, e);
 						}
-					}, this))
-				.on("click.jstree", ".jstree-anchor", $.proxy(function (e) {
+					}.bind(this))
+				.on("click.jstree", ".jstree-anchor", function (e) {
 						if(this._data.contextmenu.visible && (!last_ts || (+new Date()) - last_ts > 250)) { // work around safari & macOS ctrl+click
 							$.vakata.context.hide();
 						}
 						last_ts = 0;
-					}, this))
+					}.bind(this))
 				.on("touchstart.jstree", ".jstree-anchor", function (e) {
 						if(!e.originalEvent || !e.originalEvent.changedTouches || !e.originalEvent.changedTouches[0]) {
 							return;
@@ -14980,15 +15004,16 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 					});
 			}
 			*/
-			$(document).on("context_hide.vakata.jstree", $.proxy(function (e, data) {
+			$(document).on("context_hide.vakata.jstree", function (e, data) {
 				this._data.contextmenu.visible = false;
 				$(data.reference).removeClass('jstree-context');
-			}, this));
+			}.bind(this));
 		};
 		this.teardown = function () {
 			if(this._data.contextmenu.visible) {
 				$.vakata.context.hide();
 			}
+			$(document).off("context_hide.vakata.jstree");
 			parent.teardown.call(this);
 		};
 
@@ -15020,10 +15045,10 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			}
 
 			i = s.items;
-			if($.isFunction(i)) {
-				i = i.call(this, obj, $.proxy(function (i) {
+			if($.vakata.is_function(i)) {
+				i = i.call(this, obj, function (i) {
 					this._show_contextmenu(obj, x, y, i);
-				}, this));
+				}.bind(this));
 			}
 			if($.isPlainObject(i)) {
 				this._show_contextmenu(obj, x, y, i);
@@ -15043,11 +15068,11 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		this._show_contextmenu = function (obj, x, y, i) {
 			var d = this.get_node(obj, true),
 				a = d.children(".jstree-anchor");
-			$(document).one("context_show.vakata.jstree", $.proxy(function (e, data) {
+			$(document).one("context_show.vakata.jstree", function (e, data) {
 				var cls = 'jstree-contextmenu jstree-' + this.get_theme() + '-contextmenu';
 				$(data.element).addClass(cls);
 				a.addClass('jstree-context');
-			}, this));
+			}.bind(this));
 			this._data.contextmenu.visible = true;
 			$.vakata.context.show(a, { 'x' : x, 'y' : y }, i);
 			/**
@@ -15093,7 +15118,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			},
 			_execute : function (i) {
 				i = vakata_context.items[i];
-				return i && (!i._disabled || ($.isFunction(i._disabled) && !i._disabled({ "item" : i, "reference" : vakata_context.reference, "element" : vakata_context.element }))) && i.action ? i.action.call(null, {
+				return i && (!i._disabled || ($.vakata.is_function(i._disabled) && !i._disabled({ "item" : i, "reference" : vakata_context.reference, "element" : vakata_context.element }))) && i.action ? i.action.call(null, {
 							"item"		: i,
 							"reference"	: vakata_context.reference,
 							"element"	: vakata_context.element,
@@ -15118,10 +15143,10 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 					if(!val) { return true; }
 					vakata_context.items.push(val);
 					if(!sep && val.separator_before) {
-						str += "<"+"li class='vakata-context-separator'><"+"a href='#' " + ($.vakata.context.settings.icons ? '' : 'style="margin-left:0px;"') + ">&#160;<"+"/a><"+"/li>";
+						str += "<"+"li class='vakata-context-separator'><"+"a href='#' " + ($.vakata.context.settings.icons ? '' : 'class="vakata-context-no-icons"') + ">&#160;<"+"/a><"+"/li>";
 					}
 					sep = false;
-					str += "<"+"li class='" + (val._class || "") + (val._disabled === true || ($.isFunction(val._disabled) && val._disabled({ "item" : val, "reference" : vakata_context.reference, "element" : vakata_context.element })) ? " vakata-contextmenu-disabled " : "") + "' "+(val.shortcut?" data-shortcut='"+val.shortcut+"' ":'')+">";
+					str += "<"+"li class='" + (val._class || "") + (val._disabled === true || ($.vakata.is_function(val._disabled) && val._disabled({ "item" : val, "reference" : vakata_context.reference, "element" : vakata_context.element })) ? " vakata-contextmenu-disabled " : "") + "' "+(val.shortcut?" data-shortcut='"+val.shortcut+"' ":'')+">";
 					str += "<"+"a href='#' rel='" + (vakata_context.items.length - 1) + "' " + (val.title ? "title='" + val.title + "'" : "") + ">";
 					if($.vakata.context.settings.icons) {
 						str += "<"+"i ";
@@ -15131,14 +15156,14 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 						}
 						str += "><"+"/i><"+"span class='vakata-contextmenu-sep'>&#160;<"+"/span>";
 					}
-					str += ($.isFunction(val.label) ? val.label({ "item" : i, "reference" : vakata_context.reference, "element" : vakata_context.element }) : val.label) + (val.shortcut?' <span class="vakata-contextmenu-shortcut vakata-contextmenu-shortcut-'+val.shortcut+'">'+ (val.shortcut_label || '') +'</span>':'') + "<"+"/a>";
+					str += ($.vakata.is_function(val.label) ? val.label({ "item" : i, "reference" : vakata_context.reference, "element" : vakata_context.element }) : val.label) + (val.shortcut?' <span class="vakata-contextmenu-shortcut vakata-contextmenu-shortcut-'+val.shortcut+'">'+ (val.shortcut_label || '') +'</span>':'') + "<"+"/a>";
 					if(val.submenu) {
 						tmp = $.vakata.context._parse(val.submenu, true);
 						if(tmp) { str += tmp; }
 					}
 					str += "<"+"/li>";
 					if(val.separator_after) {
-						str += "<"+"li class='vakata-context-separator'><"+"a href='#' " + ($.vakata.context.settings.icons ? '' : 'style="margin-left:0px;"') + ">&#160;<"+"/a><"+"/li>";
+						str += "<"+"li class='vakata-context-separator'><"+"a href='#' " + ($.vakata.context.settings.icons ? '' : 'class="vakata-context-no-icons"') + ">&#160;<"+"/a><"+"/li>";
 						sep = true;
 					}
 				});
@@ -15246,7 +15271,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 					vakata_context.element
 						.css({ "left" : x, "top" : y })
 						.show()
-						.find('a').first().focus().parent().addClass("vakata-context-hover");
+						.find('a').first().trigger('focus').parent().addClass("vakata-context-hover");
 					vakata_context.is_visible = true;
 					/**
 					 * triggered on the document when the contextmenu is shown
@@ -15262,7 +15287,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			},
 			hide : function () {
 				if(vakata_context.is_visible) {
-					vakata_context.element.hide().find("ul").hide().end().find(':focus').blur().end().detach();
+					vakata_context.element.hide().find("ul").hide().end().find(':focus').trigger('blur').end().detach();
 					vakata_context.is_visible = false;
 					/**
 					 * triggered on the document when the contextmenu is hidden
@@ -15318,7 +15343,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 					e.preventDefault();
 				//})
 				//.on("mouseup", "a", function (e) {
-					if(!$(this).blur().parent().hasClass("vakata-context-disabled") && $.vakata.context._execute($(this).attr("rel")) !== false) {
+					if(!$(this).trigger('blur').parent().hasClass("vakata-context-disabled") && $.vakata.context._execute($(this).attr("rel")) !== false) {
 						$.vakata.context.hide();
 					}
 				})
@@ -15333,7 +15358,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 								break;
 							case 37:
 								if(vakata_context.is_visible) {
-									vakata_context.element.find(".vakata-context-hover").last().closest("li").first().find("ul").hide().find(".vakata-context-hover").removeClass("vakata-context-hover").end().end().children('a').focus();
+									vakata_context.element.find(".vakata-context-hover").last().closest("li").first().find("ul").hide().find(".vakata-context-hover").removeClass("vakata-context-hover").end().end().children('a').trigger('focus');
 									e.stopImmediatePropagation();
 									e.preventDefault();
 								}
@@ -15342,14 +15367,14 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 								if(vakata_context.is_visible) {
 									o = vakata_context.element.find("ul:visible").addBack().last().children(".vakata-context-hover").removeClass("vakata-context-hover").prevAll("li:not(.vakata-context-separator)").first();
 									if(!o.length) { o = vakata_context.element.find("ul:visible").addBack().last().children("li:not(.vakata-context-separator)").last(); }
-									o.addClass("vakata-context-hover").children('a').focus();
+									o.addClass("vakata-context-hover").children('a').trigger('focus');
 									e.stopImmediatePropagation();
 									e.preventDefault();
 								}
 								break;
 							case 39:
 								if(vakata_context.is_visible) {
-									vakata_context.element.find(".vakata-context-hover").last().children("ul").show().children("li:not(.vakata-context-separator)").removeClass("vakata-context-hover").first().addClass("vakata-context-hover").children('a').focus();
+									vakata_context.element.find(".vakata-context-hover").last().children("ul").show().children("li:not(.vakata-context-separator)").removeClass("vakata-context-hover").first().addClass("vakata-context-hover").children('a').trigger('focus');
 									e.stopImmediatePropagation();
 									e.preventDefault();
 								}
@@ -15358,7 +15383,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 								if(vakata_context.is_visible) {
 									o = vakata_context.element.find("ul:visible").addBack().last().children(".vakata-context-hover").removeClass("vakata-context-hover").nextAll("li:not(.vakata-context-separator)").first();
 									if(!o.length) { o = vakata_context.element.find("ul:visible").addBack().last().children("li:not(.vakata-context-separator)").first(); }
-									o.addClass("vakata-context-hover").children('a').focus();
+									o.addClass("vakata-context-hover").children('a').trigger('focus');
 									e.stopImmediatePropagation();
 									e.preventDefault();
 								}
@@ -15376,7 +15401,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 					e.preventDefault();
 					var a = vakata_context.element.find('.vakata-contextmenu-shortcut-' + e.which).parent();
 					if(a.parent().not('.vakata-context-disabled')) {
-						a.click();
+						a.trigger('click');
 					}
 				});
 
@@ -15490,7 +15515,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			parent.bind.call(this);
 
 			this.element
-				.on(this.settings.dnd.use_html5 ? 'dragstart.jstree' : 'mousedown.jstree touchstart.jstree', this.settings.dnd.large_drag_target ? '.jstree-node' : '.jstree-anchor', $.proxy(function (e) {
+				.on(this.settings.dnd.use_html5 ? 'dragstart.jstree' : 'mousedown.jstree touchstart.jstree', this.settings.dnd.large_drag_target ? '.jstree-node' : '.jstree-anchor', function (e) {
 						if(this.settings.dnd.large_drag_target && $(e.target).closest('.jstree-node')[0] !== e.currentTarget) {
 							return true;
 						}
@@ -15504,7 +15529,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 							txt = $.vakata.html.escape(txt);
 						}
 						if(obj && obj.id && obj.id !== $.jstree.root && (e.which === 1 || e.type === "touchstart" || e.type === "dragstart") &&
-							(this.settings.dnd.is_draggable === true || ($.isFunction(this.settings.dnd.is_draggable) && this.settings.dnd.is_draggable.call(this, (mlt > 1 ? this.get_top_selected(true) : [obj]), e)))
+							(this.settings.dnd.is_draggable === true || ($.vakata.is_function(this.settings.dnd.is_draggable) && this.settings.dnd.is_draggable.call(this, (mlt > 1 ? this.get_top_selected(true) : [obj]), e)))
 						) {
 							drg = { 'jstree' : true, 'origin' : this, 'obj' : this.get_node(obj,true), 'nodes' : mlt > 1 ? this.get_top_selected() : [obj.id] };
 							elm = e.currentTarget;
@@ -15512,10 +15537,10 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 								$.vakata.dnd._trigger('start', e, { 'helper': $(), 'element': elm, 'data': drg });
 							} else {
 								this.element.trigger('mousedown.jstree');
-								return $.vakata.dnd.start(e, drg, '<div id="jstree-dnd" class="jstree-' + this.get_theme() + ' jstree-' + this.get_theme() + '-' + this.get_theme_variant() + ' ' + ( this.settings.core.themes.responsive ? ' jstree-dnd-responsive' : '' ) + '"><i class="jstree-icon jstree-er"></i>' + txt + '<ins class="jstree-copy" style="display:none;">+</ins></div>');
+								return $.vakata.dnd.start(e, drg, '<div id="jstree-dnd" class="jstree-' + this.get_theme() + ' jstree-' + this.get_theme() + '-' + this.get_theme_variant() + ' ' + ( this.settings.core.themes.responsive ? ' jstree-dnd-responsive' : '' ) + '"><i class="jstree-icon jstree-er"></i>' + txt + '<ins class="jstree-copy">+</ins></div>');
 							}
 						}
-					}, this));
+					}.bind(this));
 			if (this.settings.dnd.use_html5) {
 				this.element
 					.on('dragover.jstree', function (e) {
@@ -15528,11 +15553,11 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 					//		$.vakata.dnd._trigger('move', e, { 'helper': $(), 'element': elm, 'data': drg });
 					//		return false;
 					//	}, this))
-					.on('drop.jstree', $.proxy(function (e) {
+					.on('drop.jstree', function (e) {
 							e.preventDefault();
 							$.vakata.dnd._trigger('stop', e, { 'helper': $(), 'element': elm, 'data': drg });
 							return false;
-						}, this));
+						}.bind(this));
 			}
 		};
 		this.redraw_node = function(obj, deep, callback, force_render) {
@@ -16044,7 +16069,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 				}
 				else {
 					if(e.type === "touchend" && e.target === vakata_dnd.target) {
-						var to = setTimeout(function () { $(e.target).click(); }, 100);
+						var to = setTimeout(function () { $(e.target).trigger('click'); }, 100);
 						$(e.target).one('click', function() { if(to) { clearTimeout(to); } });
 					}
 				}
@@ -16105,8 +16130,8 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 				}
 				this._data.massload = {};
 				if (toLoad.length) {
-					if($.isFunction(s)) {
-						return s.call(this, toLoad, $.proxy(function (data) {
+					if($.vakata.is_function(s)) {
+						return s.call(this, toLoad, function (data) {
 							var i, j;
 							if(data) {
 								for(i in data) {
@@ -16122,18 +16147,18 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 								}
 							}
 							parent._load_nodes.call(this, nodes, callback, is_callback, force_reload);
-						}, this));
+						}.bind(this));
 					}
 					if(typeof s === 'object' && s && s.url) {
 						s = $.extend(true, {}, s);
-						if($.isFunction(s.url)) {
+						if($.vakata.is_function(s.url)) {
 							s.url = s.url.call(this, toLoad);
 						}
-						if($.isFunction(s.data)) {
+						if($.vakata.is_function(s.data)) {
 							s.data = s.data.call(this, toLoad);
 						}
 						return $.ajax(s)
-							.done($.proxy(function (data,t,x) {
+							.done(function (data,t,x) {
 									var i, j;
 									if(data) {
 										for(i in data) {
@@ -16149,10 +16174,10 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 										}
 									}
 									parent._load_nodes.call(this, nodes, callback, is_callback, force_reload);
-								}, this))
-							.fail($.proxy(function (f) {
+								}.bind(this))
+							.fail(function (f) {
 									parent._load_nodes.call(this, nodes, callback, is_callback, force_reload);
-								}, this));
+								}.bind(this));
 					}
 				}
 			}
@@ -16260,7 +16285,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			this._data.search.hdn = [];
 
 			this.element
-				.on("search.jstree", $.proxy(function (e, data) {
+				.on("search.jstree", function (e, data) {
 						if(this._data.search.som && data.res.length) {
 							var m = this._model.data, i, j, p = [], k, l;
 							for(i = 0, j = data.res.length; i < j; i++) {
@@ -16281,13 +16306,13 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 							this.show_node(p, true);
 							this.redraw(true);
 						}
-					}, this))
-				.on("clear_search.jstree", $.proxy(function (e, data) {
+					}.bind(this))
+				.on("clear_search.jstree", function (e, data) {
 						if(this._data.search.som && data.res.length) {
 							this.show_node(this._data.search.hdn, true);
 							this.redraw(true);
 						}
-					}, this));
+					}.bind(this));
 		};
 		/**
 		 * used to search the tree nodes for a given string
@@ -16323,13 +16348,13 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 				show_only_matches_children = s.show_only_matches_children;
 			}
 			if(!skip_async && a !== false) {
-				if($.isFunction(a)) {
-					return a.call(this, str, $.proxy(function (d) {
+				if($.vakata.is_function(a)) {
+					return a.call(this, str, function (d) {
 							if(d && d.d) { d = d.d; }
-							this._load_nodes(!$.isArray(d) ? [] : $.vakata.array_unique(d), function () {
+							this._load_nodes(!$.vakata.is_array(d) ? [] : $.vakata.array_unique(d), function () {
 								this.search(str, true, show_only_matches, inside, append, show_only_matches_children);
 							});
-						}, this), inside);
+						}.bind(this), inside);
 				}
 				else {
 					a = $.extend({}, a);
@@ -16342,16 +16367,16 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 						this._data.search.lastRequest.abort();
 					}
 					this._data.search.lastRequest = $.ajax(a)
-						.fail($.proxy(function () {
+						.fail(function () {
 							this._data.core.last_error = { 'error' : 'ajax', 'plugin' : 'search', 'id' : 'search_01', 'reason' : 'Could not load search parents', 'data' : JSON.stringify(a) };
 							this.settings.core.error.call(this, this._data.core.last_error);
-						}, this))
-						.done($.proxy(function (d) {
+						}.bind(this))
+						.done(function (d) {
 							if(d && d.d) { d = d.d; }
-							this._load_nodes(!$.isArray(d) ? [] : $.vakata.array_unique(d), function () {
+							this._load_nodes(!$.vakata.is_array(d) ? [] : $.vakata.array_unique(d), function () {
 								this.search(str, true, show_only_matches, inside, append, show_only_matches_children);
 							});
-						}, this));
+						}.bind(this));
 					return this._data.search.lastRequest;
 				}
 			}
@@ -16605,17 +16630,17 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		this.bind = function () {
 			parent.bind.call(this);
 			this.element
-				.on("model.jstree", $.proxy(function (e, data) {
+				.on("model.jstree", function (e, data) {
 						this.sort(data.parent, true);
-					}, this))
-				.on("rename_node.jstree create_node.jstree", $.proxy(function (e, data) {
+					}.bind(this))
+				.on("rename_node.jstree create_node.jstree", function (e, data) {
 						this.sort(data.parent || data.node.parent, false);
 						this.redraw_node(data.parent || data.node.parent, true);
-					}, this))
-				.on("move_node.jstree copy_node.jstree", $.proxy(function (e, data) {
+					}.bind(this))
+				.on("move_node.jstree copy_node.jstree", function (e, data) {
 						this.sort(data.parent, false);
 						this.redraw_node(data.parent, true);
-					}, this));
+					}.bind(this));
 		};
 		/**
 		 * used to sort a node's children
@@ -16630,7 +16655,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			var i, j;
 			obj = this.get_node(obj);
 			if(obj && obj.children && obj.children.length) {
-				obj.children.sort($.proxy(this.settings.sort, this));
+				obj.children.sort(this.settings.sort.bind(this));
 				if(deep) {
 					for(i = 0, j = obj.children_d.length; i < j; i++) {
 						this.sort(obj.children_d[i], false);
@@ -16690,11 +16715,11 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 	$.jstree.plugins.state = function (options, parent) {
 		this.bind = function () {
 			parent.bind.call(this);
-			var bind = $.proxy(function () {
-				this.element.on(this.settings.state.events, $.proxy(function () {
+			var bind = function () {
+				this.element.on(this.settings.state.events, function () {
 					if(to) { clearTimeout(to); }
-					to = setTimeout($.proxy(function () { this.save_state(); }, this), 100);
-				}, this));
+					to = setTimeout(function () { this.save_state(); }.bind(this), 100);
+				}.bind(this));
 				/**
 				 * triggered when the state plugin is finished restoring the state (and immediately after ready if there is no state to restore).
 				 * @event
@@ -16702,12 +16727,12 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 				 * @plugin state
 				 */
 				this.trigger('state_ready');
-			}, this);
+			}.bind(this);
 			this.element
-				.on("ready.jstree", $.proxy(function (e, data) {
+				.on("ready.jstree", function (e, data) {
 						this.element.one("restore_state.jstree", bind);
 						if(!this.restore_state()) { bind(); }
-					}, this));
+					}.bind(this));
 		};
 		/**
 		 * save the state
@@ -16732,7 +16757,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			if(!!k) { try { k = JSON.parse(k); } catch(ex) { return false; } }
 			if(!!k && k.ttl && k.sec && +(new Date()) - k.sec > k.ttl) { return false; }
 			if(!!k && k.state) { k = k.state; }
-			if(!!k && $.isFunction(this.settings.state.filter)) { k = this.settings.state.filter.call(this, k); }
+			if(!!k && $.vakata.is_function(this.settings.state.filter)) { k = this.settings.state.filter.call(this, k); }
 			if(!!k) {
 				if (!this.settings.state.preserve_loaded) {
 					delete k.core.loaded;
@@ -16817,7 +16842,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		};
 		this.bind = function () {
 			this.element
-				.on('model.jstree', $.proxy(function (e, data) {
+				.on('model.jstree', function (e, data) {
 						var m = this._model.data,
 							dpc = data.nodes,
 							t = this.settings.types,
@@ -16869,7 +16894,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 							}
 						}
 						m[$.jstree.root].type = $.jstree.root;
-					}, this));
+					}.bind(this));
 			parent.bind.call(this);
 		};
 		this.get_json = function (obj, options, flat) {
@@ -16878,7 +16903,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 				opt = options ? $.extend(true, {}, options, {no_id:false}) : {},
 				tmp = parent.get_json.call(this, obj, opt, flat);
 			if(tmp === false) { return false; }
-			if($.isArray(tmp)) {
+			if($.vakata.is_array(tmp)) {
 				for(i = 0, j = tmp.length; i < j; i++) {
 					tmp[i].type = tmp[i].id && m[tmp[i].id] && m[tmp[i].id].type ? m[tmp[i].id].type : "default";
 					if(options && options.no_id) {
@@ -16901,7 +16926,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			return tmp;
 		};
 		this._delete_ids = function (tmp) {
-			if($.isArray(tmp)) {
+			if($.vakata.is_array(tmp)) {
 				for(var i = 0, j = tmp.length; i < j; i++) {
 					tmp[i] = this._delete_ids(tmp[i]);
 				}
@@ -16914,7 +16939,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			if(tmp.a_attr && tmp.a_attr.id) {
 				delete tmp.a_attr.id;
 			}
-			if(tmp.children && $.isArray(tmp.children)) {
+			if(tmp.children && $.vakata.is_array(tmp.children)) {
 				tmp.children = this._delete_ids(tmp.children);
 			}
 			return tmp;
@@ -16998,7 +17023,7 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 		 */
 		this.set_type = function (obj, type) {
 			var m = this._model.data, t, t1, t2, old_type, old_icon, k, d, a;
-			if($.isArray(obj)) {
+			if($.vakata.is_array(obj)) {
 				obj = obj.slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
 					this.set_type(obj[t1], type);
@@ -17287,17 +17312,17 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 			parent.bind.call(this);
 
 			this.element
-				.on('ready.jstree set_state.jstree', $.proxy(function () {
+				.on('ready.jstree set_state.jstree', function () {
 						this.hide_dots();
-					}, this))
-				.on("init.jstree loading.jstree ready.jstree", $.proxy(function () {
+					}.bind(this))
+				.on("init.jstree loading.jstree ready.jstree", function () {
 						//div.style.height = this._data.core.li_height + 'px';
 						this.get_container_ul().addClass('jstree-wholerow-ul');
-					}, this))
-				.on("deselect_all.jstree", $.proxy(function (e, data) {
+					}.bind(this))
+				.on("deselect_all.jstree", function (e, data) {
 						this.element.find('.jstree-wholerow-clicked').removeClass('jstree-wholerow-clicked');
-					}, this))
-				.on("changed.jstree", $.proxy(function (e, data) {
+					}.bind(this))
+				.on("changed.jstree", function (e, data) {
 						this.element.find('.jstree-wholerow-clicked').removeClass('jstree-wholerow-clicked');
 						var tmp = false, i, j;
 						for(i = 0, j = data.selected.length; i < j; i++) {
@@ -17306,21 +17331,21 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 								tmp.children('.jstree-wholerow').addClass('jstree-wholerow-clicked');
 							}
 						}
-					}, this))
-				.on("open_node.jstree", $.proxy(function (e, data) {
+					}.bind(this))
+				.on("open_node.jstree", function (e, data) {
 						this.get_node(data.node, true).find('.jstree-clicked').parent().children('.jstree-wholerow').addClass('jstree-wholerow-clicked');
-					}, this))
-				.on("hover_node.jstree dehover_node.jstree", $.proxy(function (e, data) {
+					}.bind(this))
+				.on("hover_node.jstree dehover_node.jstree", function (e, data) {
 						if(e.type === "hover_node" && this.is_disabled(data.node)) { return; }
 						this.get_node(data.node, true).children('.jstree-wholerow')[e.type === "hover_node"?"addClass":"removeClass"]('jstree-wholerow-hovered');
-					}, this))
-				.on("contextmenu.jstree", ".jstree-wholerow", $.proxy(function (e) {
+					}.bind(this))
+				.on("contextmenu.jstree", ".jstree-wholerow", function (e) {
 						if (this._data.contextmenu) {
 							e.preventDefault();
 							var tmp = $.Event('contextmenu', { metaKey : e.metaKey, ctrlKey : e.ctrlKey, altKey : e.altKey, shiftKey : e.shiftKey, pageX : e.pageX, pageY : e.pageY });
 							$(e.currentTarget).closest(".jstree-node").children(".jstree-anchor").first().trigger(tmp);
 						}
-					}, this))
+					}.bind(this))
 				/*!
 				.on("mousedown.jstree touchstart.jstree", ".jstree-wholerow", function (e) {
 						if(e.target === e.currentTarget) {
@@ -17333,28 +17358,28 @@ var DateFormatter;!function(){"use strict";var e,t,a,r,n,o,i;o=864e5,i=3600,e=fu
 				.on("click.jstree", ".jstree-wholerow", function (e) {
 						e.stopImmediatePropagation();
 						var tmp = $.Event('click', { metaKey : e.metaKey, ctrlKey : e.ctrlKey, altKey : e.altKey, shiftKey : e.shiftKey });
-						$(e.currentTarget).closest(".jstree-node").children(".jstree-anchor").first().trigger(tmp).focus();
+						$(e.currentTarget).closest(".jstree-node").children(".jstree-anchor").first().trigger(tmp).trigger('focus');
 					})
 				.on("dblclick.jstree", ".jstree-wholerow", function (e) {
 						e.stopImmediatePropagation();
 						var tmp = $.Event('dblclick', { metaKey : e.metaKey, ctrlKey : e.ctrlKey, altKey : e.altKey, shiftKey : e.shiftKey });
-						$(e.currentTarget).closest(".jstree-node").children(".jstree-anchor").first().trigger(tmp).focus();
+						$(e.currentTarget).closest(".jstree-node").children(".jstree-anchor").first().trigger(tmp).trigger('focus');
 					})
-				.on("click.jstree", ".jstree-leaf > .jstree-ocl", $.proxy(function (e) {
+				.on("click.jstree", ".jstree-leaf > .jstree-ocl", function (e) {
 						e.stopImmediatePropagation();
 						var tmp = $.Event('click', { metaKey : e.metaKey, ctrlKey : e.ctrlKey, altKey : e.altKey, shiftKey : e.shiftKey });
-						$(e.currentTarget).closest(".jstree-node").children(".jstree-anchor").first().trigger(tmp).focus();
-					}, this))
-				.on("mouseover.jstree", ".jstree-wholerow, .jstree-icon", $.proxy(function (e) {
+						$(e.currentTarget).closest(".jstree-node").children(".jstree-anchor").first().trigger(tmp).trigger('focus');
+					}.bind(this))
+				.on("mouseover.jstree", ".jstree-wholerow, .jstree-icon", function (e) {
 						e.stopImmediatePropagation();
 						if(!this.is_disabled(e.currentTarget)) {
 							this.hover_node(e.currentTarget);
 						}
 						return false;
-					}, this))
-				.on("mouseleave.jstree", ".jstree-node", $.proxy(function (e) {
+					}.bind(this))
+				.on("mouseleave.jstree", ".jstree-node", function (e) {
 						this.dehover_node(e.currentTarget);
-					}, this));
+					}.bind(this));
 		};
 		this.teardown = function () {
 			if(this.settings.wholerow) {
@@ -20618,6 +20643,13 @@ $(document).on('click','.js_select_video', function (){
     $('ul.cart_info_videos').html('')
     for (var i = 0; i < titles.length; i++) {
         $('ul.cart_info_videos').append('<li><span class="cart_info_videos_line"></span>' + titles[i] + '</li>')
+    }
+
+    console.log($('ul.cart_info_videos').height())
+    if (parseInt($('ul.cart_info_videos').height()) >=300 ){
+        $('ul.cart_info_videos').css({'overflow-y':'scroll'})
+    }else{
+        $('ul.cart_info_videos').css({'overflow-y':'hidden'})
     }
     if (count > 0) {
         $('.cart_info_button_videos').removeClass('cart_info_button_disabled')

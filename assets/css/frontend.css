@@ -2943,7 +2943,7 @@ img.mfp-img {
 .select2-container--classic.select2-container--open .select2-dropdown {
   border-color: #5897fb; }
 
-/*! nouislider - 14.6.4 - 3/18/2021 */
+/*! nouislider - 14.7.0 - 4/6/2021 */
 /* Functional styling;
  * These styles are required for noUiSlider to function.
  * You don't need to change these rules to apply your design.
@@ -6561,10 +6561,9 @@ footer {
         color: #FFFFFF; }
   .cart_info_videos {
     padding-left: 25px;
-    min-height: 300px;
     max-height: 300px;
     overflow-x: hidden;
-    overflow-y: scroll; }
+    overflow-y: hidden; }
     .cart_info_videos::-webkit-scrollbar {
       width: 10px; }
     .cart_info_videos::-webkit-scrollbar-track {
