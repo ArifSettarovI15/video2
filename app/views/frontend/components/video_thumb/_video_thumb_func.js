@@ -52,6 +52,13 @@ $(document).on('click','.js_select_video', function (){
     for (var i = 0; i < titles.length; i++) {
         $('ul.cart_info_videos').append('<li><span class="cart_info_videos_line"></span>' + titles[i] + '</li>')
     }
+
+    console.log($('ul.cart_info_videos').height())
+    if (parseInt($('ul.cart_info_videos').height()) >=300 ){
+        $('ul.cart_info_videos').css({'overflow-y':'scroll'})
+    }else{
+        $('ul.cart_info_videos').css({'overflow-y':'hidden'})
+    }
     if (count > 0) {
         $('.cart_info_button_videos').removeClass('cart_info_button_disabled')
         $('.cart_info_button_videos').addClass('js_buy_videos')
