@@ -32,9 +32,19 @@
     padding-right: $gutter;
     width: $container__width--lg;
 
-    @include media('<lg') {
+    @include media('<1200px') {
         padding-left: $gutter/2;
         padding-right: $gutter/2;
+        width: 1000px;
+    }
+    @include media('<1010px') {
+        width: 840px;
+    }
+    @include media('<850px') {
+        width: 700px;
+    }
+    @include media('<710px') {
+        width: 600px;
     }
 }
 

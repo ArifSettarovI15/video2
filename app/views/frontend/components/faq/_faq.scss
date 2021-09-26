@@ -16,6 +16,10 @@ a{
       width: 100%;
       font-weight: 500;
       font-size: 20px;
+      @include media('<710px'){
+        font-size: 16px;
+        padding: 15px 0;
+      }
       line-height: 150%;
       display: flex;
       align-items: center;
@@ -53,6 +57,10 @@ a{
       max-height: 0;
       color: #CCCCCC;
       transition: all .6s;
+
+      @include media('<710px'){
+        font-size: 14px;
+      }
       &_active{
         max-height: 400px;
         transition: max-height .6s;

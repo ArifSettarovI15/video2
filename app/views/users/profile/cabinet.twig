@@ -7,41 +7,10 @@
         <div class="block_item__content">
             <div class="container">
                 <div class="theme_wrapper">
-                    <div class="theme_wrapper_videos">
-                        <div class="theme_title"><h3>{{ theme.theme_title }}</h3></div>
-                        <div class="theme_desc">
-                            {{ theme.theme_desc|raw }}
-                        </div>
-                        <div class="theme_videos_wrapper">
-                            {% if main_video.video_id %}
-                                {% include 'frontend/components/video_thumb/video_thumb_main.twig' %}
-                            {% endif %}
-                            {% if blocks|length %}
-                                {% for block in blocks %}
-                                    <div class="theme_videos_block">
-                                        <div class="theme_videos_block_title">{{ block.block_title }}</div>
-                                        <div class="theme_videos">
-                                            {% for video in block.videos %}
-                                                {% include 'frontend/components/video_thumb/video_thumb.twig' %}
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            {% endif %}
-
-                            {% if videos|length %}
-                                <div class="theme_videos_block">
-                                    <div class="theme_videos">
-                                        {% for video in videos %}
-                                            {% include 'frontend/components/video_thumb/video_thumb.twig' %}
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            {% endif %}
-
-                        </div>
+                    <div class="theme_wrapper_cabinet">
+                        {% include 'frontend/sections/cabinet_themes/cabinet_themes.twig' %}
                     </div>
-                    <div class="theme_wrapper_sidebar">
+                    <div class="theme_wrapper_cabinet_sidebar">
                         <div class="cart_info">
                             <div class="form">
                                 <div class="cart_info_title">

@@ -17,6 +17,10 @@
   font-style: normal;
   font-weight: 300;
   font-size: 16px;
+
+  @include media("<1010px"){
+    font-size: 13px;
+  }
   line-height: 150%;
   color: #FFFFFF;
   padding: 40px 0;
@@ -35,6 +39,18 @@
   display: flex;
   flex-direction: column;
 
+  @include media("<1200px"){
+    width: 600px;
+    height: 400px;
+  }
+  @include media("<1010px"){
+    width: 500px;
+    height: 350px;
+  }
+  @include media("<850px"){
+    width: 400px;
+    height: 250px;
+  }
   &:hover {
     box-shadow: 0 0 20px rgba(242, 132, 2, 0.5);
   }
@@ -117,6 +133,9 @@
 .theme_videos {
   padding: 50px 0;
   margin: -15px -30px;
+  @include media('<850px'){
+    margin: 0;
+  }
 
   &_block {
     &_title {
@@ -126,6 +145,14 @@
       font-family: $font-family__secondary;
       color: #FFFFFF;
       padding-top: 60px;
+      @include media('<1010px'){
+
+        font-size: 36px;
+      }
+      @include media('<850px'){
+
+        font-size: 34px;
+      }
     }
   }
 }
@@ -142,6 +169,10 @@
   display: flex;
   flex-direction: column;
 
+  @include media("<1010px"){
+    width: 150px;
+    height: 200px;
+  }
   &:hover {
     box-shadow: 0 0 20px rgba(242, 132, 2, 0.5);
   }
@@ -197,6 +228,10 @@
     font-size: 10px;
     line-height: 150%;
     color: #FFFFFF;
+
+    @include media("<1010px"){
+      display: none;
+    }
   }
 
   &_price {
@@ -208,5 +243,8 @@
 
   &_space {
     padding: 15px 30px;
+    @include media("<1200px"){
+      padding:10px;
+    }
   }
 }

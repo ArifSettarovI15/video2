@@ -1,0 +1,25 @@
+.success_checkbox{
+  display: flex;
+  justify-content: center;
+  color: whitesmoke;
+  .svg-icon svg *{
+    fill: whitesmoke;
+  }
+}
+.success_text{
+  color: whitesmoke;
+  text-align: center;
+  &_big{
+    font-family: $font-family__secondary;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 20px 0;
+  }
+  &_small{
+    font-size: 18px;
+    padding-bottom: 25px;
+    &:last-child{
+      padding-bottom: 35px;
+    }
+  }
+}

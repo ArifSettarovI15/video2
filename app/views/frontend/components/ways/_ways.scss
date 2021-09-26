@@ -13,7 +13,16 @@
   text-align: center;
   overflow: hidden;
 
-
+  @include  media("<1200px"){
+    width: 250px;
+    height: 350px;
+    font-size: 18px;
+  }
+  @include  media("<850px"){
+    width: 270px;
+    height: 370px;
+    font-size: 18px;
+  }
 
   &_image{
 
@@ -75,11 +84,47 @@
     padding: 31px;
     width: 362px;
     height: 512px;
+
+    @include  media("<1200px"){
+      width: 300px;
+      height: 400px;
+    }
+
+    @include  media("<1010px"){
+      width: 270px;
+      height: 370px;
+    }
+    @include  media("<850px"){
+      width: 290px;
+      height: 390px;
+    }
+
   }
+
   &_space{
     margin: 15px -55px 0;
+    @include media("<1200px"){
+      margin: 15px -25px 0;
+    }
+    @include media("<1010px"){
+      margin: 5px -10px 0;
+    }
+    @include media("<850px"){
+      margin: 15px -20px 0;
+    }
     &_item{
       padding: 15px 55px 35px;
+      @include media("<1200px"){
+        padding: 15px 25px 35px;
+      }
+
+      @include media("<1010px"){
+        padding: 5px 10px 10px;
+      }
+      @include media("<850px"){
+        padding: 15px 20px 10px;
+      }
+
     }
   }
 }

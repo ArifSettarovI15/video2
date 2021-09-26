@@ -11,7 +11,14 @@
             </div>
         </div>
         <div class="modal__body">
-            <div class="modal__form form" data-url="{{ global.base_url }}/login/" data-callback="ShowThx">
+            <div class="modal__form form" data-url="{{ global.base_url }}/login/" data-callback="LoginDone">
+                <input type="hidden" class="element" name="action" value="process_login">
+                {% if inline %}
+                    <input type="hidden" class="element" name="inline" value="1">
+                {% endif %}
+                {% if payment %}
+                    <input type="hidden" class="element" name="payment" value="1">
+                {% endif %}
                 <input type="hidden" class="element" name="action" value="process_login">
                 <div class="modal__form-item">
                     {{ Input.field('login', {

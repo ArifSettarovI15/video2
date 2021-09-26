@@ -123,6 +123,8 @@ if ($Main->GPC['action'] == 'process_login') {
 
     $Main->input->clean_array_gpc('r', array(
         'login' => TYPE_STR,
+        'inline' => TYPE_BOOL,
+        'payment' => TYPE_BOOL,
         'password' => TYPE_NOTRIM
     ));
 
@@ -230,7 +232,9 @@ VALUES(
                 $text = $error;
             }
         }
-
+        if ($Main->GPC['inline'] and $status){
+            $Main->template->DisplayJson(['status'=>true, 'payment'=>$Main->GPC['payment']]);
+        }
         $array_json = array(
             'status' => $status,
             'message_inline' => $inline,
@@ -330,3 +334,27 @@ if ($Main->GPC['action'] == 'process_register') {
 }
 
 
+
+$breadcrumbs = array();
+$breadcrumbs[] = array(
+    'title'=>'Авторизация',
+);
+
+$page_name='Авторизация';
+
+$Main->template->SetPageAttributes(
+    array(
+        'title' => $page_name,
+        'meta'=>'login',
+        'desc' => ''
+    ),
+    array(
+        'breadcrumbs' => $breadcrumbs,
+        'title' => $page_name,
+        'back_url' => BASE_URL.'/',
+        'background'=>BASE_URL.'/assets/images/static/mainpage_bg.jpg',
+
+    ),
+);
+
+$Main->template->Display();

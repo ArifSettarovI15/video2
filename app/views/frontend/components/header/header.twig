@@ -6,7 +6,6 @@
             <div class="header_links_wrapper">
                 <div class="header_links__socials">
                     {% for social in global.socials %}
-
                         <a href="{{ social.social_url }}" class="header_links__item" title="{{ social.social_title }}">
                             {{ Svg.icon(social.social_icon,1) }}
                         </a>
@@ -46,26 +45,94 @@
                     Контакты
                 </a>
                 {% if global.user_info.user_id %}
-                    <a href="/cabinet" class="main_menu_link_cabinet" >
+                    <a href="/cabinet" class="main_menu_link_cabinet">
                         {{ Svg.icon('user',1, 15, 18) }}
                         <span>
                         Личный кабинет
                     </span>
                     </a>
-                    {% else %}
-                <div class="main_menu_link_cabinet login_modal_open" >
-                    {{ Svg.icon('user',1, 15, 18) }}
-                    <span>
+                {% else %}
+                    <div class="main_menu_link_cabinet login_modal_open">
+                        {{ Svg.icon('user',1, 15, 18) }}
+                        <span>
                         Личный кабинет
                     </span>
-                </div>
+                    </div>
 
                 {% endif %}
+            </div>
+            <div class="main_menu_mobile">
+                <a href="/">
+                    {{ Svg.icon('logo',0, 105,60) }}
+                </a>
+                <a href="#" class="burger_menu_button burger_menu_button_show">
+                    {{ Svg.icon('burger1',1, 60,60) }}
+                </a>
+
             </div>
         </div>
     </div>
 </div>
+<div class="burger_menu">
+    <div class="container">
+    <div class="header_links_wrapper">
+        <div class="header_links__socials">
+            {% for social in global.socials %}
+                <a href="{{ social.social_url }}" class="header_links__item" title="{{ social.social_title }}">
+                    {{ Svg.icon(social.social_icon,1) }}
+                </a>
+            {% endfor %}
+        </div>
 
+        <div class="header_links__phone">
+            <a href="tel:{{ global.fields.about.about_phone|replace({'(':'',')':'',' ':'','-':''}) }}"
+               class="header_links__item">
+                {{ Svg.icon('header_phone',1) }}
+            </a>
+            <a href="tel:{{ global.fields.about.about_phone|replace({'(':'',')':'',' ':'','-':''}) }}"
+               class="header_links__item_phone ">
+                {{ global.fields.about.about_phone }}
+            </a>
+        </div>
+    </div>
+    <div class="burger_menu_top">
+    <div class="main_menu_mobile">
+        <a href="/">
+            {{ Svg.icon('logo',0, 105,60) }}
+        </a>
+        <a href="#" class="burger_menu_button burger_menu_button_hide">
+            {{ Svg.icon('close',1, 60,60) }}
+        </a>
+    </div>
+    </div>
+    <div class="burger_menu_links">
+    <a href="/about" class="main_menu_link">
+        Кто мы
+    </a>
+    <a href="{{ global.base_url }}/videocatalog/" class="main_menu_link">
+        Видеокаталог
+    </a>
+    <a href="/blog" class="main_menu_link">
+        Блог
+    </a>
+    <a href="/contact" class="main_menu_link">
+        Контакты
+    </a>
+    {% if global.user_info.user_id %}
+        <a href="/cabinet" class="main_menu_link_cabinet">
+            {{ Svg.icon('user',1, 30, 30) }}
+            <span>Личный кабинет</span>
+        </a>
+    {% else %}
+        <div class="main_menu_link_cabinet login_modal_open">
+            {{ Svg.icon('user',1, 30, 30) }}
+            <span>Личный кабинет</span>
+        </div>
+
+    {% endif %}
+    </div>
+    </div>
+</div>
 {% if is_home %}
     {% include 'frontend/components/hero/hero.twig' %}
 {% endif %}

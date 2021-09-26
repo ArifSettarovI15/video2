@@ -1,10 +1,22 @@
 .category_head{
   padding: 120px 0 150px;
+  @include media("<1010px"){
+    padding: 100px 0 100px;
+  }
+  @include media("<850px"){
+    padding: 50px 0 70px;
+  }
   &_page_title{
     font-family: $font-family__secondary;
     font-style: normal;
     font-weight: bold;
     font-size: 60px;
+    @include media("<1010px"){
+      font-size: 54px;
+    }
+    @include media("<850px"){
+      font-size: 42px;
+    }
     line-height: 100%;
     /* or 60px */
 

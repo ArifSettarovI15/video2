@@ -15,33 +15,34 @@ $function = new \Twig\TwigFunction('number_to_string', function ($value) {
 });
 
 
+$function = new \Twig\TwigFunction('prupal', function ($number, $titles, $show_number=0){
+    if( is_string( $titles ) )
+        $titles = preg_split( '/, */', $titles );
+    if( empty( $titles[2] ) )
+        $titles[2] = $titles[1];
 
-$function = new \Twig\TwigFunction('passengers_to_array', function ($passengers){
-    $passengers = explode(',', $passengers);
-    $data = array();
-    foreach ($passengers as $passenger) {
-        if(preg_match('/Взрослые: (.*)/', $passenger, $match)){
-            $data['adult'] = $match[1];
-        }
+    $cases = [ 2, 0, 1, 1, 1, 2 ];
 
+    $intnum = abs( (int) strip_tags( $number ));
 
-        if(preg_match('/Дети до 7 лет: (.*)/', $passenger, $match)){
-            $data['kidsTo7'] = $match[1];
-        }
+    $title_index = ( $intnum % 100 > 4 && $intnum % 100 < 20 )
+        ? 2
+        : $cases[ min( $intnum % 10, 5 ) ];
 
-        if(preg_match('/Дети от 3 до 5 лет: (.*)/', $passenger, $match)){
-            $data['kids3to7'] = $match[1];
-        }
-
-        if(preg_match('/Дети до 1 годика: (.*)/', $passenger, $match)){
-            $data['babies'] = $match[1];
-        }
-
-    }
-
-    return $data;
+    return ( $show_number ? "$number " : '' ) . $titles[ $title_index ];
 });
+
 $this->twig->addFunction($function);
+
+$function = new \Twig\TwigFilter('date_diff', function ($date){
+
+    $now = time();
+    $your_date = strtotime($date);
+    $date_diff = $your_date - $now;
+
+    return floor($date_diff / (60 * 60 * 24));
+});
+$this->twig->addFilter($function);
 
 
 $this->twig->addExtension(new \Twig\Extension\DebugExtension());

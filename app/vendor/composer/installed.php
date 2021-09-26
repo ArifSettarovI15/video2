@@ -1,24 +1,33 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => 'dev-main',
-    'version' => 'dev-main',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => 'aec7a912d2e1a19f8f411c376149e69e5c17e5fc',
+    'reference' => 'c9209b3bfc10fa370c5db7bc93289501a38639e4',
     'name' => '__root__',
   ),
   'versions' => 
   array (
     '__root__' => 
     array (
-      'pretty_version' => 'dev-main',
-      'version' => 'dev-main',
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
       'aliases' => 
       array (
       ),
-      'reference' => 'aec7a912d2e1a19f8f411c376149e69e5c17e5fc',
+      'reference' => 'c9209b3bfc10fa370c5db7bc93289501a38639e4',
+    ),
+    'cloudipsp/php-sdk-v2' => 
+    array (
+      'pretty_version' => '1.0.9',
+      'version' => '1.0.9.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '57f4d0f8ebd421ce58a0feabb0badbd1376fabc8',
     ),
     'doctrine/lexer' => 
     array (

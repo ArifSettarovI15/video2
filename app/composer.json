@@ -2,6 +2,7 @@
   "require": {
     "twig/twig": "^3.0",
     "swiftmailer/swiftmailer": "^6.0",
-    "intervention/image": "*"
+    "intervention/image": "*",
+    "cloudipsp/php-sdk-v2": "^1.0"
   }
 }

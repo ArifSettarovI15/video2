@@ -1,73 +1,85 @@
 <?php
-
 $Main->user->PagePrivacy();
+$Main->input->clean_array_gpc('r', array(
+    'filters'=>TYPE_ARRAY
+));
 
-$Main->GPC['id'] =$Main->GPC['content_type'];
 
-$page_name='Статьи';
+$page_name='Блог';
+$meta_title='Блог';
+if ($Main->GPC['content_type']=='news') {
+    $page_name='Новости';
+    $meta_title='Новости';
+}
 
-$meta_title=$page_name;
+$last_b=$page_name;
+
+$breadcrumbs=array();
+
+
+    $breadcrumbs[] = array(
+        'title' => 'Блог'
+    );
+
 $keywords='';
 $desc='';
-$breadcrumbs = array();
-$breadcrumbs[]=[
-    'title'=>'Блог'
-];
 
+if ($Main->GPC['page']) {
+    $keywords.=', cтраница '.$Main->GPC['page'];
+    $desc.=', cтраница '.$Main->GPC['page'];
+}
 
+$Main->input->clean_array_gpc('r', array(
+    'order' => TYPE_STR
+));
+if ($Main->GPC['content_type']=='news' or $Main->GPC['content_type']=='articles') {
+    $cats = $ContentClass->GetNewsCats($Main->GPC['content_type']);
+}
+$Main->input->clean_array_gpc('r', ['content_cat'=>TYPE_UINT]);
+
+if ($Main->GPC['content_type'] == 'blog'){
+    $Main->GPC['content_type'] = 'articles';
+}
+
+$filter_options=array();
+$filter_options['order']='date';
+$filter_options['content_type']=$Main->GPC['content_type'];
+$filter_options['not_type']='pages';
+$filter_options['show_order']=true;
+$filter_options['skip_date']=true;
+$variables=$filter_options;
 
 $variables['content_type']=$Main->GPC['content_type'];
-$variables['adv']=$SettingsClass->getAdv();
-$variables['block'] = 'article';
-$variables['categories'] =  $Taxi->articles_categories->getCategoriesWichHasArticles();
-$variables['isArticles'] = true;
-$variables['where_go'] = $Taxi->cities->getPlacesPublicSortByViews();
-
-$Paging =new ClassPaging($Main,16,false,true);
-$Paging->template='frontend/components/paging/paging.twig';
-$Paging->template2='frontend/components/paging/paging.twig';
-$Paging->template3='frontend/components/paging/paging.twig';
+$variables['cats']=$cats;
+$variables['news_cat']=$news_cat;
+$variables['type']='numbers';
 
 
-if ($Main->GPC['content_type']!='blog'){
-    $Main->GPC['id']=$Main->GPC['content_type'];
-}
 
-if (!$Main->GPC['id']) {
-	$Main->input->clean_array_gpc('r',array('id'=>TYPE_STR));
-}
-
-if ($Main->GPC['id']==''){
-    $Main->GPC['id']='all';
-}
-if ($Main->GPC['id']){
-    $variables['content_type']=$Main->GPC['id'];
-//    $Main->template->DisplayJson($Main->GPC['id']);
-    $Paging->data = $ContentClass->getArticles($Main->GPC['id'],$Paging->sql_start, $Paging->per_page);
-}
-else{
-    $Paging->data = $ContentClass->getArticles('all',$Paging->sql_start, $Paging->per_page);
-}
-$Paging->total=$ContentClass->GetPublicationsTotal($Main->GPC['id']);
+$Paging =new ClassPaging($Main,555,true);
+$Paging->template = 'frontend/components/paging/paging.twig';
+$Paging->template1 = 'frontend/components/paging/paging.twig';
+$Paging->template2 = 'frontend/components/paging/paging.twig';
+$Paging->template3 = 'frontend/components/paging/paging.twig';
+$Paging->data=$ContentClass->GetContentList($filter_options,$Paging->per_page,$Paging->sql_start);
+$Paging->total=$ContentClass->GetContentListTotal($filter_options);
 
 
-$variables["active_tab"] = $Main->GPC['id'];
+
 $Main->template->SetPageAttributes(
     array(
-        'title'=>$page_name,
-        'keywords'=>'',
-        'desc'=>'',
-        'header_image_url'=>'/about/'
+        'title'=>$meta_title,
+        'keywords'=>$keywords,
+        'desc'=>$desc
     ),
     array(
         'breadcrumbs'=>$breadcrumbs,
-        'title'=>$page_name
+        'title'=>$page_name,
+        'total'=>$Paging->total,
+        'background'=>BASE_URL.'/assets/images/static/blog_bg.jpg',
+
     )
 );
-
-if (!$Paging->total){
-    $Main->template->Display(array('no_items'=>true));exit;
-}
+$Paging->Display('content/news_list_table.html.twig',$variables);
 
 
-$Paging->Display('frontend/components/table-list/table-list.twig',$variables);

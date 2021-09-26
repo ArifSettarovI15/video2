@@ -20563,13 +20563,46 @@ $(document).on('click', '.faqs_item_control', function(){
     }
 })
 
+$(document).on('click', '.burger_menu_button_show', function (){
+    $('.burger_menu').addClass('burger_menu_active')
+})
+
+$(document).on('click', '.burger_menu_button_hide', function (){
+    $('.burger_menu').removeClass('burger_menu_active')
+})
+
 
 $(document).on('click', '.login_modal_open', function(){
     openInlineModal("#modal_login")
     console.log(123)
 })
+function LoginDone(response){
+    console.log(123)
+    if (response.status){
+        if (response.payment){
+            var checkbox = $(document).find('.js_select_video_checkbox')
+            var ids=[]
+
+            checkbox.each(function (i,item){
+                if ($(item).is(':checked')){
+                    ids.push(parseInt($(item).attr('data-video_id')))
+                }
+            })
+            SendAjaxRequest({
+                data: {'action':'buy_videos',ids:ids},
+                onComplete: BuyVideosComplete
+            })
+        }
+    }
+}
 
 
+
+$(document).ready(function (){
+    if  ($('#modal_thx').length){
+        openInlineModal($('#modal_thx'))
+    }
+})
 $(document).on('click','.js_select_video', function (){
     var checkbox = $(this).find('.js_select_video_checkbox')
 
@@ -20644,9 +20677,22 @@ $(document).on('click', '.js_buy_videos', function(){
         }
     })
     SendAjaxRequest({
-        data: {'action':'buy_videos',ids:ids}
+        data: {'action':'buy_videos',ids:ids},
+        onComplete: BuyVideosComplete
     })
 })
+
+function BuyVideosComplete(response){
+    if (response.status){
+        if (response.login){
+            openInlineModal(response.html)
+        }else{
+            if (response.data.checkout_url){
+                window.location = response.data.checkout_url
+            }
+        }
+    }
+}
 
 function FilterTableData(page,obj) {
     if (obj.attr('data-before')) {

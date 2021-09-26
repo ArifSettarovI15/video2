@@ -1,0 +1,22 @@
+.news_list_content{
+  padding: 0 15px ;
+  color:white;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 150%;
+  p{
+    &:first-child{
+      padding-top: 0;
+    }
+    &:last-child{
+      padding-bottom: 0;
+    }
+    padding: 10px;
+  };
+  img{
+    padding: 10px 0;
+    max-height: 700px;
+    width: 100%;
+    object-fit: cover;
+  }
+}

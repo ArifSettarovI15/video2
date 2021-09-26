@@ -1,0 +1,38 @@
+
+{% if not themes|length %}
+    <div class="theme_wrapper_videos_empty">
+        У вас не приобретено ни одного курса.
+
+        <div class="theme_wrapper_videos_empty_small">
+            Выбрать курс для себя в <a href="{{ global.base_url }}/videocatalog/">каталоге</a>
+        </div>
+    </div>
+{% else %}
+    <div class="theme_wrapper_list">
+    {% for theme in themes %}
+        <a href="{{ global.base_url}}/cabinet/my_videos/{{theme.theme_url}}" class="theme_wrapper_item">
+            <div class="theme_wrapper_item_left">
+                <img src="{{theme.theme_icon_url}}" alt="">
+            </div>
+            <div class="theme_wrapper_item_right">
+                <div class="theme_wrapper_item_title">{{theme.theme_title}}</div>
+
+                <div class="theme_wrapper_item_info">
+                    <div class="theme_wrapper_item_info_line">
+                        <div class="theme_wrapper_item_info_title">Осталось дней:</div>
+                        {% set days = theme.uv_date_to|date_diff %}
+                        <div class="theme_wrapper_item_info_value">{{prupal(days, ['день','дня','дней'],1)}}</div>
+                    </div>
+                    <div class="theme_wrapper_item_info_line">
+                        <div class="theme_wrapper_item_info_title">Доступно видео:</div>
+                        <div class="theme_wrapper_item_info_value">{{ theme.videos_count }} видео</div>
+                    </div>
+                </div>
+
+            </div>
+        </a>
+
+    {% endfor %}
+
+    </div>
+{% endif %}

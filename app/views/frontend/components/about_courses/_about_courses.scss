@@ -11,6 +11,12 @@
   align-items: center;
   color: #FFFFFF;
   padding: 115px 0;
+  @include media('<850px'){
+    padding: 80px 0;
+  }
+  @include media('<710px'){
+    padding: 50px 0;
+  }
   &__title{
     font-style: normal;
     font-weight: bold;

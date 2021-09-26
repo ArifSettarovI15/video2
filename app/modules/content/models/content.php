@@ -409,7 +409,7 @@ thumb3.file_sizes as thumb3_file_sizes, thumb3.file_folder as thumb3_file_folder
 	        $add_path='akcii/';
         }
         elseif ($result_item['content_type']=='articles') {
-	        $add_path='articles/';
+	        $add_path='blog/';
         }
 
         $result_item['content_full_url']=BASE_URL.'/'.$add_path.$result_item['content_url'].'.html';

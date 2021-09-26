@@ -1,0 +1,37 @@
+{% import 'frontend/elements/svg/svg_macros.twig' as Svg %}
+{% import 'frontend/elements/input/input_macro.twig' as Input %}
+<div id="modal_thx" class="modal {%  if register!='1' %}mfp-hide {% endif %} white-popup animated fast">
+    <div class="modal__wrapper">
+        <div class="modal__head">
+            <div class="modal__close">
+{#                <div class="btn btn_md js-modal-close">#}
+{#                    <div class="btn__icon">{{ Svg.icon('close', 1) }}</div>#}
+{#                </div>#}
+            </div>
+        </div>
+        <div class="modal__body">
+            <div class="success_checkbox">
+                {{ Svg.icon('success_checkbox', 1, 120,120) }}
+            </div>
+            <div class="success_text">
+                <div class="success_text_big">
+                    Спасибо за покупку!
+                </div>
+                <div class="success_text_small">
+                    Вы оплатили покупку, можете получить доступ к ним в лично кабинете.
+                </div>
+                <div class="success_text_small">
+                    Приятного просмотра!
+                </div>
+                <div class="success_text_buton">
+                    <div class="modal__form-item">
+                        <a href="{{ global.base_url }}/cabinet/" class="button button_md button_primary submit">
+                            <div class="button__text">перейти в кабинет</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {#        {% include 'frontend/components/modal-login/modal-login_step1.twig' %}#}
+    </div>
+</div>

@@ -1,44 +1,16 @@
 {% extends "global.html.twig" %}
 {% block content %}
-  {% set article_list = 1 %}
-{#  <pre>{{ dump(list) }}</pre>#}
-  <div class="mtb mtb_2">
-    {% if variables.categories %}
-        {% set categories = variables.categories %}
-    {% endif %}
-
-    <div class="container">
-      {% if not no_items %}
-        <div class="table-data">
-
-          <div class="table-content" data-list="articles">
-
-            {% include 'frontend/components/table-list/table-list.twig' with {
-              block: 'article',
-              list: list
-            } %}
-          </div>
-          {% if paging_data.pages %}
-            <div class="table-list__paging">
-              {% include 'frontend/components/paging/paging.twig' %}
-            </div>
-          {% endif %}
+    <div class="bg_dark1 ">
+        <div class="container">
+        <div class="news_list_wrapper">
+                <div class="materials_list">
+                    {% for item in list %}
+                        <div class="materials_list__item">
+                            {% include 'frontend/components/materials/material_item.twig'%}
+                        </div>
+                    {% endfor %}
+                </div>
         </div>
-      {% else %}
-        <div class="empty">
-          <span>В данном разделе нет публикаций!</span>
         </div>
-      {% endif %}
     </div>
-
-  </div>
-  {% if where_go %}
-  <div>
-{#    <div class="decor_taxi"></div>#}
-    {% include 'frontend/components/screen-ways/screen-ways.twig' %}
-  </div>
-  {% endif %}
-  <div class="mtb">
-    {% include 'frontend/components/screen-callback/screen-callback.twig' %}
-  </div>
 {% endblock %}

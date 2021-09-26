@@ -10,6 +10,8 @@
 
 .icon-burger { background-image: url('png/burger.png'); background-repeat: no-repeat; }
 
+.icon-burger1 { background-image: url('png/burger1.png'); background-repeat: no-repeat; }
+
 .icon-business { background-image: url('png/business.png'); background-repeat: no-repeat; }
 
 .icon-camera-off { background-image: url('png/camera-off.png'); background-repeat: no-repeat; }
@@ -159,6 +161,8 @@
 .icon-star-fill { background-image: url('png/star-fill.png'); background-repeat: no-repeat; }
 
 .icon-star-i { background-image: url('png/star-i.png'); background-repeat: no-repeat; }
+
+.icon-success_checkbox { background-image: url('png/success_checkbox.png'); background-repeat: no-repeat; }
 
 .icon-telegram { background-image: url('png/telegram.png'); background-repeat: no-repeat; }
 

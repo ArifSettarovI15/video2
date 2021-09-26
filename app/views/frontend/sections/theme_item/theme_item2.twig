@@ -1,0 +1,165 @@
+{% import 'frontend/elements/svg/svg_macros.twig' as Svg %}
+{% import 'frontend/elements/input/input_macro.twig' as Input %}
+<div class="block_item bg_dark1">
+    <div class="block_item__content">
+        <div class="container">
+            <div class="theme_wrapper">
+                <div class="theme_wrapper_videos2 ">
+                    <div class="theme_title"><h3>{{ theme.theme_title }}</h3></div>
+                    <div class="theme_desc">
+                        {{ theme.theme_desc|raw }}
+                    </div>
+                    <div class="theme_videos_wrapper">
+                        {% if main_video.video_id %}
+                            {% import 'frontend/elements/svg/svg_macros.twig' as Svg %}
+                            <div class="theme_main_video_wr js_watch_video">
+                                <input type="checkbox" class="theme_main_video_checkbox"
+                                       data-video_id="{{ main_video.video_id }}" data-video_price="{{ main_video.video_price }}"
+                                       data-video_sale="{{ main_video.video_use_sale }}" data-video_title="{{ main_video.video_title }}">
+                                <div class="theme_main_video ">
+                                    <div class="theme_main_video_top">
+                                        <div class="theme_main_video_top_image">
+                                            <img src="{{ main_video.icon_sizes_url.normal }}" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="theme_main_video_bottom">
+                                        <h4 class="theme_main_video_bottom_title">{{main_video.video_title}}</h4>
+                                        <div class="theme_main_video_bottom_desc">
+                                            {{main_video.video_desc}}
+                                        </div>
+                                        <div class="theme_main_video_bottom_price">{{ main_video.video_price }} рублей
+                                        </div>
+                                        <div class="theme_main_video_check">{{ Svg.icon('check', 1, 20,20) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if blocks|length %}
+                            {% for block in blocks %}
+                                <div class="theme_videos_block">
+                                    <div class="theme_videos_block_title">{{ block.block_title }}</div>
+                                    <div class="theme_videos">
+                                        {% for video in block.videos %}
+                                            <div class="video_item_space js_watch_video">
+                                                <input type="checkbox" class="video_item_checkbox"
+                                                       data-video_id="{{ video.video_id }}" data-video_price="{{ video.video_price }}"
+                                                       data-video_sale="{{ video.video_use_sale }}"
+                                                       data-video_title="{{ video.video_title }}">
+                                                <div class="video_item ">
+                                                    <div class="video_item_top">
+                                                        <div class="video_item_top_image">
+                                                            <img src="{{ video.video_icon_url }}" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="video_item_bottom">
+                                                        <div class="video_item_bottom_heads">
+                                                            <h4 class="video_item_title">{{video.video_title}}</h4>
+                                                            <div class="video_item_desc">{{video.video_desc}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="video_item_price">{{video.video_price}} рублей
+                                                        </div>
+                                                        <div class="video_item_check">{{ Svg.icon('check', 1, 20,20) }}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if videos|length %}
+                            <div class="theme_videos_block">
+                                <div class="theme_videos">
+                                    {% for video in videos %}
+                                        <div class="video_item_space js_watch_video">
+                                            <input type="checkbox" class="video_item_checkbox"
+                                                   data-video_id="{{ video.video_id }}" data-video_price="{{ video.video_price }}"
+                                                   data-video_sale="{{ video.video_use_sale }}"
+                                                   data-video_title="{{ video.video_title }}">
+                                            <div class="video_item ">
+                                                <div class="video_item_top">
+                                                    <div class="video_item_top_image">
+                                                        <img src="{{ video.video_icon_url }}" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="video_item_bottom">
+                                                    <div class="video_item_bottom_heads">
+                                                        <h4 class="video_item_title">{{video.video_title}}</h4>
+                                                        <div class="video_item_desc">{{video.video_desc}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="video_item_price">{{video.video_price}} рублей
+                                                    </div>
+                                                    <div class="video_item_check">{{ Svg.icon('check', 1, 20,20) }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+                <div class="theme_wrapper_cabinet_sidebar ">
+                    <div class="cart_info">
+                        <div class="form">
+                            <div class="cart_info_title">
+                                Личная информация:
+                            </div>
+                            <div class="cabinet_info_desc">
+                                {{ Input.field('login', {
+                                    label: 'Имя',
+                                    parent_mod:2,
+                                    value:global.user_profile.profile_name
+                                }) }}
+                            </div>
+                            <div class="cabinet_info_desc">
+                                {{ Input.field('email', {
+                                    label: 'Почта',
+                                    parent_mod:2,
+                                    type:'email',
+                                    value:global.user_info.user_email
+
+                                }) }}
+                            </div>
+                            <div class="cabinet_info_desc">
+                                {{ Input.field('phone', {
+                                    label: 'Телефон',
+                                    parent_mod:2,
+                                    type:'phone',
+                                    value:'+'~global.user_profile.profile_phone
+                                }) }}
+                            </div>
+                            <div class="cabinet_info_desc">
+                                {{ Input.field('password', {
+                                    label: 'Пароль',
+                                    parent_mod:2,
+                                    type:'password'
+                                }) }}
+                            </div>
+                            <div class="cabinet_info_desc">
+                                {{ Input.field('password_confirm', {
+                                    parent_mod:2,
+                                    type:'password'
+                                }) }}
+                            </div>
+                            <div class="cart_info_button_cabinet_wr">
+                                <div class="cart_info_button cart_info_button_cabinet submit">
+                                    <div class="cart_info_button_title">Сохранить</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/logout/" class="cart_info_button">
+                            <div class="cart_info_button_title">Выйти из учетной записи</div>
+                        </a>
+                        {# <div class="cart_info_line"></div> #}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

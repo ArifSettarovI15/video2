@@ -72,6 +72,19 @@ $(document).on('click', '.js_buy_videos', function(){
         }
     })
     SendAjaxRequest({
-        data: {'action':'buy_videos',ids:ids}
+        data: {'action':'buy_videos',ids:ids},
+        onComplete: BuyVideosComplete
     })
 })
+
+function BuyVideosComplete(response){
+    if (response.status){
+        if (response.login){
+            openInlineModal(response.html)
+        }else{
+            if (response.data.checkout_url){
+                window.location = response.data.checkout_url
+            }
+        }
+    }
+}
