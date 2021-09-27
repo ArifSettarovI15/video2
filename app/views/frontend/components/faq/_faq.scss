@@ -20,6 +20,15 @@ a{
         font-size: 16px;
         padding: 15px 0;
       }
+      @include media('<610px'){
+        font-size: 16px;
+        text-align: center;
+        padding: 15px 0;
+      }
+      @include media('<510px'){
+        font-size: 13px;
+
+      }
       line-height: 150%;
       display: flex;
       align-items: center;

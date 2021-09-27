@@ -2,8 +2,19 @@
   &_cabinet{
     width: 60%;
     padding-right: 50px;
+    @include media('<850px') {
+      padding-right: 20px;
+    }
+    @include media('<710px') {
+      width: 100%;
+      margin-bottom: 30px;
+    }
     &_sidebar{
       width: 45%;
+
+      @include media('<710px') {
+        width: 100%;
+      }
     }
   }
   &_videos_empty{
@@ -27,8 +38,16 @@
     color: white;
     margin-bottom: 35px;
     border-radius: 20px;
+
     background: #1F2128;
     padding: 20px;
+    @include media('<850px') {
+      padding: 20px 15px;
+    }
+
+    @include media('<710px') {
+      padding: 20px 25px;
+    }
     cursor: pointer;
     display: flex;
     &_left{
@@ -55,6 +74,23 @@
       &_title{
         color: #A9A6A6;
       }
+      &_value{
+        &_mobile{
+          @include media('<850px') {
+              display: block!important;
+          }
+        }
+        &_desktop{
+          @include media('<850px') {
+              display: none;
+          }
+        }
+        @include media('<850px') {
+          span{
+            display: none;
+          }
+        }
+      }
     }
     &_title{
       font-family: $font-family__secondary;
@@ -62,6 +98,10 @@
       font-weight: bold;
       font-size: 22px;
       line-height: 130%;
+
+      @include media('<850px') {
+        font-size: 16px;
+      }
     }
     &:hover{
       box-shadow: 0px 0px 20px rgba(242, 132, 2, 0.5);

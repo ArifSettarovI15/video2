@@ -5,6 +5,9 @@
   font-size: 45px;
   line-height: 100%;
   color: #FFFFFF;
+  @include media('<850px'){
+    font-size: 36px;
+  }
 
   h3 {
     font-weight: bold;
@@ -50,6 +53,10 @@
   @include media("<850px"){
     width: 400px;
     height: 250px;
+  }
+  @include media("<710px"){
+    width: 100%;
+    height: 300px;
   }
   &:hover {
     box-shadow: 0 0 20px rgba(242, 132, 2, 0.5);
@@ -173,6 +180,11 @@
     width: 150px;
     height: 200px;
   }
+
+  @include media("<710px"){
+    width: 170px;
+    height: 250px;
+  }
   &:hover {
     box-shadow: 0 0 20px rgba(242, 132, 2, 0.5);
   }
@@ -203,6 +215,10 @@
   &_top {
     flex: 45%;
     overflow: hidden;
+
+    @include media("<710px"){
+      flex: auto;
+    }
   }
 
   &_bottom {

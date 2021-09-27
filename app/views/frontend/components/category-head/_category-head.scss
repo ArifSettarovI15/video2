@@ -6,6 +6,9 @@
   @include media("<850px"){
     padding: 50px 0 70px;
   }
+  @include media("<510px"){
+    padding: 80px 0 70px;
+  }
   &_page_title{
     font-family: $font-family__secondary;
     font-style: normal;
@@ -16,6 +19,9 @@
     }
     @include media("<850px"){
       font-size: 42px;
+    }
+    @include media("<710px"){
+      font-size: 32px;
     }
     line-height: 100%;
     /* or 60px */

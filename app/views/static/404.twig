@@ -3,16 +3,18 @@
 
 {% endblock %}
 {% block content %}
-    {% import "frontend/elements/svg/svg_macros.twig" as Svg %}
-    <div class="page404">
-        <div class="page404__inner">
-            <div class="container">
-                <div class="page404__wrapper">
-                    ОШИБКА <b>404</b>
-                </div>
+<div class="block_item bg_dark1">
+    <div class="block_item__content">
+        <div class="container">
+
                 <div class="page404__content">
                     <div class="page404__title">Страница не найдена!</div>
                     <div class="page404__descr">Возможно эта страница удалена.</div>
+                    <div class="page404__button">
+                        <div class="cart_info_button page404__button">
+                            <a href="/" class="cart_info_button_title">Вернуться на главную</a>
+                        </div>
+                        </div>
                 </div>
             </div>
         </div>

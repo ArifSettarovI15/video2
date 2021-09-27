@@ -9,6 +9,10 @@
     width: 100%;
     font-weight: 700;
     font-family: $font-family__secondary;
+
+    @include media('<660px'){
+      font-size: 45px;
+    }
   }
 
   p {
@@ -19,15 +23,23 @@
     color: #FFFFFF;
     text-align: center;
     width: 100%;
+
+    @include media('<660px'){
+      margin-top: 50px!important;
+    }
   }
 
   padding: 100px;
-  padding-bottom: 300px;
-  display: -ms-flexbox;
   display: flex;
   flex-direction: column;
   text-align: center;
   height: 820px;
+  @include media('<660px'){
+    padding: 70px;
+
+    height: 600px;
+
+  }
 
 
 

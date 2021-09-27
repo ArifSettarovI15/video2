@@ -1,0 +1,30 @@
+{% extends "global.html.twig" %}
+{% block content %}
+    <div class="block_item bg_dark1">
+        <div class="block_item__content">
+            <div class="container">
+                <div class="contacts_top">
+                    <div class="contacts_top_item">
+                        <div class="contacts_top_item_title">Телефон для связи:
+                        </div>
+                        <div class="contacts_top_item_value">{{ contacts.contact_phone }}
+                        </div>
+                    </div>
+                    <div class="contacts_top_item">
+                        <div class="contacts_top_item_title">Почта:
+                        </div>
+                        <div class="contacts_top_item_value">{{ contacts.contact_email }}
+                        </div>
+                    </div>
+                </div>
+                <div class="contacts_line">
+
+                </div>
+                <div class="contacts_text text">
+                    {{ contacts.contact_text|raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

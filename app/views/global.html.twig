@@ -4,8 +4,11 @@
   <div class="wrapper" id="main-container">
     <div class="wrapper_top">
       {% include 'frontend/components/header/header.twig' %}
-      {% if global.error404 or global.error401 or is_home %}
-
+      {% if global.error404 or global.error401  %}
+          <div class="wrapper__top-sub">
+              {% include 'frontend/components/category-head/category-head.twig' %}
+          </div>
+      {% elseif is_home %}
       {% else %}
         <div class="wrapper__top-sub">
           {% include 'frontend/components/category-head/category-head.twig' %}

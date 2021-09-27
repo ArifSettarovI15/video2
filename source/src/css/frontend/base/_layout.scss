@@ -46,6 +46,15 @@
     @include media('<710px') {
         width: 600px;
     }
+    @include media('<610px') {
+        width: 500px;
+    }
+    @include media('<510px') {
+        width: 400px;
+    }
+    @include media('<410px') {
+        width: 350px;
+    }
 }
 
 .ptb {

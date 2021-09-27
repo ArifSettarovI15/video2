@@ -1,5 +1,13 @@
 {% import 'frontend/elements/svg/svg_macros.twig' as Svg %}
-<div class="header_background" style="background-image: url('{{ global.page.background }}');"></div>
+{% if not global.page.background %}
+    {% set background_error = '/assets/images/static/mainpage_bg.jpg' %}
+{% endif %}
+{% if background_error %}
+    <div class="header_background" style="background-image: url('{{ background_error }}');"></div>
+{% else %}
+    <div class="header_background" style="background-image: url('{{ global.page.background }}');"></div>
+{% endif %}
+
 <div class="header">
     <div class="header_links">
         <div class="container">
@@ -32,7 +40,7 @@
                     {{ Svg.icon('logo',1, 105,60) }}
                 </a>
 
-                <a href="/about" class="main_menu_link">
+                <a href="/about.html" class="main_menu_link">
                     Кто мы
                 </a>
                 <a href="{{ global.base_url }}/videocatalog/" class="main_menu_link">
@@ -41,7 +49,7 @@
                 <a href="/blog" class="main_menu_link">
                     Блог
                 </a>
-                <a href="/contact" class="main_menu_link">
+                <a href="/contacts.html" class="main_menu_link">
                     Контакты
                 </a>
                 {% if global.user_info.user_id %}

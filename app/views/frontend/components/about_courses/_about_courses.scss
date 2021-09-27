@@ -23,24 +23,51 @@
     font-size: 40px;
     line-height: 100%;
     font-family: $font-family__secondary;
+
+    @include media('<850px'){
+      font-size: 36px;
+    }
+    @include media('<610px'){
+      font-size: 32px;
+    }
+
   }
   &__before{
     width: 50px;
     border: 4px solid #E12329;
     margin: 52px 0;
 
+    @include media('<850px'){
+      margin: 30px 0;
+    }
+    @include media('<610px'){
+      margin: 20px 0;
+    }
+
   }
   &__content{
     &__text{
       width: 588px;
+      @include media('<610px'){
+        width: 500px;
+      }
+      @include media('<510px'){
+        width: 400px;
+      }
       p{
         margin-bottom: 18px;
+
         &:last-child{
           margin: 0;
         }
         font-weight: 300;
         font-size: 16px;
         line-height: 150%;
+
+        @include media('<610px'){
+          margin-bottom: 10px;
+          font-size: 14px;
+        }
         /* or 24px */
 
         text-align: center;

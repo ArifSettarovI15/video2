@@ -5,21 +5,41 @@
 
 .theme_wrapper{
   display: flex;
+  @include media('<850px'){
+    padding-top: 30px;
+  }
+  @include media('<710px'){
+    flex-direction: column;
+  }
   &_videos{
     width: 65%;
+    @include media('<710px'){
+      width: 100%;
+    }
   }
   &_videos2{
     width: 80%;
+    @include media('<710px'){
+      width: 100%;
+    }
   }
   &_sidebar{
     margin-left: 70px;
     width: 30%;
+
     height: auto;
     @include media("<1200px"){
       margin-left: 25px;
     }
     @include media("<850px"){
       margin-left: 5px;
+    }
+
+    @include media('<710px'){
+      order: -1;
+      width: 100%;
+      margin:0;
+      padding-bottom: 30px;
     }
   }
 }

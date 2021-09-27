@@ -9,6 +9,13 @@
     width: 100%;
     z-index: 1;
 
+    @include media("<710px"){
+      top: 30px;
+    }
+    @include media("<610px"){
+      display: none;
+    }
+
   }
   &__item{
     font-size: 12px;

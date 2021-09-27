@@ -1,5 +1,10 @@
 <div class="category_head" >
-    <div class="category_head_page_title">{{global.page.title}}</div>
+    {% if global.page.title %}
+        <div class="category_head_page_title">{{global.page.title}}</div>
+        {% else %}
+            <div class="category_head_page_title">ОШИБКА 404</div>
+    {% endif %}
+
 {#    <div class="category_head_breadcrumbs">#}
 {#        <a href="#">Главная</a>#}
 {#        <a href="#">Видеокаталог</a>#}

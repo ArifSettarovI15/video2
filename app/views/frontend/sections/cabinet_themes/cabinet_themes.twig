@@ -21,11 +21,12 @@
                     <div class="theme_wrapper_item_info_line">
                         <div class="theme_wrapper_item_info_title">Осталось дней:</div>
                         {% set days = theme.uv_date_to|date_diff %}
-                        <div class="theme_wrapper_item_info_value">{{prupal(days, ['день','дня','дней'],1)}}</div>
+                        <div class="theme_wrapper_item_info_value theme_wrapper_item_info_value_desktop">{{prupal(days, ['день','дня','дней'],1)}}</div>
+                        <div class="theme_wrapper_item_info_value_mobile" style="display: none;">{{days}}</div>
                     </div>
                     <div class="theme_wrapper_item_info_line">
                         <div class="theme_wrapper_item_info_title">Доступно видео:</div>
-                        <div class="theme_wrapper_item_info_value">{{ theme.videos_count }} видео</div>
+                        <div class="theme_wrapper_item_info_value">{{ theme.videos_count }}<span> видео</span></div>
                     </div>
                 </div>
 

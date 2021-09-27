@@ -14,19 +14,19 @@
                 </div>
             </div>
             <div class="footer_col">
-                <a href="#" class="footer_item footer_item__link">
+                <a href="/videocatalog" class="footer_item footer_item__link">
                     Видеокаталог
                 </a>
-                <a href="#" class="footer_item footer_item__link">
+                <a href="/about.html" class="footer_item footer_item__link">
                     Кто мы
                 </a>
-                <a href="#" class="footer_item footer_item__link">
+                <a href="/blog" class="footer_item footer_item__link">
                     Блог
                 </a>
-                <a href="#" class="footer_item footer_item__link">
+                <a href="/contacts.html" class="footer_item footer_item__link">
                     Контакты
                 </a>
-                <a href="#" class="footer_item footer_item__link">
+                <a href="/help" class="footer_item footer_item__link">
                     Поддержка
                 </a>
                 <a href="#" class="footer_item footer_item__link">
@@ -34,16 +34,12 @@
                 </a>
             </div>
             <div class="footer_col">
-                <a href="#" class="footer_item footer_item__link">
-                    Платежи по подписке
-                </a>
-                <a href="#" class="footer_item footer_item__link">
-                    Политика использования Cookies
-                </a>
-                <a href="#" class="footer_item footer_item__link">
-                    Политика конфиденциальности
+                {% for page in global.pages %}
 
-                </a>
+                    <a href="{{page.content_full_url}}" class="footer_item footer_item__link">
+                        {{page.content_title}}
+                    </a>
+                {% endfor %}
 
             </div>
         </div>
