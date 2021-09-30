@@ -98,6 +98,20 @@ class DbColumn {
 			$this->dop = 'in';
 		}
 	}
+	public function not_inValue( $value ) {
+		$this->value[] = $value;
+		$this->dop = 'not in';
+	}
+	public function not_inValues( $value ) {
+		if (count($value)==1) {
+			$this->setValue(array_values($value)[0]);
+			$this->dop = 'not ';
+		}
+		else {
+			$this->value = $value;
+			$this->dop = 'not in';
+		}
+	}
 	/**
 	 * @return bool
 	 */

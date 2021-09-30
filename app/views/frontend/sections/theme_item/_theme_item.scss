@@ -47,7 +47,7 @@
 .cart_info{
 
   padding-left: 70px;
-  border-left: 2px solid #686666;
+  border-left: 1px solid #686666;
   @include media("<1200px"){
     padding-left: 25px;
     font-size: 14px !important;
@@ -55,6 +55,11 @@
   @include media("<850px"){
     padding-left: 10px;
     font-size: 14px !important;
+  }
+  @include media("<710px"){
+    padding-left: 0;
+    border-left: 0;
+
   }
   &_title{
     font-family: $font-family__secondary;

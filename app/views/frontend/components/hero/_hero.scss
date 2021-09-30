@@ -33,11 +33,11 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  height: 820px;
+  height: 600px;
   @include media('<660px'){
     padding: 70px;
 
-    height: 600px;
+    height: 400px;
 
   }
 

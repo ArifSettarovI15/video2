@@ -1,7 +1,14 @@
 .help{
   display: flex;
+  @include media('<610px'){
+    flex-direction: column;
+  }
   .help_left, .help_right{
     flex: 50%;
+
+    @include media('<610px'){
+      flex: 100%;
+    }
     padding: 5px;
     display: block;
   }

@@ -6304,7 +6304,7 @@ a {
   -ms-flex-direction: column;
       flex-direction: column;
   text-align: center;
-  height: 820px; }
+  height: 600px; }
   .first_screen h1 {
     max-width: 600px;
     margin: 0 auto;
@@ -6331,7 +6331,7 @@ a {
   @media (max-width: 659px) {
     .first_screen {
       padding: 70px;
-      height: 600px; } }
+      height: 400px; } }
   .first_screen_button {
     width: 170px;
     /* height: 45px; */
@@ -6390,7 +6390,8 @@ a {
   width: 300px;
   height: 450px;
   border-radius: 20px;
-  overflow: hidden; }
+  overflow: hidden;
+  transition: all 0.3s; }
   @media (max-width: 1199px) {
     .material_item {
       width: 250px;
@@ -6441,6 +6442,8 @@ a {
       z-index: 1; }
   .material_item:hover {
     filter: drop-shadow(0px 0px 50px rgba(242, 132, 2, 0.5)); }
+    .material_item:hover .material_item_bottom {
+      color: #f28402; }
 
 .news_list_wrapper {
   padding: 150px 0 100px;
@@ -6522,6 +6525,7 @@ a {
   height: 480px;
   background: #1F2128;
   border-radius: 10px;
+  transition: all 0.3s;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -6623,6 +6627,7 @@ a {
   height: 270px;
   border-radius: 10px;
   overflow: hidden;
+  transition: all 0.3s;
   background: #1F2128;
   display: -ms-flexbox;
   display: flex;
@@ -6712,7 +6717,8 @@ a {
   position: relative;
   padding: 32px 28px;
   text-align: center;
-  overflow: hidden; }
+  overflow: hidden;
+  transition: all 0.3s; }
   @media (max-width: 1199px) {
     .way_item {
       width: 250px;
@@ -6923,13 +6929,29 @@ a {
   color: white;
   display: -ms-flexbox;
   display: flex; }
+  @media (max-width: 609px) {
+    .contacts_top {
+      -ms-flex-direction: column;
+          flex-direction: column;
+      -ms-flex-pack: center;
+          justify-content: center; } }
   .contacts_top_item {
     width: 50%; }
+    @media (max-width: 609px) {
+      .contacts_top_item {
+        padding-bottom: 20px;
+        width: 100%; } }
     .contacts_top_item_title {
       font-size: 18px;
       padding-bottom: 20px; }
+      @media (max-width: 849px) {
+        .contacts_top_item_title {
+          font-size: 16px; } }
     .contacts_top_item_value {
       font-size: 32px; }
+      @media (max-width: 849px) {
+        .contacts_top_item_value {
+          font-size: 24px; } }
 
 .contacts_line {
   margin: 50px 0;
@@ -6986,7 +7008,7 @@ footer {
       -ms-flex-pack: justify;
           justify-content: space-between;
       margin-bottom: 50px; } }
-  @media (max-width: 609px) {
+  @media (max-width: 509px) {
     .footer_col {
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
@@ -6998,6 +7020,22 @@ footer {
   font-size: 16px;
   line-height: 100%;
   color: #fff; }
+  .footer_item__payment {
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%; }
+    .footer_item__payment_icon {
+      padding-right: 10px; }
+      .footer_item__payment_icon:last-child {
+        padding: 0; }
+    @media (max-width: 609px) {
+      .footer_item__payment {
+        -ms-flex-pack: end;
+            justify-content: flex-end; } }
+    @media (max-width: 409px) {
+      .footer_item__payment {
+        -ms-flex-pack: start;
+            justify-content: flex-start; } }
   .footer_item:last-child {
     margin-bottom: 0; }
   @media (max-width: 709px) {
@@ -7009,7 +7047,9 @@ footer {
   @media (max-width: 509px) {
     .footer_item {
       margin-bottom: 20px;
-      margin-right: 20px; } }
+      margin-right: 20px; }
+      .footer_item:last-child {
+        margin-bottom: 20px; } }
 
 .footer_row2 {
   color: #A9A6A6;
@@ -7058,11 +7098,19 @@ footer {
 .help {
   display: -ms-flexbox;
   display: flex; }
+  @media (max-width: 609px) {
+    .help {
+      -ms-flex-direction: column;
+          flex-direction: column; } }
   .help .help_left, .help .help_right {
     -ms-flex: 50%;
         flex: 50%;
     padding: 5px;
     display: block; }
+    @media (max-width: 609px) {
+      .help .help_left, .help .help_right {
+        -ms-flex: 100%;
+            flex: 100%; } }
   .help .help_right .field_2 {
     height: 100%; }
   .help .help_right textarea {
@@ -7123,7 +7171,7 @@ footer {
 
 .cart_info {
   padding-left: 70px;
-  border-left: 2px solid #686666; }
+  border-left: 1px solid #686666; }
   @media (max-width: 1199px) {
     .cart_info {
       padding-left: 25px;
@@ -7132,6 +7180,10 @@ footer {
     .cart_info {
       padding-left: 10px;
       font-size: 14px !important; } }
+  @media (max-width: 709px) {
+    .cart_info {
+      padding-left: 0;
+      border-left: 0; } }
   .cart_info_title {
     font-family: "Exo2", Helvetica, sans-serif;
     font-style: normal;

@@ -1,3 +1,5 @@
+.icon-apple_pay { background-image: url('png/apple_pay.png'); background-repeat: no-repeat; }
+
 .icon-arrow-left { background-image: url('png/arrow-left.png'); background-repeat: no-repeat; }
 
 .icon-arrow-right { background-image: url('png/arrow-right.png'); background-repeat: no-repeat; }
@@ -60,6 +62,8 @@
 
 .icon-globus { background-image: url('png/globus.png'); background-repeat: no-repeat; }
 
+.icon-google_pay { background-image: url('png/google_pay.png'); background-repeat: no-repeat; }
+
 .icon-header_phone { background-image: url('png/header_phone.png'); background-repeat: no-repeat; }
 
 .icon-home { background-image: url('png/home.png'); background-repeat: no-repeat; }
@@ -103,6 +107,8 @@
 .icon-map-pin { background-image: url('png/map-pin.png'); background-repeat: no-repeat; }
 
 .icon-map { background-image: url('png/map.png'); background-repeat: no-repeat; }
+
+.icon-mastercard { background-image: url('png/mastercard.png'); background-repeat: no-repeat; }
 
 .icon-microbus { background-image: url('png/microbus.png'); background-repeat: no-repeat; }
 
@@ -173,6 +179,8 @@
 .icon-upload-icon { background-image: url('png/upload-icon.png'); background-repeat: no-repeat; }
 
 .icon-user { background-image: url('png/user.png'); background-repeat: no-repeat; }
+
+.icon-visa { background-image: url('png/visa.png'); background-repeat: no-repeat; }
 
 .icon-vk { background-image: url('png/vk.png'); background-repeat: no-repeat; }
 

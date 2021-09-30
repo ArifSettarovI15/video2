@@ -150,14 +150,14 @@ class Orders extends DbData
         return $result_item;
     }
 
-    public function CheckoutUrl($price, $order_id){
+    public function CheckoutUrl($price, $order_id, $action ='order_payed'){
         \Cloudipsp\Configuration::setMerchantId(1397120);
         \Cloudipsp\Configuration::setSecretKey('test');
         $data = [
             'order_desc' => 'Оплата покупки на сайте SNG-training.com',
             'currency' => 'RUB',
             'amount' => $price.'00',
-            'response_url' => BASE_URL.'/?action=order_payed',
+            'response_url' => BASE_URL.'/?action='.$action,
             'server_callback_url' => BASE_URL.'/',
             'sender_email' => $this->registry->user_info['user_email'],
             'lang' => 'ru',

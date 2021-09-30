@@ -21,33 +21,56 @@ if ($Main->GPC['action'] === 'buy_videos') {
         $html = $Main->template->Render('frontend/components/login_modal/login_modal.twig', ['register' => 1, 'payment' => true, 'inline' => true]);
         $Main->template->DisplayJson(['status' => true, 'login' => true, 'html' => $html]);
     } else {
-        $for_sale_price = 0;
-        $without_sale_price = 0;
-        $for_sale_count = 0;
+        $price_without_sale = 0;
         $price = 0;
+        $price7 = 0;
+        $price14 = 0;
+        $price21 = 0;
+        $price28 = 0;
+        $price35 = 0;
+        $count = 0;
+
         foreach ($Main->GPC['ids'] as $id) {
+
             $video = $Courses->videos->GetItemById($id);
+
             if ($video['video_use_sale']) {
-                $for_sale_price += (int)$video['video_price'];
-                $for_sale_count++;
+                ++$count;
+                if ($count < 11) {
+                    $price += (int)$video['video_price'];
+                } elseif (11 <= $count && $count < 21) {
+                    $price7 += (int)$video['video_price'];
+                } elseif (21 <= $count && $count < 31) {
+                    $price14 += (int)$video['video_price'];
+                } elseif (31 <= $count && $count < 41) {
+                    $price21 += (int)$video['video_price'];
+                } elseif (41 <= $count && $count < 51) {
+                    $price28 += (int)$video['video_price'];
+                } elseif (51 <= $count) {
+                    $price35 += (int)$video['video_price'];
+                }
             } else {
-                $without_sale_price += (int)$video['video_price'];;
+                $price_without_sale += (int)$video['video_price'];;
             }
-            $price += (int)$video['video_price'];
         }
-        if ($for_sale_count < 11) {
-            $total_price = $price;
-        } else if ($for_sale_count >= 11 && $for_sale_count < 21) {
-            $total_price = $without_sale_price + ($for_sale_price / 100 * 93);
-        } else if ($for_sale_count >= 21 && $for_sale_count < 31) {
-            $total_price = $without_sale_price + ($for_sale_price / 100 * 86);
-        } else if ($for_sale_count >= 31 && $for_sale_count < 41) {
-            $total_price = $without_sale_price + ($for_sale_price / 100 * 79);
-        } else if ($for_sale_count >= 41 && $for_sale_count < 51) {
-            $total_price = $without_sale_price + ($for_sale_price / 100 * 72);
-        } else {
-            $total_price = $without_sale_price + ($for_sale_price / 100 * 65);
+        if ($price7 > 0) {
+            $price7 = $price7 / 100 * 93;
         }
+        if ($price14 > 0) {
+            $price14 = $price14 / 100 * 86;
+        }
+        if ($price21 > 0) {
+            $price21 = $price21 / 100 * 79;
+        }
+        if ($price28 > 0) {
+            $price28 = $price28 / 100 * 72;
+        }
+        if ($price35 > 0) {
+            $price35 = $price35 / 100 * 65;
+        }
+
+        $total_price = (int)$price + (int)$price7 + (int)$price14 + (int)$price21 + (int)$price28 + (int)$price35+(int)$price_without_sale;
+
         $Courses->orders->CreateModel();
         $Courses->orders->model->columns_update->getAmount()->setValue($total_price);
         $Courses->orders->model->columns_update->getUserId()->setValue($Main->user_info['user_id']);
@@ -57,9 +80,34 @@ if ($Main->GPC['action'] === 'buy_videos') {
 
         $data = $Courses->orders->CheckoutUrl($total_price, $order_id);
 
-        $Main->template->DisplayJson(['status'=>true, 'data'=>$data]);
+        $Main->template->DisplayJson(['status' => true, 'data' => $data]);
     }
     exit;
+}
+
+
+if ($Main->GPC['action'] === 'buy_premium') {
+
+
+    if (!$Main->user_info['user_id']) {
+        $html = $Main->template->Render('frontend/components/login_modal/login_modal.twig', ['register' => 1, 'payment' => true, 'inline' => true]);
+        $Main->template->DisplayJson(['status' => true, 'login' => true, 'html' => $html]);
+    } else {
+
+        $theme = $Courses->themes->GetItemByUrl($Main->GPC['theme']);
+        $Courses->orders->CreateModel();
+        $Courses->orders->model->columns_update->getAmount()->setValue($theme['theme_all_price']);
+        $Courses->orders->model->columns_update->getUserId()->setValue($Main->user_info['user_id']);
+        $Courses->orders->model->columns_update->getData()->setValue($theme['theme_id']);
+        $Courses->orders->model->columns_update->getType()->setValue('premium');
+        $order_id = $Courses->orders->Insert();
+
+        $data = $Courses->orders->CheckoutUrl($theme['theme_all_price'], $order_id, 'premium_payed');
+
+        $Main->template->DisplayJson(['status' => true, 'data' => $data]);
+
+        exit;
+    }
 }
 
 $page_name = $theme['theme_title'];

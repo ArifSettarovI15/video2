@@ -26,12 +26,14 @@
 }
 
 .material_item{
+  $root : &;
   display: block;
   background-color: #1F2128;
   width: 300px;
   height: 450px;
   border-radius: 20px;
   overflow: hidden;
+  transition: all 0.3s;
   @include  media("<1200px"){
     width: 250px;
     height: 350px;
@@ -85,6 +87,10 @@
     }
   }
   &:hover{
+    #{$root}_bottom{
+
+      color: #f28402;
+    }
     filter: drop-shadow(0px 0px 50px rgba(242, 132, 2, 0.5));
   }
 }

@@ -6,11 +6,26 @@
         <div class="block_item__content">
             <div class="container">
                 <div class="ways_list ways_list_space">
-                    {% for item in catalog %}
-                        <div class="ways_list_space_item">
-                            {% include 'frontend/components/ways/way_item.twig' with {dop_class:'way_item_darker'} %}
-                        </div>
-                    {% endfor %}
+                    {% if themes|length %}
+                        {% for item in themes %}
+                            <div class="ways_list_space_item ">
+
+                                    <a href="{{global.base_url}}/videocatalog/{{ item.catalog_url }}/{{ item.theme_url }}" class="way_item way_item_darker" >
+                                        <div class="way_item_image">
+                                            <img src="{{ item.theme_icon_normal_url }}" alt="">
+                                        </div>
+                                        <div>{{item.theme_title}}</div>
+                                    </a>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                            {% for item in catalog %}
+                                <div class="ways_list_space_item">
+                                    {% include 'frontend/components/ways/way_item.twig' with {dop_class:'way_item_darker'} %}
+                                </div>
+                            {% endfor %}
+                    {% endif %}
+
                 </div>
             </div>
         </div>

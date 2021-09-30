@@ -1,5 +1,5 @@
 
-{% if not themes|length %}
+{% if not themes|length and not premiums|length %}
     <div class="theme_wrapper_videos_empty">
         У вас не приобретено ни одного курса.
 
@@ -9,6 +9,31 @@
     </div>
 {% else %}
     <div class="theme_wrapper_list">
+    {% for theme in premiums %}
+        <a href="{{ global.base_url}}/cabinet/my_premiums/{{theme.theme_url}}" class="theme_wrapper_item">
+            <div class="theme_wrapper_item_left">
+                <img src="{{theme.theme_icon_url}}" alt="">
+            </div>
+            <div class="theme_wrapper_item_right">
+                <div class="theme_wrapper_item_title">{{theme.theme_title}}</div>
+
+                <div class="theme_wrapper_item_info">
+                    <div class="theme_wrapper_item_info_line">
+                        <div class="theme_wrapper_item_info_title">Осталось дней:</div>
+                        {% set days = theme.uv_date_to|date_diff %}
+                        <div class="theme_wrapper_item_info_value theme_wrapper_item_info_value_desktop">∞</div>
+                        <div class="theme_wrapper_item_info_value_mobile" style="display: none;">{{days}}</div>
+                    </div>
+                    <div class="theme_wrapper_item_info_line">
+                        <div class="theme_wrapper_item_info_title">Доступно видео:</div>
+                        <div class="theme_wrapper_item_info_value">{{ theme.videos_count }}<span> видео</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </a>
+
+    {% endfor %}
     {% for theme in themes %}
         <a href="{{ global.base_url}}/cabinet/my_videos/{{theme.theme_url}}" class="theme_wrapper_item">
             <div class="theme_wrapper_item_left">

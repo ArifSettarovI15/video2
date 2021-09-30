@@ -37,6 +37,10 @@ class Courses
      * @var UserVideos
      */
     public $user_videos;
+    /**
+     * @var UserPremiums
+     */
+    public $user_premiums;
 
     public function __construct(&$registry)
     {
@@ -50,6 +54,7 @@ class Courses
         require_once 'videos.php';
         require_once 'orders.php';
         require_once 'user_videos.php';
+        require_once 'user_premiums.php';
 
         $this->catalog = new Catalog($this->registry);
         $this->themes = new Themes($this->registry);
@@ -57,6 +62,7 @@ class Courses
         $this->videos = new Videos($this->registry);
         $this->orders = new Orders($this->registry);
         $this->user_videos = new UserVideos($this->registry);
+        $this->user_premiums = new UserPremiums($this->registry);
     }
 
 }

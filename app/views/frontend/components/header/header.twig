@@ -5,7 +5,13 @@
 {% if background_error %}
     <div class="header_background" style="background-image: url('{{ background_error }}');"></div>
 {% else %}
-    <div class="header_background" style="background-image: url('{{ global.page.background }}');"></div>
+    {% if is_home %}
+        <div class="header_background" style="background-image: url('{{ global.page.background }}');
+                background-attachment: fixed;"></div>
+    {% else %}
+        <div class="header_background" style="background-image: url('{{ global.page.background }}');"></div>
+    {% endif %}
+
 {% endif %}
 
 <div class="header">
@@ -114,7 +120,7 @@
     </div>
     </div>
     <div class="burger_menu_links">
-    <a href="/about" class="main_menu_link">
+    <a href="/about.html" class="main_menu_link">
         Кто мы
     </a>
     <a href="{{ global.base_url }}/videocatalog/" class="main_menu_link">
@@ -123,7 +129,7 @@
     <a href="/blog" class="main_menu_link">
         Блог
     </a>
-    <a href="/contact" class="main_menu_link">
+    <a href="/contacts.html" class="main_menu_link">
         Контакты
     </a>
     {% if global.user_info.user_id %}

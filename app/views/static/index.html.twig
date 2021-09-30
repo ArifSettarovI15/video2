@@ -1,10 +1,12 @@
 {% extends "global.html.twig" %}
 {% block content %}
-
-    {# {% include 'frontend/components/hero/hero.twig' %} #}
-
     {% include 'frontend/components/about_courses/about_courses.twig' %}
-    {% include 'frontend/components/ways/ways.twig' %}
+    {% if themes|length %}
+        {% include 'frontend/components/ways/ways2.twig' %}
+    {% else %}
+        {% include 'frontend/components/ways/ways.twig' %}
+    {% endif %}
+
     {% include 'frontend/components/faq/faq.twig' %}
     {% include 'frontend/components/materials/materials.twig' %}
     {% if show_thx %}

@@ -6,6 +6,17 @@ if (!$Main->user_info['user_id']){
 
 $theme = $Courses->themes->GetItemByUrl($Main->GPC['theme']);
 
+
+
+if ($Main->GPC['action']=='watch_video'){
+    $Main->input->clean_array_gpc('r',['video_id'=>TYPE_UINT]);
+    $video = $Courses->videos->GetItemById($Main->GPC['video_id']);
+
+    $html = $Main->template->Render('frontend/components/video_modal/video_modal.twig',['url'=>$video['video_embed_link']]);
+    $Main->template->DisplayJson(['status'=>true, 'html'=>$html]);
+
+
+}
 $breadcrumbs = array();
 $breadcrumbs[] = array(
     'title'=>'Кабинет',

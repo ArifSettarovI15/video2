@@ -1,0 +1,23 @@
+<div class="block_item bg_dark2">
+    <div class="block_item__title">
+        Направления
+    </div>
+    <div class="block_item__before"></div>
+    <div class="block_item__content">
+        <div class="container">
+            <div class="ways_list">
+                {% for item in themes %}
+                    <div class="ways_list__item ways_list_space_item">
+                        <a href="{{global.base_url}}/videocatalog/{{ item.catalog_url }}/{{ item.theme_url }}" class="way_item" >
+                            <div class="way_item_image">
+                                <img src="{{ item.theme_icon_normal_url }}" alt="">
+                            </div>
+                            <div>{{item.theme_title}}</div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,20 @@
+{% import 'frontend/elements/svg/svg_macros.twig' as Svg %}
+{% import 'frontend/elements/input/input_macro.twig' as Input %}
+<div id="modal_video" class="modal {%  if register!='1' %}mfp-hide {% endif %} white-popup animated fast" style="min-width:700px; ">
+    <div class="modal__wrapper">
+        <div class="modal__head">
+            <div class="modal__close">
+                <div class="btn btn_md js-modal-close">
+                    <div class="btn__icon">{{ Svg.icon('close', 1) }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="modal__body">
+            <iframe src="{{ url }}"
+                    width="640" height="360" frameborder="0"  allowfullscreen></iframe>
+
+{#            <p><a href="https://vimeo.com/161073651">https://vimeo.com/161073651</a> from <a href="https://vimeo.com/eduardomakoszay">emakoszay</a> on <a href="https://vimeo.com">Vimeo</a>.</p>#}
+        </div>
+        {#        {% include 'frontend/components/modal-login/modal-login_step1.twig' %}#}
+    </div>
+</div>
